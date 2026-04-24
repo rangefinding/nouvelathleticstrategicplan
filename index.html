@@ -1,0 +1,4954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCC Athletic Strategic Plan | 2026–2028 Implementation Timeline</title>
+
+<!--
+===========================================================================
+  NCC ATHLETIC STRATEGIC PLAN — IMPLEMENTATION TIMELINE
+  Single-file, self-contained. Host via GitHub Pages.
+
+  HOW TO EDIT:
+  -----------------------------------------------------------------------
+  All content lives in two JavaScript objects near the top of <script>:
+
+    PLAN       — Pillars, sub-pillars, and monthly cells (actions, status,
+                 faith note, appendix refs)
+    APPENDICES — Referenceable long-form framework documents
+
+  Edit the text, commit to GitHub, done. The UI re-renders on page load.
+  -----------------------------------------------------------------------
+  STATUS VALUES:
+    "not-started" | "in-progress" | "complete" | "deferred" | "blocked"
+
+  FAITH INTEGRATION:
+    Every cell with a faith dimension carries a `faith` field AND relevant
+    action items are marked with ✞ in the data.
+===========================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =============================================================
+   DESIGN TOKENS
+   ============================================================= */
+:root {
+  /* NCC brand */
+  --ncc-blue:        #1e3a70;
+  --ncc-blue-dark:   #12254a;
+  --ncc-blue-darker: #0a1730;
+  --ncc-blue-light:  #3b5ca0;
+  --ncc-silver:      #c0c6cf;
+  --ncc-silver-light:#e5e8ed;
+  --ncc-silver-dark: #8892a0;
+
+  /* Neutrals */
+  --ink:        #0f172a;
+  --ink-muted:  #475569;
+  --ink-light:  #64748b;
+  --paper:      #f7f8fa;
+  --card:       #ffffff;
+  --border:     #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  /* Status colors */
+  --status-not-started: #94a3b8;
+  --status-in-progress: #2563eb;
+  --status-complete:    #059669;
+  --status-deferred:    #d97706;
+  --status-blocked:     #dc2626;
+
+  /* Pillar accents */
+  --pillar-1: #1e3a70;
+  --pillar-2: #2a5490;
+  --pillar-3: #3b6bab;
+  --pillar-4: #5481c0;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
+  --shadow:    0 4px 12px rgba(15, 23, 42, .06);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, .10);
+
+  --radius:    8px;
+  --radius-lg: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+
+/* =============================================================
+   HEADER
+   ============================================================= */
+header.site-header {
+  background: linear-gradient(135deg, var(--ncc-blue-darker) 0%, var(--ncc-blue) 100%);
+  color: white;
+  padding: 2.5rem 2rem 2rem;
+  border-bottom: 4px solid var(--ncc-silver);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.title-block .eyebrow {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ncc-silver);
+  margin-bottom: .5rem;
+}
+
+.title-block h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: .4rem;
+}
+
+.title-block .subtitle {
+  font-size: 1rem;
+  color: #cfd6e0;
+  font-weight: 400;
+  max-width: 640px;
+}
+
+.header-meta {
+  display: flex;
+  gap: 1.25rem;
+  font-size: .82rem;
+  color: var(--ncc-silver);
+}
+
+.header-meta .meta-item strong {
+  display: block;
+  color: white;
+  font-weight: 600;
+  font-size: .95rem;
+  margin-top: 2px;
+}
+
+/* =============================================================
+   MISSION BAND
+   ============================================================= */
+.mission-band {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+}
+.mission-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.mission-inner h3 {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ncc-blue);
+  margin-bottom: .5rem;
+}
+.mission-inner p.lead {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 400;
+}
+.mission-inner p.lead em {
+  color: var(--ncc-blue);
+  font-style: italic;
+}
+
+/* =============================================================
+   CONTROLS BAR
+   ============================================================= */
+.controls {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.controls-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.filter-group label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.filter-group select,
+.filter-group .chip-group {
+  display: flex;
+  gap: .25rem;
+}
+select, .btn {
+  font: inherit;
+  font-size: .85rem;
+  padding: .45rem .75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+select:hover, .btn:hover {
+  border-color: var(--ncc-blue);
+}
+.chip {
+  padding: .35rem .75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: white;
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all .15s ease;
+  user-select: none;
+}
+.chip:hover {
+  border-color: var(--ncc-blue);
+  color: var(--ncc-blue);
+}
+.chip.active {
+  background: var(--ncc-blue);
+  color: white;
+  border-color: var(--ncc-blue);
+}
+.controls-spacer { flex: 1; }
+
+.btn-primary {
+  background: var(--ncc-blue);
+  color: white;
+  border-color: var(--ncc-blue);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: var(--ncc-blue-dark);
+  border-color: var(--ncc-blue-dark);
+}
+
+/* =============================================================
+   MAIN LAYOUT
+   ============================================================= */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* =============================================================
+   PILLAR SECTION
+   ============================================================= */
+.pillar-section {
+  margin-bottom: 3.5rem;
+}
+.pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--border);
+}
+.pillar-number {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  background: var(--ncc-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.pillar-title h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.pillar-title .pillar-eyebrow {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: .25rem;
+}
+.pillar-title .pillar-sub {
+  font-size: .88rem;
+  color: var(--ink-muted);
+  margin-top: .25rem;
+  max-width: 720px;
+}
+
+/* =============================================================
+   GRID VIEW — TIMELINE
+   ============================================================= */
+.grid-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.year-tabs {
+  display: flex;
+  background: #f1f4f8;
+  border-bottom: 1px solid var(--border);
+}
+.year-tab {
+  flex: 1;
+  padding: .75rem 1rem;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  letter-spacing: .04em;
+  transition: all .15s ease;
+  border-bottom: 3px solid transparent;
+}
+.year-tab:hover {
+  color: var(--ncc-blue);
+}
+.year-tab.active {
+  background: white;
+  color: var(--ncc-blue);
+  border-bottom-color: var(--ncc-blue);
+}
+
+.timeline-grid {
+  overflow-x: auto;
+}
+table.timeline {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+  table-layout: fixed;
+}
+table.timeline thead th {
+  background: #fafbfc;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: .75rem .4rem;
+  border-bottom: 2px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+  white-space: nowrap;
+}
+table.timeline thead th.sp-col {
+  text-align: left;
+  padding-left: 1rem;
+  width: 220px;
+  background: #f1f4f8;
+}
+table.timeline thead th.quarter {
+  background: var(--ncc-blue);
+  color: white;
+  font-size: .68rem;
+  padding: .35rem;
+  letter-spacing: .08em;
+}
+table.timeline td {
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 0;
+  vertical-align: top;
+  height: 72px;
+}
+table.timeline td.sub-pillar-cell {
+  background: #f8fafb;
+  padding: .75rem 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  font-size: .9rem;
+  border-right: 2px solid var(--ncc-blue);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+td.sub-pillar-cell .letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--ncc-blue);
+  margin-right: .35rem;
+}
+td.sub-pillar-cell .sp-name {
+  display: block;
+  font-size: .85rem;
+}
+
+/* month cell */
+.month-cell {
+  cursor: pointer;
+  padding: .55rem .5rem;
+  height: 100%;
+  min-height: 72px;
+  transition: background .15s ease;
+  position: relative;
+  overflow: hidden;
+}
+.month-cell:hover {
+  background: #f0f6ff;
+}
+.month-cell.empty {
+  cursor: default;
+  background: repeating-linear-gradient(
+    45deg,
+    #fafbfc,
+    #fafbfc 6px,
+    #f4f6f9 6px,
+    #f4f6f9 12px
+  );
+}
+.month-cell.empty:hover { background: repeating-linear-gradient(
+    45deg,
+    #fafbfc,
+    #fafbfc 6px,
+    #f4f6f9 6px,
+    #f4f6f9 12px
+  ); }
+
+.month-cell .status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: .4rem;
+  vertical-align: middle;
+}
+.status-dot.not-started { background: var(--status-not-started); }
+.status-dot.in-progress { background: var(--status-in-progress); }
+.status-dot.complete    { background: var(--status-complete); }
+.status-dot.deferred    { background: var(--status-deferred); }
+.status-dot.blocked     { background: var(--status-blocked); }
+
+.month-cell .cell-title {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.month-cell .faith-mark {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  color: var(--ncc-blue);
+  font-size: .8rem;
+  opacity: .75;
+}
+
+/* legend */
+.legend {
+  display: flex;
+  gap: 1.25rem;
+  padding: .75rem 1rem;
+  background: #fafbfc;
+  border-top: 1px solid var(--border);
+  font-size: .75rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* =============================================================
+   MODAL — CELL DETAIL
+   ============================================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .55);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(2px);
+}
+.modal-backdrop.open {
+  display: flex;
+  animation: fadeIn .18s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+.modal {
+  background: white;
+  border-radius: var(--radius-lg);
+  max-width: 780px;
+  width: 100%;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp .22s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.modal-header {
+  padding: 1.5rem 2rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  background: linear-gradient(180deg, #f8fafb 0%, white 100%);
+}
+.modal-header .breadcrumb {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ncc-blue);
+  margin-bottom: .4rem;
+}
+.modal-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  line-height: 1.25;
+  padding-right: 3rem;
+}
+.modal-header .month-label {
+  font-size: .82rem;
+  color: var(--ink-muted);
+  margin-top: .35rem;
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s ease;
+}
+.modal-close:hover {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+
+.modal-body {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.status-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.status-pill.not-started { background: #f1f5f9; color: var(--status-not-started); }
+.status-pill.in-progress { background: #dbeafe; color: var(--status-in-progress); }
+.status-pill.complete    { background: #d1fae5; color: var(--status-complete); }
+.status-pill.deferred    { background: #fed7aa; color: var(--status-deferred); }
+.status-pill.blocked     { background: #fee2e2; color: var(--status-blocked); }
+
+.meta-chip {
+  font-size: .78rem;
+  color: var(--ink-muted);
+}
+.meta-chip strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.modal-section {
+  margin-bottom: 1.5rem;
+}
+.modal-section h3 {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ncc-blue);
+  margin-bottom: .75rem;
+}
+.action-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.action-list li {
+  padding: .75rem 1rem .75rem 2.25rem;
+  background: #f8fafb;
+  border-left: 3px solid var(--ncc-blue);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .92rem;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+}
+.action-list li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ncc-blue);
+}
+.action-list li.faith {
+  border-left-color: #c9a54c;
+  background: #fdf9ee;
+}
+.action-list li.faith::before {
+  background: #c9a54c;
+}
+.action-list li .cross {
+  color: #c9a54c;
+  font-weight: 600;
+  margin-right: .25rem;
+}
+
+.faith-box {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #fdf9ee 0%, #faf4e3 100%);
+  border: 1px solid #ecdeb6;
+  border-left: 4px solid #c9a54c;
+  border-radius: var(--radius);
+  font-size: .88rem;
+  line-height: 1.55;
+  color: #6b5220;
+}
+.faith-box .faith-label {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #8a6a25;
+  margin-bottom: .4rem;
+}
+.faith-box .scripture {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: .85rem;
+  margin-top: .5rem;
+  padding-top: .5rem;
+  border-top: 1px dashed #ecdeb6;
+  color: #6b5220;
+}
+
+.appendix-links {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.appendix-link {
+  padding: .65rem .9rem;
+  background: #eef2f8;
+  border: 1px solid #dbe3ee;
+  border-radius: var(--radius);
+  color: var(--ncc-blue);
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  transition: all .15s ease;
+  border: 0;
+  text-align: left;
+  width: 100%;
+}
+.appendix-link:hover {
+  background: var(--ncc-blue);
+  color: white;
+}
+.appendix-link::before {
+  content: "📄";
+  font-size: .9rem;
+  opacity: .8;
+}
+
+/* =============================================================
+   APPENDIX SECTION
+   ============================================================= */
+.appendix-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid var(--border);
+}
+.appendix-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: .35rem;
+}
+.appendix-section .app-eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: .4rem;
+}
+.appendix-section .app-sub {
+  font-size: .95rem;
+  color: var(--ink-muted);
+  margin-bottom: 2rem;
+  max-width: 720px;
+}
+
+.appendix-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.appendix-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: background .15s ease;
+}
+.appendix-toggle:hover {
+  background: #f8fafb;
+}
+.appendix-toggle .app-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.appendix-toggle .app-id {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--ncc-blue);
+  background: #eef2f8;
+  padding: .15rem .55rem;
+  border-radius: 4px;
+  margin-right: .6rem;
+  text-transform: uppercase;
+}
+.appendix-toggle .caret {
+  color: var(--ink-light);
+  transition: transform .2s ease;
+  font-size: 1rem;
+}
+.appendix-item.open .caret {
+  transform: rotate(90deg);
+}
+.appendix-content {
+  display: none;
+  padding: 0 1.5rem 1.5rem;
+  font-size: .92rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.appendix-item.open .appendix-content {
+  display: block;
+}
+.appendix-content h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ncc-blue);
+  margin: 1.25rem 0 .5rem;
+}
+.appendix-content h4:first-child {
+  margin-top: .5rem;
+}
+.appendix-content p, .appendix-content ul, .appendix-content ol {
+  margin-bottom: .75rem;
+}
+.appendix-content ul, .appendix-content ol {
+  padding-left: 1.5rem;
+}
+.appendix-content li { margin-bottom: .3rem; }
+.appendix-content blockquote {
+  border-left: 3px solid #c9a54c;
+  padding: .6rem 1rem;
+  background: #fdf9ee;
+  font-style: italic;
+  margin: .75rem 0;
+  font-family: 'Fraunces', serif;
+  color: #6b5220;
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--ink-light);
+  font-size: .82rem;
+}
+footer a {
+  color: var(--ncc-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* =============================================================
+   PRINT STYLES — the grid view must be printable
+   ============================================================= */
+@media print {
+  header.site-header {
+    background: white !important;
+    color: var(--ink) !important;
+    border-bottom: 2px solid var(--ncc-blue);
+    padding: 1rem;
+  }
+  .title-block .eyebrow,
+  .title-block .subtitle,
+  .header-meta {
+    color: var(--ink-muted) !important;
+  }
+  .controls, .appendix-section, footer, .modal-backdrop, .year-tabs .year-tab:not(.active) { display: none !important; }
+  body { background: white; font-size: 10.5pt; }
+  main { padding: .5rem; max-width: none; }
+  .pillar-section { page-break-inside: avoid; margin-bottom: 2rem; }
+  .pillar-header { page-break-after: avoid; }
+  .grid-wrap {
+    box-shadow: none;
+    border: 1px solid var(--border-strong);
+  }
+  table.timeline {
+    min-width: 0;
+    font-size: 8pt;
+    page-break-inside: auto;
+  }
+  table.timeline td, table.timeline th {
+    padding: 3px 2px !important;
+    height: auto !important;
+  }
+  td.sub-pillar-cell {
+    font-size: 8pt !important;
+    position: static !important;
+  }
+  .month-cell {
+    padding: 3px !important;
+    min-height: 48px !important;
+  }
+  .month-cell .cell-title {
+    font-size: 7pt !important;
+    -webkit-line-clamp: 4;
+  }
+  .legend { page-break-before: avoid; font-size: 7.5pt; }
+  .year-tab.active { background: var(--ncc-silver-light); color: var(--ink); }
+  @page {
+    size: landscape;
+    margin: .4in;
+  }
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 900px) {
+  .mission-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .header-inner { flex-direction: column; align-items: flex-start; }
+  main { padding: 1.5rem 1rem; }
+  .controls-inner { gap: .5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="title-block">
+      <div class="eyebrow">Nouvel Catholic Central · Athletics</div>
+      <h1 class="serif">Strategic Plan Implementation Timeline</h1>
+      <div class="subtitle">A three-year roadmap (2026–2028) across four pillars, organized by month with action items, faith integration, and appendix resources.</div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item">
+        Version<strong>v1.0 · April 2026</strong>
+      </div>
+      <div class="meta-item">
+        Ownership<strong>AD + Board Athletics Liaisons</strong>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     MISSION BAND
+     ========================================================= -->
+<section class="mission-band">
+  <div class="mission-inner">
+    <div>
+      <h3>Mission</h3>
+      <p class="lead">To create <em>disciples</em> and cultivate <em>champions</em> — disciples of Christ and champions of character, effort, and leadership.</p>
+    </div>
+    <div>
+      <h3>Vision</h3>
+      <p class="lead">To be recognized as the premier Catholic school athletic program in Michigan, nurturing the physical, mental, and spiritual growth of every participant.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTROLS
+     ========================================================= -->
+<section class="controls">
+  <div class="controls-inner">
+    <div class="filter-group">
+      <label>Pillar</label>
+      <div class="chip-group" id="pillarChips">
+        <button class="chip active" data-pillar="all">All</button>
+        <button class="chip" data-pillar="1">1 — Synergy</button>
+        <button class="chip" data-pillar="2">2 — Coach Dev</button>
+        <button class="chip" data-pillar="3">3 — Student-Athlete</button>
+        <button class="chip" data-pillar="4">4 — Facilities</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="statusFilter">
+        <option value="all">All statuses</option>
+        <option value="not-started">Not Started</option>
+        <option value="in-progress">In Progress</option>
+        <option value="complete">Complete</option>
+        <option value="deferred">Deferred</option>
+        <option value="blocked">Blocked</option>
+      </select>
+    </div>
+    <div class="controls-spacer"></div>
+    <button class="btn" onclick="expandAllAppendices()">Expand All Appendices</button>
+    <button class="btn btn-primary" onclick="window.print()">🖨 Print Timeline</button>
+  </div>
+</section>
+
+<!-- =========================================================
+     MAIN — RENDERED BY JS
+     ========================================================= -->
+<main id="planRoot"></main>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+</div>
+
+<footer>
+  NCC Athletic Strategic Plan · 2026–2028 · Maintained by the Board Athletics Liaisons · <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top</a>
+</footer>
+
+<script>
+/* ===========================================================
+   =========================================================== 
+   PLAN DATA — edit here, then commit. The UI rebuilds on load.
+   =========================================================== 
+   =========================================================== */
+
+const YEARS = [2026, 2027, 2028];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* Helper shorthand for building cells */
+function cell(title, status, actions, faith, appendices) {
+  return {
+    title,
+    status: status || 'not-started',
+    actions: actions || [],
+    faith: faith || null,
+    appendices: appendices || []
+  };
+}
+
+/* ============================================================
+   PILLAR 1 — ATHLETIC SYNERGY
+   ============================================================ */
+const PILLAR_1 = {
+  id: 1,
+  name: "Athletic Synergy",
+  eyebrow: "Pillar 1",
+  sub: "Alignment across elementary, middle, and high school programs — culture first, then frameworks, youth, acquisition, and storytelling.",
+  subPillars: [
+    {
+      letter: "A",
+      name: "Organizational Culture / Structure",
+      cells: {
+      "2026-1": {
+        title: "Baseline review begins",
+        status: "in-progress",
+        actions: [
+          "✞ Open baseline review with prayer and re-anchoring to the mission: disciples and champions",
+          "Pull three-year coach retention and turnover data by sport and level",
+          "Inventory credentialing: background checks, Safe Environment, CPR/AED, sport certs",
+          "Audit program-by-program Catholic identity practices (team prayer, Mass, service)",
+          "Launch coach satisfaction survey (administered by Athletic Admin Assistant)"
+        ],
+        faith: { label: "Faith Integration", text: "Culture is not a metric — it is formation. Every baseline measurement is a moment to ask whether our programs are forming disciples, not just producing athletes.", scripture: "\"Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.\" — Colossians 3:23" },
+        appendices: ["BASELINE_REVIEW"]
+      },
+      "2026-2": {
+        title: "Survey fielded; org chart drafted",
+        status: "not-started",
+        actions: [
+          "Close coach satisfaction survey; begin analysis",
+          "Draft current-state org chart (AD, Asst AD placeholder, Program Directors, Coordinators, Coaches)",
+          "Begin vertical alignment audit — do elementary, middle, HS coaches share terminology and values?",
+          "Identify 3–5 culture gaps from survey data"
+        ],
+        faith: null,
+        appendices: ["BASELINE_REVIEW", "ORG_CHART"]
+      },
+      "2026-3": {
+        title: "Q1 Roundtable #1 · Culture findings shared",
+        status: "not-started",
+        actions: [
+          "✞ Open with Coaches' Prayer and shared meal",
+          "Present baseline review findings to all coaches",
+          "Focus topic: 'What does it mean to coach at a Catholic school?'",
+          "Small-group breakouts by level (elementary / middle / HS)",
+          "Collect coach feedback on draft org chart"
+        ],
+        faith: { label: "Faith Integration", text: "The quarterly roundtable is a communion of coaches. Begin with prayer, eat together, close with a commissioning — the meeting is itself formative." },
+        appendices: ["ROUNDTABLE_FRAMEWORK", "COACHES_PRAYER"]
+      },
+      "2026-4": {
+        title: "Finalize org chart; Assistant AD role scoped",
+        status: "not-started",
+        actions: [
+          "Finalize current-state and future-state org chart",
+          "Draft Assistant AD position description (pending approval + funding)",
+          "Define Program Director role for each varsity head coach",
+          "Confirm Board Athletics Liaison reporting relationship"
+        ],
+        faith: null,
+        appendices: ["ORG_CHART"]
+      },
+      "2026-5": {
+        title: "Culture action plan published",
+        status: "not-started",
+        actions: [
+          "✞ Publish NCC Athletics Culture Statement (mission, identity, non-negotiables)",
+          "Distribute culture action plan to all coaches",
+          "Post culture statement in every locker room and coaches' office",
+          "End-of-year coaching recognition event preparation"
+        ],
+        faith: { label: "Faith Integration", text: "A Catholic athletic culture is not implied — it is declared. The Culture Statement makes our identity visible to every athlete, parent, and visitor." },
+        appendices: ["CULTURE_STATEMENT"]
+      },
+      "2026-6": {
+        title: "Q2 Roundtable · End-of-year review",
+        status: "not-started",
+        actions: [
+          "✞ Year-end Coaches Commissioning Mass — honor retirees, welcome incoming",
+          "Review culture action plan progress",
+          "Coach retention numbers for the year",
+          "Plan summer alignment meetings between varsity and feeder programs",
+          "Celebrate and recognize coach contributions"
+        ],
+        faith: { label: "Faith Integration", text: "Conclude each year's work in gratitude and blessing. A Coaches Commissioning Mass reframes retention and hiring as a calling, not a transaction." },
+        appendices: ["ROUNDTABLE_FRAMEWORK", "COMMISSIONING_MASS"]
+      },
+      "2026-7": {
+        title: "Summer alignment planning",
+        status: "not-started",
+        actions: [
+          "AD + Program Directors: summer alignment sessions by sport",
+          "Varsity head coaches meet feeder-level counterparts",
+          "Shared terminology and drill libraries drafted for fall sports",
+          "Incoming-coach onboarding materials finalized"
+        ],
+        faith: null,
+        appendices: ["ORG_CHART", "COACH_HANDBOOK"]
+      },
+      "2026-8": {
+        title: "Pre-season all-athletics meeting",
+        status: "not-started",
+        actions: [
+          "✞ All-coach kickoff meeting with prayer and mission re-anchoring",
+          "Distribute updated Coach Handbook reflecting culture statement",
+          "Credential compliance check for every fall coach",
+          "Cross-sport introductions (HS varsity meets feeder coaches in their sport)"
+        ],
+        faith: null,
+        appendices: ["COACH_HANDBOOK"]
+      },
+      "2026-9": {
+        title: "Q3 Roundtable · Fall launch",
+        status: "not-started",
+        actions: [
+          "✞ Open with prayer; focus topic: 'Coaching Character'",
+          "Update from each fall program lead",
+          "Feedback on onboarding experience for new coaches",
+          "Discuss any culture-statement implementation issues surfaced in first weeks"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2026-10": {
+        title: "First coach pulse check",
+        status: "not-started",
+        actions: [
+          "Short-form pulse survey (8–10 questions) for all active coaches",
+          "Track culture-statement awareness and practice adoption",
+          "Early signals on vertical alignment gaps"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Mid-year culture review",
+        status: "not-started",
+        actions: [
+          "Compare October pulse against May baseline",
+          "Identify early wins, early drift",
+          "Recalibrate action plan if needed",
+          "Board Athletics Liaisons briefed on mid-year state"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Q4 Roundtable · Advent gathering",
+        status: "not-started",
+        actions: [
+          "✞ Advent gathering with coaches and families — prayer, food, reflection",
+          "Share pulse check findings",
+          "Board Athletics Liaison update on Year 1 progress",
+          "Preview Year 2 priorities"
+        ],
+        faith: { label: "Faith Integration", text: "Advent is a season of preparation. An Advent gathering marks culture work as ongoing, patient, and rooted in the liturgical year." },
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2027-1": {
+        title: "Year 2 baseline re-measurement",
+        status: "not-started",
+        actions: [
+          "Re-run key baseline metrics (retention, survey, credentialing, vertical alignment)",
+          "Publish Year 1 vs. Year 2 culture scorecard",
+          "Identify metrics that moved and metrics that stalled"
+        ],
+        faith: null,
+        appendices: ["BASELINE_REVIEW"]
+      },
+      "2027-2": {
+        title: "Year 2 action plan refinement",
+        status: "not-started",
+        actions: [
+          "Revise culture action plan based on Year 1 lessons",
+          "Assistant AD position filled (target)",
+          "Onboard Assistant AD into culture workstream"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Q1 Roundtable · Year 2 focus",
+        status: "not-started",
+        actions: [
+          "✞ Open with prayer; focus topic: 'Second-Year Deepening'",
+          "Share scorecard",
+          "Address any carryover gaps from Year 1"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2027-4": {
+        title: "Mid-spring staff check-in",
+        status: "not-started",
+        actions: [
+          "Program Director 1:1s with AD",
+          "Early signals on spring sports culture implementation"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Annual culture scorecard published",
+        status: "not-started",
+        actions: [
+          "Year 2 scorecard goes to board and shared with all coaches",
+          "Public-facing summary for school community"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Q2 Roundtable · Year 2 end-of-year review",
+        status: "not-started",
+        actions: [
+          "✞ Coaches Commissioning Mass",
+          "Year 2 retention review",
+          "Year 2 culture scorecard celebrated and analyzed",
+          "Plan Year 3 priorities"
+        ],
+        faith: null,
+        appendices: ["COMMISSIONING_MASS", "ROUNDTABLE_FRAMEWORK"]
+      },
+      "2027-8": {
+        title: "Year 2 pre-season all-athletics meeting",
+        status: "not-started",
+        actions: [
+          "✞ Kickoff with prayer; welcome new coaches",
+          "Distribute updated Coach Handbook",
+          "Year 2 culture reinforcement — non-negotiables review"
+        ],
+        faith: null,
+        appendices: ["COACH_HANDBOOK"]
+      },
+      "2027-9": {
+        title: "Q3 Roundtable · Fall launch",
+        status: "not-started",
+        actions: [
+          "✞ Prayer and fall focus topic",
+          "Fall program updates",
+          "New coach onboarding review"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2027-10": {
+        title: "Year 2 pulse check",
+        status: "not-started",
+        actions: [
+          "Short-form pulse survey",
+          "Compare against Year 1 fall data"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Q4 Roundtable · Advent",
+        status: "not-started",
+        actions: [
+          "✞ Advent gathering",
+          "Pulse check findings",
+          "Preview Year 3 priorities"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2028-1": {
+        title: "Year 3 baseline re-measurement",
+        status: "not-started",
+        actions: [
+          "Re-run baseline metrics",
+          "Produce three-year trend report"
+        ],
+        faith: null,
+        appendices: ["BASELINE_REVIEW"]
+      },
+      "2028-3": {
+        title: "Q1 Roundtable · Three-year review",
+        status: "not-started",
+        actions: [
+          "✞ Prayer and three-year reflection",
+          "Publish Year 1–3 culture trend report",
+          "Identify 2029–2031 strategic priorities"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2028-5": {
+        title: "Three-year culture scorecard",
+        status: "not-started",
+        actions: [
+          "Full three-year scorecard published",
+          "Board presentation on arc of the plan cycle"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-6": {
+        title: "Q2 Roundtable · Plan-cycle close",
+        status: "not-started",
+        actions: [
+          "✞ Coaches Commissioning Mass",
+          "Close of 2026–2028 strategic plan cycle",
+          "Celebrate cohort of coaches who carried the plan"
+        ],
+        faith: null,
+        appendices: ["COMMISSIONING_MASS"]
+      },
+      "2028-8": {
+        title: "Year 3 pre-season",
+        status: "not-started",
+        actions: [
+          "✞ Kickoff prayer",
+          "Final-year plan emphasis",
+          "Handoff preparation for next plan cycle"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-9": {
+        title: "Q3 Roundtable · Fall launch",
+        status: "not-started",
+        actions: [
+          "✞ Prayer and focus topic",
+          "Next-cycle planning kickoff"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      },
+      "2028-11": {
+        title: "Pre-close synthesis",
+        status: "not-started",
+        actions: [
+          "Three-year wrap-up document drafted",
+          "Lessons learned collected from every coach"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Q4 Roundtable · Advent · Plan cycle close",
+        status: "not-started",
+        actions: [
+          "✞ Advent gathering",
+          "Formal close of 2026–2028 cycle",
+          "Present 2029–2031 framework to board"
+        ],
+        faith: null,
+        appendices: ["ROUNDTABLE_FRAMEWORK"]
+      }
+      }
+    },
+    {
+      letter: "B",
+      name: "Sport-Specific Builder Manuals",
+      cells: {
+      "2026-1": {
+        title: "Template design phase begins",
+        status: "in-progress",
+        actions: [
+          "AD drafts universal Builder Manual template (K–12 vertical, sport-agnostic sections)",
+          "Reference Kessler Basketball Builder Manual as exemplar",
+          "Identify Catholic Identity section required in every manual",
+          "Schedule writing windows with each head coach"
+        ],
+        faith: { label: "Faith Integration", text: "Every Builder Manual must include a Catholic Identity section: team prayer, Mass attendance, service expectations, and how the sport forms character in a Catholic context." },
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-2": {
+        title: "Pilot manuals: Basketball, Soccer",
+        status: "not-started",
+        actions: [
+          "Basketball manual (Kessler) reviewed against new template",
+          "Soccer manual drafted",
+          "Coach feedback loop with AD"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-3": {
+        title: "Pilot manuals: Volleyball, Baseball, Softball",
+        status: "not-started",
+        actions: [
+          "Fall and spring sport manuals drafted",
+          "Review for consistency of voice and Catholic identity integration"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-4": {
+        title: "Manuals: Football, Cross Country",
+        status: "not-started",
+        actions: [
+          "Drafts reviewed by AD and feeder coaches",
+          "Accountability Checklists adapted from Kessler exemplar"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE", "ACCOUNTABILITY_CHECKLIST"]
+      },
+      "2026-5": {
+        title: "Manuals: Hockey, Bowling, Powerlifting, Tennis, Track",
+        status: "not-started",
+        actions: [
+          "Remaining fall/winter/spring sports drafted",
+          "Sport-specific drill libraries begin as appendices to each manual"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-6": {
+        title: "Feeder-coach review window",
+        status: "not-started",
+        actions: [
+          "Elementary and middle-school coaches review manual drafts for their sport",
+          "Vertical alignment check: does terminology match across levels?",
+          "Revisions consolidated"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-7": {
+        title: "Final draft approval",
+        status: "not-started",
+        actions: [
+          "AD approves all Manual 1.0 drafts",
+          "Final copy editing and design pass",
+          "Digital publication prep"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-8": {
+        title: "Manual 1.0 distributed to all head coaches",
+        status: "not-started",
+        actions: [
+          "✞ Distribute at pre-season coaches meeting with prayer and commissioning",
+          "Post digitally to coach resource hub (Google Drive institutional access)",
+          "Establish annual review cadence (every spring)"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2026-10": {
+        title: "First in-season practice review",
+        status: "not-started",
+        actions: [
+          "Fall coaches log what's being used from the manual",
+          "Early signals on gaps and drift"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "First in-season formal feedback",
+        status: "not-started",
+        actions: [
+          "Fall coaches submit first-cycle feedback",
+          "Document what worked, what needs revision",
+          "Winter coaches brief on using Manual 1.0 for season launch"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Year-end manual review planning",
+        status: "not-started",
+        actions: [
+          "Compile all feedback from fall/winter seasons",
+          "Plan revision workstream for spring"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Manual 1.1 revisions begin",
+        status: "not-started",
+        actions: [
+          "Coach revisions folded in",
+          "Add sport-specific drill libraries as appendices"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2027-4": {
+        title: "Annual Manual review window",
+        status: "not-started",
+        actions: [
+          "Each Program Director submits v1.1 revisions",
+          "AD reviews for consistency and Catholic identity integration"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Manual 1.1 published",
+        status: "not-started",
+        actions: [
+          "v1.1 distributed to all coaches",
+          "Digital hub updated"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2027-8": {
+        title: "Manual 1.1 in pre-season use",
+        status: "not-started",
+        actions: [
+          "Pre-season distribution reaffirmed",
+          "New coaches oriented to manual structure"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Mid-cycle check-in",
+        status: "not-started",
+        actions: [
+          "Is Manual 1.1 actually being used day to day?",
+          "Accountability checklist adoption tracked"
+        ],
+        faith: null,
+        appendices: ["ACCOUNTABILITY_CHECKLIST"]
+      },
+      "2028-2": {
+        title: "Manual 1.2 revisions begin",
+        status: "not-started",
+        actions: [
+          "Incorporate multi-year data on what produces outcomes",
+          "K–12 vertical pathway refinements"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2028-5": {
+        title: "Manual 1.2 published",
+        status: "not-started",
+        actions: [
+          "v1.2 distributed; three-year refinement evident",
+          "Lock manual architecture for next plan cycle"
+        ],
+        faith: null,
+        appendices: ["BUILDER_MANUAL_TEMPLATE"]
+      },
+      "2028-11": {
+        title: "Plan cycle close · manual retrospective",
+        status: "not-started",
+        actions: [
+          "Document three-year evolution of the manuals",
+          "Handoff memo to next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "C",
+      name: "Youth Program Development",
+      cells: {
+      "2026-1": {
+        title: "Expectation-setting with NCC trainer",
+        status: "in-progress",
+        actions: [
+          "AD and Head Trainer scope youth program physical-training baselines",
+          "Map K–6 to 7–8 to HS development pathway by sport",
+          "Identify partner coaches in feeder programs"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-2": {
+        title: "Feeder program audit",
+        status: "not-started",
+        actions: [
+          "Identify which feeder leagues/clubs NCC athletes play in (K–8)",
+          "Assess alignment: do they share our philosophy and terminology?",
+          "Identify 2–3 strategic partnerships (CYO, local clubs)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "NCCE Athletics Coordinator · hire process",
+        status: "not-started",
+        actions: [
+          "Post NCCE (Nouvel Catholic Central Elementary) Athletics Coordinator role",
+          "Coordinator will liaise with HS programs and feeder leagues",
+          "Review candidates; target hire by month-end"
+        ],
+        faith: null,
+        appendices: ["COORDINATOR_JD"]
+      },
+      "2026-4": {
+        title: "Coordinator onboarded; first 30-day plan",
+        status: "not-started",
+        actions: [
+          "NCCE Coordinator first day",
+          "AD and Coordinator set 30/60/90 goals",
+          "Introduction to each Program Director"
+        ],
+        faith: null,
+        appendices: ["COORDINATOR_JD"]
+      },
+      "2026-5": {
+        title: "Summer camp planning",
+        status: "not-started",
+        actions: [
+          "Summer camp schedule finalized (sport, dates, staffing)",
+          "HS varsity coaches + student-athletes recruited as counselors",
+          "Registration opens"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Summer youth camp launch",
+        status: "not-started",
+        actions: [
+          "✞ Opening camp Mass or prayer service",
+          "Sport-specific camps staffed by HS varsity coaches + student-athletes as counselors",
+          "Introduce Nouvel mission language to campers"
+        ],
+        faith: { label: "Faith Integration", text: "Youth camps are an on-ramp to the full NCC experience. Opening with prayer or Mass signals that Catholic identity is not bolted on — it is the starting point." },
+        appendices: []
+      },
+      "2026-7": {
+        title: "Camps in full swing",
+        status: "not-started",
+        actions: [
+          "Weekly camp operations",
+          "Track attendance and feedback",
+          "Capture family contact information for admissions follow-up"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Camp debrief; middle school fall prep",
+        status: "not-started",
+        actions: [
+          "Post-camp debrief with counselors and coaches",
+          "Middle school fall coaches meet with HS varsity counterparts",
+          "Shared drill library rollout for middle school fall sports"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Middle school fall season launch",
+        status: "not-started",
+        actions: [
+          "Fall middle school teams begin with aligned terminology",
+          "NCCE Coordinator attends practices for pulse"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Year 1 youth pipeline review",
+        status: "not-started",
+        actions: [
+          "Measure participation K–8 in each sport",
+          "Identify where feeder-to-HS pipeline is leaky"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-1": {
+        title: "Year 2 youth plan",
+        status: "not-started",
+        actions: [
+          "Expand camps where demand and capacity allow",
+          "Expand shared drill library to winter/spring sports"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Winter/spring middle school alignment",
+        status: "not-started",
+        actions: [
+          "Winter and spring middle school coaches sync with varsity counterparts",
+          "Drill-library rollout for those seasons"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Summer camp expansion planning",
+        status: "not-started",
+        actions: [
+          "Add new sport camps where viable",
+          "Track Year 1 camp attendee conversion to NCC enrollment"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Year 2 summer camp launch",
+        status: "not-started",
+        actions: [
+          "✞ Opening camp Mass",
+          "Expanded slate of camps"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-8": {
+        title: "Year 2 camp debrief and fall prep",
+        status: "not-started",
+        actions: [
+          "Debrief",
+          "Fall middle-school alignment season 2"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Year 2 pipeline review",
+        status: "not-started",
+        actions: [
+          "Participation trends K–8",
+          "Multi-sport participation metric"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-1": {
+        title: "Three-year youth pipeline review begins",
+        status: "not-started",
+        actions: [
+          "Measure: % of HS athletes who played same sport at NCCE/NCC in 7th/8th grade",
+          "Multi-sport participation rate trend"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Year 3 summer camp planning",
+        status: "not-started",
+        actions: [
+          "Full camp slate mature and stable",
+          "Continuous summer programming"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-6": {
+        title: "Year 3 summer camp launch",
+        status: "not-started",
+        actions: [
+          "✞ Opening Mass",
+          "Mature pipeline operating"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Plan cycle close · pipeline report",
+        status: "not-started",
+        actions: [
+          "Three-year pipeline numbers published",
+          "Recommendations for next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "D",
+      name: "Student-Athlete Acquisition",
+      cells: {
+      "2026-2": {
+        title: "Acquisition strategy drafted",
+        status: "not-started",
+        actions: [
+          "AD partners with Admissions to map current feeder flow",
+          "Identify geographic and demographic pockets under-represented",
+          "Frame athletics as an enrollment driver, aligned with mission",
+          "One point of contact for recruiting conversations: the AD"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Alumni and parent network mapping",
+        status: "not-started",
+        actions: [
+          "Identify NCC parents and alumni involved in youth development leagues",
+          "Begin building a talent-identification network"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Spring open house athletic showcase",
+        status: "not-started",
+        actions: [
+          "✞ Athletic showcase at spring open house; coaches and student-athletes present",
+          "Explicitly connect 'disciples and champions' mission to prospective families",
+          "Capture names/contacts of interested incoming families"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-7": {
+        title: "Summer follow-up with prospective families",
+        status: "not-started",
+        actions: [
+          "Coach-family connections for spring-identified prospects",
+          "Invite prospects to summer camps"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Fall open house athletics presentation",
+        status: "not-started",
+        actions: [
+          "Present athletics at fall open house",
+          "Walking tour of facilities (gym, fields, future facility renderings)",
+          "New-family welcome packet includes athletics overview"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-10": {
+        title: "Active recruiting season",
+        status: "not-started",
+        actions: [
+          "Coach-family connections for fall-identified prospects",
+          "Invite prospects to fall games as guests"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Enrollment pipeline review",
+        status: "not-started",
+        actions: [
+          "Track athletics-interested prospects through admissions funnel",
+          "Identify drop-off points and opportunities"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Year 2 acquisition refinement",
+        status: "not-started",
+        actions: [
+          "Update acquisition strategy based on Year 1 data",
+          "Expand alumni network involvement"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Year 2 spring open house",
+        status: "not-started",
+        actions: [
+          "Expanded showcase; alumni athletes invited",
+          "Launch 'Why NCC Athletics' collateral (with Marketing 1E)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-8": {
+        title: "Year 2 fall open house",
+        status: "not-started",
+        actions: [
+          "Mature showcase format",
+          "Facility renderings shown for capital campaign context"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Year 2 pipeline review",
+        status: "not-started",
+        actions: [
+          "Compare athletics-interested enrollment vs. Year 1",
+          "Refine approach"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Year 3 open house showcase",
+        status: "not-started",
+        actions: [
+          "Mature showcase with three-year proof points",
+          "Highlight pipeline stories (camp → middle school → HS)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Plan cycle close · acquisition report",
+        status: "not-started",
+        actions: [
+          "Three-year enrollment attribution to athletics",
+          "Recommendations for next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "E",
+      name: "Marketing & Communications",
+      cells: {
+      "2026-1": {
+        title: "Comms audit and platform review",
+        status: "in-progress",
+        actions: [
+          "Audit current social channels, website athletics page, email updates",
+          "Align brand (blue and silver) across all athletic collateral",
+          "Identify frequency and ownership gaps"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-2": {
+        title: "Brand alignment and templating",
+        status: "not-started",
+        actions: [
+          "Create brand standards one-pager",
+          "Template weekly email, game-day graphics, social posts",
+          "Assign content-capture rotation among coaches"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Weekly athletics email launches",
+        status: "not-started",
+        actions: [
+          "Launch weekly athletic update email: academic, community, athletic accomplishments",
+          "Template consistent with NCC brand",
+          "✞ Include one faith-rooted story or reflection per week"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-4": {
+        title: "Spring sports content push",
+        status: "not-started",
+        actions: [
+          "Season-in-review content for winter",
+          "Spring sports previews",
+          "Student-athlete feature stories"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "End-of-year athletics recap",
+        status: "not-started",
+        actions: [
+          "✞ Year-in-review recap features Mass, service, and mission alongside wins",
+          "Spring awards night content",
+          "Scholar-athlete recognition content"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Mid-year comms audit",
+        status: "not-started",
+        actions: [
+          "Engagement metrics on weekly email, social",
+          "Refine what's working, drop what's not",
+          "Summer camp content push"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Pre-season content push",
+        status: "not-started",
+        actions: [
+          "Fall sports previews",
+          "Incoming freshman student-athlete features",
+          "New coach introductions"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Fall launch content cadence established",
+        status: "not-started",
+        actions: [
+          "Weekly game-week content for each fall sport",
+          "Gameday live social coverage",
+          "Post-game recaps within 24 hours"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Alumni outreach begins",
+        status: "not-started",
+        actions: [
+          "Alumni engagement strategy drafted (Holtz's Heroes as model)",
+          "Alumni newsletter first issue",
+          "Former player profile series launches"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Year-end recap and fundraising content",
+        status: "not-started",
+        actions: [
+          "Year-in-review content across all sports",
+          "Queen of Hearts Raffle content push",
+          "End-of-calendar-year appeal coordination with Development"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-1": {
+        title: "Year 2 comms plan",
+        status: "not-started",
+        actions: [
+          "Expand channels if capacity allows (video, podcast)",
+          "Align with capital campaign storytelling"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Video content launches",
+        status: "not-started",
+        actions: [
+          "Short-form video content for social",
+          "Coach-interview series",
+          "Pre-game hype content per sport"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Year 2 mid-year audit",
+        status: "not-started",
+        actions: [
+          "Metrics review",
+          "Capital campaign storytelling integration"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-9": {
+        title: "Streaming launch (if approved)",
+        status: "not-started",
+        actions: [
+          "NFHS Network or similar partnership live",
+          "Varsity home games streamed",
+          "Subscription or ad model per campaign plan"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Year 2 end-of-year recap",
+        status: "not-started",
+        actions: [
+          "Year 2 in review",
+          "Capital campaign progress content (if public phase)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-1": {
+        title: "Year 3 comms plan",
+        status: "not-started",
+        actions: [
+          "Mature cadence; refine content mix",
+          "Capital campaign close storytelling"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Mid-plan-cycle comms impact review",
+        status: "not-started",
+        actions: [
+          "Measure engagement, enrollment inquiry attribution",
+          "Refresh brand and visual system if warranted"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-9": {
+        title: "Year 3 fall season coverage",
+        status: "not-started",
+        actions: [
+          "Full production content slate",
+          "Streaming operating reliably"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close · comms report",
+        status: "not-started",
+        actions: [
+          "Three-year engagement and enrollment attribution report",
+          "Recommendations for next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    }
+  ]
+};
+
+/* ============================================================
+   PILLAR 2 — COACH DEVELOPMENT
+   ============================================================ */
+const PILLAR_2 = {
+  id: 2,
+  name: "Coach Development",
+  eyebrow: "Pillar 2",
+  sub: "Forming and supporting the adults closest to our student-athletes — formation first, then technical training, certification, evaluation, and recognition.",
+  subPillars: [
+    {
+      letter: "A",
+      name: "Coach Formation & Mentorship",
+      note: "Faith formation retreats · Annual Coaches Commissioning Mass · Peer mentorship pairing · Structured onboarding · Coach pipeline / succession planning",
+      cells: {
+      "2026-2": {
+        title: "Mentorship pairing launch",
+        status: "not-started",
+        actions: [
+          "AD pairs new/second-year coaches with veteran mentors (cross-sport encouraged)",
+          "Pair expectations: monthly informal check-in, one game attendance per season",
+          "Pairings revisited annually"
+        ],
+        faith: { label: "Faith Integration", text: "The Notre Dame tradition: coaches are part of the teaching mission of the Church. Mentorship makes that calling practical and concrete.", scripture: "\"As iron sharpens iron, so one person sharpens another.\" — Proverbs 27:17" },
+        appendices: []
+      },
+      "2026-4": {
+        title: "Spring coach faith retreat",
+        status: "not-started",
+        actions: [
+          "✞ Half-day retreat with chaplain: prayer, reflection, mission re-grounding",
+          "Topic: 'Coaching as Vocation'",
+          "Closing Mass or liturgy of the hours"
+        ],
+        faith: { label: "Faith Integration", text: "Coaches cannot give what they do not have. A formation retreat feeds the formers." },
+        appendices: []
+      },
+      "2026-5": {
+        title: "Onboarding refresh for incoming coaches",
+        status: "not-started",
+        actions: [
+          "Updated onboarding packet for new coaches hired for Year 1",
+          "Mentor pairings assigned for incoming coaches",
+          "Orientation session scheduled"
+        ],
+        faith: null,
+        appendices: ["COACH_HANDBOOK"]
+      },
+      "2026-6": {
+        title: "Year 1 Coaches Commissioning Mass",
+        status: "not-started",
+        actions: [
+          "✞ Annual Coaches Commissioning Mass — all coaches formally blessed for the year",
+          "New coach welcome; peer mentor assignments announced",
+          "Retirees honored",
+          "Shared meal after Mass"
+        ],
+        faith: { label: "Faith Integration", text: "The Commissioning Mass publicly acknowledges the coach's calling and binds the athletic department to the liturgical life of the school.", scripture: "\"How beautiful are the feet of those who bring good news!\" — Romans 10:15" },
+        appendices: ["COMMISSIONING_MASS"]
+      },
+      "2026-8": {
+        title: "New coach onboarding · fall sports",
+        status: "not-started",
+        actions: [
+          "Structured onboarding for every new fall coach",
+          "Mentor pairing activated",
+          "Coach Handbook walk-through"
+        ],
+        faith: null,
+        appendices: ["COACH_HANDBOOK"]
+      },
+      "2026-10": {
+        title: "Team chaplain visits to coaches",
+        status: "not-started",
+        actions: [
+          "✞ Chaplain visits each varsity team's practice once per fall season",
+          "Brief prayer with coaches before or after practice"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Succession planning conversations begin",
+        status: "not-started",
+        actions: [
+          "AD has one-on-ones with each Program Director about succession",
+          "Identify next-generation coaches from alumni, parents, and current assistants",
+          "Document pipeline per sport"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Advent coach reflection",
+        status: "not-started",
+        actions: [
+          "✞ Advent reflection evening for coaches (optional but well-attended)",
+          "Tied to Q4 roundtable"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Year 2 mentorship pairings",
+        status: "not-started",
+        actions: [
+          "Refresh pairings; new coaches paired",
+          "Mentors review what worked in Year 1"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-4": {
+        title: "Spring retreat Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Half-day retreat; topic chosen by coach input",
+          "Guest speaker or chaplain teaching"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Year 2 Coaches Commissioning Mass",
+        status: "not-started",
+        actions: [
+          "✞ Commissioning Mass",
+          "Mentor pairings announced"
+        ],
+        faith: null,
+        appendices: ["COMMISSIONING_MASS"]
+      },
+      "2027-8": {
+        title: "Year 2 onboarding",
+        status: "not-started",
+        actions: [
+          "New coach onboarding · mentor activation"
+        ],
+        faith: null,
+        appendices: ["COACH_HANDBOOK"]
+      },
+      "2027-10": {
+        title: "Chaplain visits · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Chaplain fall practice visits continue"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Succession plans documented",
+        status: "not-started",
+        actions: [
+          "Each Program Director has a written 3-year succession plan on file"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-4": {
+        title: "Year 3 spring retreat",
+        status: "not-started",
+        actions: [
+          "✞ Retreat (larger scale if warranted)",
+          "Three-year reflection on coach formation"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-6": {
+        title: "Year 3 Commissioning Mass · plan cycle close",
+        status: "not-started",
+        actions: [
+          "✞ Commissioning Mass — recognize three-year cohort of coaches who carried the plan",
+          "Celebration reception after"
+        ],
+        faith: null,
+        appendices: ["COMMISSIONING_MASS"]
+      },
+      "2028-8": {
+        title: "Year 3 onboarding",
+        status: "not-started",
+        actions: [
+          "New coach onboarding · handoff preparation"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Formation program retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year retrospective on the formation program",
+          "Document what to carry forward"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "B",
+      name: "Training of Coaches",
+      note: "Technical / skill-based development · Annual Coaches Seminar · Sport-specific clinics · HWP-aligned training for coaches",
+      cells: {
+      "2026-2": {
+        title: "Annual Coaches Seminar planning",
+        status: "not-started",
+        actions: [
+          "AD books August seminar venue and speakers",
+          "Topic slate: technical, communication, Catholic coaching identity",
+          "Coach input survey on desired topics"
+        ],
+        faith: null,
+        appendices: ["COACHES_SEMINAR"]
+      },
+      "2026-3": {
+        title: "Winter technical clinic",
+        status: "not-started",
+        actions: [
+          "Mid-year technical clinic (1 evening)",
+          "Focus: practice planning, skill progression"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Spring coaching workshop",
+        status: "not-started",
+        actions: [
+          "Workshop with Head Trainer on HWP topics for coaches",
+          "Coaches trained to reinforce athlete HWP messaging"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-8": {
+        title: "Annual Coaches Seminar",
+        status: "not-started",
+        actions: [
+          "✞ Opening prayer and mission grounding",
+          "Full-day seminar for all coaches",
+          "Technical sessions, Catholic coaching identity session, Q&A with AD and Head of School",
+          "Shared meal"
+        ],
+        faith: { label: "Faith Integration", text: "An annual Coaches Seminar anchors the year. Every coach in one room, one mission, one identity." },
+        appendices: ["COACHES_SEMINAR"]
+      },
+      "2026-10": {
+        title: "In-season tactical sessions",
+        status: "not-started",
+        actions: [
+          "Sport-specific sessions led by Program Directors for their assistants",
+          "Peer observation windows"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Winter clinic prep",
+        status: "not-started",
+        actions: [
+          "Plan winter technical clinic topics",
+          "Coach input"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Winter technical clinic",
+        status: "not-started",
+        actions: [
+          "Repeat cadence",
+          "Topic rotation based on Year 1 feedback"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Spring workshop · Year 2",
+        status: "not-started",
+        actions: [
+          "HWP-aligned coach training"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2027-8": {
+        title: "Annual Coaches Seminar · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Opening prayer",
+          "Seminar content refreshed"
+        ],
+        faith: null,
+        appendices: ["COACHES_SEMINAR"]
+      },
+      "2027-10": {
+        title: "In-season tactical sessions · Year 2",
+        status: "not-started",
+        actions: [
+          "Program Director-led sessions continue"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-2": {
+        title: "Winter technical clinic · Year 3",
+        status: "not-started",
+        actions: [
+          "Advanced-tier topics"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Spring workshop · Year 3",
+        status: "not-started",
+        actions: [
+          "Integrated HWP + mental health for coaches"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-8": {
+        title: "Annual Coaches Seminar · Year 3",
+        status: "not-started",
+        actions: [
+          "✞ Opening prayer",
+          "Plan-cycle close content"
+        ],
+        faith: null,
+        appendices: ["COACHES_SEMINAR"]
+      },
+      "2028-11": {
+        title: "Training program retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year review of training touch points",
+          "Handoff to next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "C",
+      name: "Coaching Certification",
+      note: "Background checks · Safe Environment training · CPR/AED · MHSAA/CHSCA certifications · Sport-specific credentials",
+      cells: {
+      "2026-1": {
+        title: "Credentialing dashboard built",
+        status: "not-started",
+        actions: [
+          "AD builds tracking dashboard: background check, Safe Environment, CPR/AED, sport cert per coach",
+          "Identify any gaps; close within 60 days"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-7": {
+        title: "Pre-season credential audit",
+        status: "not-started",
+        actions: [
+          "Every coach cleared before first fall practice",
+          "New hires routed through Safe Environment + background check"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "CPR/AED certification window",
+        status: "not-started",
+        actions: [
+          "All coaches with expiring CPR renew before season",
+          "New coaches certified"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Mid-year credential check",
+        status: "not-started",
+        actions: [
+          "Winter sport coaches cleared",
+          "Mid-year gaps closed"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Year 2 dashboard refresh",
+        status: "not-started",
+        actions: [
+          "Full credentialing dashboard refreshed",
+          "Any lapses flagged for immediate action"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-7": {
+        title: "Year 2 pre-season audit",
+        status: "not-started",
+        actions: [
+          "All coaches cleared"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Year 2 mid-year check",
+        status: "not-started",
+        actions: [
+          "Winter cleared"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-2": {
+        title: "Year 3 dashboard refresh",
+        status: "not-started",
+        actions: [
+          "Full credentialing dashboard refreshed"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-7": {
+        title: "Year 3 pre-season audit",
+        status: "not-started",
+        actions: [
+          "All coaches cleared"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Credentialing retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year compliance trend",
+          "Recommendations for continuous improvement"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "D",
+      name: "Coaching Evaluation Process",
+      note: "Annual evaluation · 360 feedback (athletes, parents, admin) · Individual Development Plans · End-of-season reviews",
+      cells: {
+      "2026-3": {
+        title: "Evaluation framework drafted",
+        status: "not-started",
+        actions: [
+          "AD drafts coach evaluation framework — formative, not punitive",
+          "360 feedback structure: athletes, parents, admin, self",
+          "Tied to Builder Manual accountability checklists"
+        ],
+        faith: null,
+        appendices: ["ACCOUNTABILITY_CHECKLIST"]
+      },
+      "2026-5": {
+        title: "Winter/spring end-of-season evaluations",
+        status: "not-started",
+        actions: [
+          "Winter and spring sport coaches complete self-evaluation",
+          "Athlete surveys distributed and analyzed",
+          "AD 1:1 with each Program Director"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-10": {
+        title: "Fall mid-season pulse",
+        status: "not-started",
+        actions: [
+          "Mid-season coach pulse (informal): AD drops in, brief debrief"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Fall end-of-season evaluations",
+        status: "not-started",
+        actions: [
+          "Fall sport coaches complete self-evaluation",
+          "Athlete surveys distributed",
+          "AD 1:1 with each Program Director",
+          "Individual Development Plans drafted for any coach needing support"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Winter mid-season pulse · Year 2",
+        status: "not-started",
+        actions: [
+          "Mid-season coach pulse"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Winter/spring evaluations · Year 2",
+        status: "not-started",
+        actions: [
+          "End-of-season for winter + spring",
+          "IDPs reviewed"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-10": {
+        title: "Fall mid-season pulse · Year 2",
+        status: "not-started",
+        actions: [
+          "Year 2 pulse"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Fall evaluations · Year 2",
+        status: "not-started",
+        actions: [
+          "End-of-season evaluations",
+          "IDP progress reviewed"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Winter/spring evaluations · Year 3",
+        status: "not-started",
+        actions: [
+          "End-of-season evaluations"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Fall evaluations · Year 3 · plan cycle close",
+        status: "not-started",
+        actions: [
+          "Final evaluations of plan cycle",
+          "Three-year coach development trend summary"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "E",
+      name: "Coach Recognition Process",
+      note: "Year-end banquet · Coach of the Year · Tenure milestones · Catholic Educator recognition",
+      cells: {
+      "2026-5": {
+        title: "Year-end coach recognition event",
+        status: "not-started",
+        actions: [
+          "Banquet or reception honoring all coaches",
+          "Coach of the Year award(s)",
+          "Tenure milestones recognized (5, 10, 15 years)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Commissioning Mass retiree recognition",
+        status: "not-started",
+        actions: [
+          "✞ At Commissioning Mass, retiring or departing coaches publicly thanked"
+        ],
+        faith: null,
+        appendices: ["COMMISSIONING_MASS"]
+      },
+      "2026-12": {
+        title: "Advent gratitude gathering",
+        status: "not-started",
+        actions: [
+          "✞ Advent gathering doubles as mid-year gratitude",
+          "Small gesture of appreciation to every coach"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Year 2 recognition event",
+        status: "not-started",
+        actions: [
+          "Banquet continues; refined format"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Year 2 Advent gratitude",
+        status: "not-started",
+        actions: [
+          "✞ Advent gathering"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Year 3 recognition · plan cycle close",
+        status: "not-started",
+        actions: [
+          "Three-year cohort honored",
+          "Special recognition for coaches who carried full cycle"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close gratitude",
+        status: "not-started",
+        actions: [
+          "✞ Final Advent gratitude of this plan cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    }
+  ]
+};
+
+/* ============================================================
+   PILLAR 3 — STUDENT-ATHLETE DEVELOPMENT
+   ============================================================ */
+const PILLAR_3 = {
+  id: 3,
+  name: "Student-Athlete Development",
+  eyebrow: "Pillar 3",
+  sub: "Forming the whole person — spirit first, then character, academics, body, mind, and for the few called to play beyond NCC.",
+  subPillars: [
+    {
+      letter: "A",
+      name: "Spiritual Formation",
+      note: "Team chaplains · Team Masses · Pre-competition prayer · Service hours · Team retreats",
+      cells: {
+      "2026-1": {
+        title: "Team chaplain program scoped",
+        status: "not-started",
+        actions: [
+          "✞ AD and Chaplain identify potential team chaplains (volunteer priests, deacons, lay volunteers)",
+          "Draft expectations for team chaplain role: pre-game prayer, one Mass, one reflection per season"
+        ],
+        faith: { label: "Faith Integration", text: "The body is a temple. The team is a small church. A team chaplain is not a luxury — it is the Catholic school actually being Catholic." },
+        appendices: []
+      },
+      "2026-2": {
+        title: "Chaplain recruitment",
+        status: "not-started",
+        actions: [
+          "✞ Identify and recruit chaplains for each varsity program",
+          "Commitment letter and orientation"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Winter-sport team Masses",
+        status: "not-started",
+        actions: [
+          "✞ Each winter team celebrates one team Mass before end of season",
+          "Basketball, hockey, bowling, powerlifting"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-4": {
+        title: "Spring-sport chaplains activated",
+        status: "not-started",
+        actions: [
+          "✞ Spring-sport team chaplains begin with pre-season team blessing",
+          "Pre-game prayer norm established for every spring game"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Spring-sport team Masses",
+        status: "not-started",
+        actions: [
+          "✞ Spring teams celebrate one team Mass before end of season",
+          "Service project per spring team"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Summer retreat planning",
+        status: "not-started",
+        actions: [
+          "✞ Plan team retreat slate for next academic year",
+          "Identify retreat facilities and chaplain leaders"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Fall-sport chaplains and pre-season blessing",
+        status: "not-started",
+        actions: [
+          "✞ Fall teams receive pre-season team blessing",
+          "Pre-game prayer norm reaffirmed",
+          "Team chaplains introduced to incoming athletes"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-10": {
+        title: "Fall-sport team Masses and service",
+        status: "not-started",
+        actions: [
+          "✞ Each fall team celebrates one team Mass mid-season",
+          "Service project per fall team"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Advent reflection for athletes",
+        status: "not-started",
+        actions: [
+          "✞ Athletic-department-wide Advent reflection evening",
+          "Optional but highly encouraged"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-1": {
+        title: "Year 2 spiritual program plan",
+        status: "not-started",
+        actions: [
+          "✞ Refresh chaplain assignments",
+          "Add team retreat (one per sport target) to calendar"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Winter-sport Masses and retreats · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Team Masses",
+          "First team retreat pilots"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Spring-sport Masses and service · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Team Masses",
+          "Service projects"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-8": {
+        title: "Fall pre-season blessings · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Fall blessings",
+          "Retreat plans confirmed for fall"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-10": {
+        title: "Fall Masses and retreats · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Fall team Masses",
+          "Fall team retreats run"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Advent · Year 2",
+        status: "not-started",
+        actions: [
+          "✞ Advent reflection for athletes"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-1": {
+        title: "Year 3 spiritual program plan",
+        status: "not-started",
+        actions: [
+          "✞ Every team has chaplain, Mass, service, retreat embedded in season",
+          "Mature program"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-3": {
+        title: "Winter Masses · Year 3",
+        status: "not-started",
+        actions: [
+          "✞ Team Masses and service"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Spring Masses · Year 3",
+        status: "not-started",
+        actions: [
+          "✞ Team Masses and service"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-10": {
+        title: "Fall Masses · Year 3",
+        status: "not-started",
+        actions: [
+          "✞ Team Masses and retreats"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close · spiritual program retrospective",
+        status: "not-started",
+        actions: [
+          "✞ Three-year retrospective on spiritual formation",
+          "Every team with chaplain, Mass, service, retreat: baseline for next cycle"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "B",
+      name: "Leadership & Character Training",
+      note: "Athletic Leadership Council · Captain's Academy · Service projects · Virtue focus per season",
+      cells: {
+      "2026-2": {
+        title: "ALC monthly · February",
+        status: "not-started",
+        actions: [
+          "Focus virtue: courage",
+          "Mid-year ALC reflection"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Athletic Leadership Council scoped",
+        status: "not-started",
+        actions: [
+          "Design ALC structure: 2 reps per team, monthly meeting",
+          "Role: athlete voice to AD, community service coordination"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-4": {
+        title: "ALC monthly · April",
+        status: "not-started",
+        actions: [
+          "Focus virtue: sacrifice (Lent/Easter)",
+          "✞ Service project Phase 3"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "ALC year-end · Captain's Academy prep",
+        status: "not-started",
+        actions: [
+          "ALC year-in-review",
+          "Recruit next year's Captain's Academy cohort",
+          "Service project completion"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-7": {
+        title: "Captain's Academy · summer",
+        status: "not-started",
+        actions: [
+          "Two-day summer leadership academy for rising team captains",
+          "Communication, Catholic servant leadership, mentorship skills"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Athletic Leadership Council launches",
+        status: "not-started",
+        actions: [
+          "First ALC meeting",
+          "Year-long service project selected"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-10": {
+        title: "ALC monthly · October",
+        status: "not-started",
+        actions: [
+          "Monthly meeting cadence established",
+          "Focus virtue: perseverance"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "ALC monthly · November",
+        status: "not-started",
+        actions: [
+          "Focus virtue: gratitude",
+          "Service project Phase 1"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "ALC monthly · December",
+        status: "not-started",
+        actions: [
+          "Focus virtue: humility (Advent)",
+          "✞ Service project Phase 2"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "ALC year-end · Year 2",
+        status: "not-started",
+        actions: [
+          "Year 2 ALC year-in-review",
+          "Service project completion"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-7": {
+        title: "Captain's Academy · Year 2",
+        status: "not-started",
+        actions: [
+          "Two-day academy; refined curriculum"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-9": {
+        title: "ALC Year 2 launches",
+        status: "not-started",
+        actions: [
+          "Year 2 ALC begins",
+          "New service project selected"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "ALC mid-year · Year 2",
+        status: "not-started",
+        actions: [
+          "Mid-year ALC reflection (Advent)",
+          "✞ Service project checkpoint"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "ALC plan cycle close",
+        status: "not-started",
+        actions: [
+          "Three-year leadership program retrospective"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-7": {
+        title: "Captain's Academy · Year 3",
+        status: "not-started",
+        actions: [
+          "Two-day academy"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-9": {
+        title: "ALC Year 3 launches",
+        status: "not-started",
+        actions: [
+          "Year 3 ALC begins"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "C",
+      name: "Academic Excellence",
+      note: "Mandatory study hall for at-risk GPAs · Peer tutoring · Scholar-Athlete recognition · Quarterly GPA checks",
+      cells: {
+      "2026-1": {
+        title: "Academic support framework drafted",
+        status: "not-started",
+        actions: [
+          "Identify athletes under 2.5 GPA for supervised study",
+          "Design peer-tutoring matching (upperclassmen to underclassmen)",
+          "Coordinate with academic office"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Q1 GPA check-in",
+        status: "not-started",
+        actions: [
+          "Athletes below 2.5 GPA flagged for coach-AD check-in",
+          "Support plan developed per athlete"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "End-of-year Scholar-Athlete recognition",
+        status: "not-started",
+        actions: [
+          "Scholar-Athlete awards at Spring Awards Night",
+          "Team GPA reporting for spring sports",
+          "Honor roll published"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Study hall program launches",
+        status: "not-started",
+        actions: [
+          "Mandatory supervised study hall for at-risk athletes begins",
+          "Peer tutoring pairs activated"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-10": {
+        title: "Fall Q1 GPA check-in",
+        status: "not-started",
+        actions: [
+          "First GPA check-in for fall season",
+          "At-risk athletes in study hall"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "End-of-semester GPA reporting",
+        status: "not-started",
+        actions: [
+          "Team-level GPA reports for fall sports",
+          "Semester Scholar-Athlete honor roll published"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Q1 GPA check-in · Year 2",
+        status: "not-started",
+        actions: [
+          "Quarterly check-ins and honor roll"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "End-of-year GPA reporting · Year 2",
+        status: "not-started",
+        actions: [
+          "Scholar-Athlete of the Year award",
+          "Team GPA reporting"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-10": {
+        title: "Fall Q1 check-in · Year 2",
+        status: "not-started",
+        actions: [
+          "Quarterly check-ins"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Semester reporting · Year 2",
+        status: "not-started",
+        actions: [
+          "End-of-semester reporting"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-3": {
+        title: "Q1 check-in · Year 3",
+        status: "not-started",
+        actions: [
+          "Quarterly check-ins"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "End-of-year reporting · Year 3",
+        status: "not-started",
+        actions: [
+          "Year-3 final reporting"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-10": {
+        title: "Fall check-in · Year 3",
+        status: "not-started",
+        actions: [
+          "Year-3 Q1 check-ins"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close · academic trend",
+        status: "not-started",
+        actions: [
+          "Three-year GPA trend report",
+          "Scholar-Athlete numbers by year"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "D",
+      name: "Physical & Lifestyle Training",
+      note: "Monthly HWP workshops · Sport-seasonal trainer routines · Nutrition · Sleep · Body as temple",
+      cells: {
+      "2026-1": {
+        title: "Trainer builds fall physical and lifestyle routines",
+        status: "not-started",
+        actions: [
+          "Athletic Trainer builds physical training routine for all fall sports",
+          "Athletic Trainer builds dietary and lifestyle training routine for all fall sports",
+          "✞ Frame lifestyle as stewardship of the body — temple of the Holy Spirit"
+        ],
+        faith: { label: "Faith Integration", text: "The body is a temple of the Holy Spirit (1 Cor 6:19-20). Training and lifestyle are stewardship, not just performance.", scripture: "\"Do you not know that your bodies are temples of the Holy Spirit...Therefore honor God with your bodies.\" — 1 Corinthians 6:19-20" },
+        appendices: []
+      },
+      "2026-2": {
+        title: "AD and Trainer solidify fall routines",
+        status: "not-started",
+        actions: [
+          "Fall physical and dietary/lifestyle routines finalized",
+          "Coach input survey on HWP topics"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "HWP workshop · March",
+        status: "not-started",
+        actions: [
+          "Topic: Sleep and recovery",
+          "1 hour in-person + 15 minute virtual follow-up"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-4": {
+        title: "HWP workshop · April",
+        status: "not-started",
+        actions: [
+          "Topic: Nutrition fundamentals",
+          "Guest: nutritionist"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-5": {
+        title: "HWP workshop · May · spring routines",
+        status: "not-started",
+        actions: [
+          "Topic: Recovery — stretching, cold exposure",
+          "Spring routines active"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-6": {
+        title: "Summer HWP messaging",
+        status: "not-started",
+        actions: [
+          "Summer self-training resources distributed",
+          "Trainer builds winter routines"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Fall physical training launches",
+        status: "not-started",
+        actions: [
+          "Fall routines activated for every fall sport",
+          "HWP workshop topic: Zone 2 training and sport performance"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-9": {
+        title: "HWP workshop · September",
+        status: "not-started",
+        actions: [
+          "Topic: Mindfulness and mental performance",
+          "✞ Spiritual component: meditation and prayer"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-10": {
+        title: "HWP workshop · October",
+        status: "not-started",
+        actions: [
+          "Topic: Whole foods and protein quality"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-11": {
+        title: "HWP workshop · November · winter prep",
+        status: "not-started",
+        actions: [
+          "Topic: Strength training basics",
+          "Winter routines activated"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2026-12": {
+        title: "HWP workshop · December",
+        status: "not-started",
+        actions: [
+          "Topic: Overall health (DEXA, metabolic panels)",
+          "Year-end reflection on HWP impact"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2027-1": {
+        title: "Trainer builds Year 2 routines",
+        status: "not-started",
+        actions: [
+          "All-sport routines refreshed based on Year 1 data",
+          "Individualized plans expand"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "HWP workshop · March · Year 2",
+        status: "not-started",
+        actions: [
+          "Topic rotation · Year 2"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2027-5": {
+        title: "HWP workshop · May · Year 2",
+        status: "not-started",
+        actions: [
+          "Topic rotation"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2027-9": {
+        title: "HWP workshop · September · Year 2",
+        status: "not-started",
+        actions: [
+          "Topic rotation"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2027-11": {
+        title: "HWP workshop · November · Year 2",
+        status: "not-started",
+        actions: [
+          "Topic rotation"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2028-1": {
+        title: "Year 3 routines",
+        status: "not-started",
+        actions: [
+          "Mature program"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "HWP workshop · May · Year 3",
+        status: "not-started",
+        actions: [
+          "Topic rotation"
+        ],
+        faith: null,
+        appendices: ["HWP_WORKSHOP"]
+      },
+      "2028-11": {
+        title: "Plan cycle close · HWP retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year HWP impact report",
+          "Injury rate trend",
+          "Workshop attendance trend"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "E",
+      name: "Mental Health",
+      note: "Awareness · Sports psychology resources · Burnout prevention · Referral pathway",
+      cells: {
+      "2026-2": {
+        title: "Winter check-in · burnout watch",
+        status: "not-started",
+        actions: [
+          "Mid-winter check-in",
+          "Seasonal-affect awareness"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Mental Health Awareness Month focus",
+        status: "not-started",
+        actions: [
+          "✞ May is Mental Health Awareness Month — team-by-team emphasis",
+          "Coach and athlete mental health messaging",
+          "Remove stigma; encourage conversation"
+        ],
+        faith: { label: "Faith Integration", text: "The Church teaches us that grace builds on nature. Caring for mental health is caring for the whole person Christ loves." },
+        appendices: []
+      },
+      "2026-10": {
+        title: "Fall check-in · burnout watch",
+        status: "not-started",
+        actions: [
+          "Mid-fall check-in with captains about team mental health",
+          "Refer any concerns through established pathway"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Year 2 mental health refresh",
+        status: "not-started",
+        actions: [
+          "Update referral partners",
+          "Year 2 coach training"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Mental Health Awareness Month · Year 2",
+        status: "not-started",
+        actions: [
+          "Continued focus"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-10": {
+        title: "Fall burnout watch · Year 2",
+        status: "not-started",
+        actions: [
+          "Check-ins"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Mental Health Awareness Month · Year 3",
+        status: "not-started",
+        actions: [
+          "Mature program"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Plan cycle close · mental health retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year review"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "F",
+      name: "Individualized Elite Support for Aspiring Collegiate Athletes",
+      note: "Recruiting guidance · Highlight packages · College coach exposure · 1:1 support",
+      cells: {
+      "2026-2": {
+        title: "Elite athlete pathway framework",
+        status: "not-started",
+        actions: [
+          "Identify juniors and sophomores targeting college athletics",
+          "Individual 1:1 meetings with AD + Program Director",
+          "Map recruiting timeline for each"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Summer showcase / camp guidance",
+        status: "not-started",
+        actions: [
+          "Guide elite athletes to appropriate summer showcases",
+          "Highlight-reel production support"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Fall college prep cycle begins",
+        status: "not-started",
+        actions: [
+          "Senior athletes: college application and recruiting check-ins",
+          "NCAA eligibility paperwork confirmed"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Signing season · early",
+        status: "not-started",
+        actions: [
+          "Early National Signing Day recognition",
+          "Celebrate commits publicly"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Spring signing · Year 2",
+        status: "not-started",
+        actions: [
+          "Spring National Signing Day",
+          "Year 2 elite athlete cohort identified"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Summer showcase guidance · Year 2",
+        status: "not-started",
+        actions: [
+          "Showcase and highlight support"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Signing season · Year 2",
+        status: "not-started",
+        actions: [
+          "Early signing day"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-2": {
+        title: "Spring signing · Year 3",
+        status: "not-started",
+        actions: [
+          "Spring signing day"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Plan cycle close · collegiate placement report",
+        status: "not-started",
+        actions: [
+          "Three-year collegiate athlete placement report"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    }
+  ]
+};
+
+/* ============================================================
+   PILLAR 4 — FACILITIES MASTER PLAN
+   ============================================================ */
+const PILLAR_4 = {
+  id: 4,
+  name: "Facilities Master Plan",
+  eyebrow: "Pillar 4",
+  sub: "The physical infrastructure that makes everything else possible — gymnasium, tennis courts, chapel (Phase I), plus ongoing maintenance and improvements.",
+  subPillars: [
+    {
+      letter: "A",
+      name: "Needs Assessment & Stakeholder Mapping",
+      note: "Quarterly facility audit · Stakeholder matrix · Use-rate data",
+      cells: {
+      "2026-1": {
+        title: "Stakeholder mapping begins",
+        status: "in-progress",
+        actions: [
+          "AD brainstorms key stakeholders for needs assessment",
+          "Document current gym space constraints",
+          "Identify Design Forum as architectural partner"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Q1 walkthrough and data capture",
+        status: "not-started",
+        actions: [
+          "Walk every athletic facility with Facilities Director",
+          "Capture maintenance needs and 7-10 year forecast",
+          "Log facility use rate (hours booked vs available)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-6": {
+        title: "Mid-year stakeholder engagement",
+        status: "not-started",
+        actions: [
+          "Community stakeholder engagement session",
+          "Parent and alumni input on facility priorities"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Q3 walkthrough",
+        status: "not-started",
+        actions: [
+          "Fall facility walkthrough",
+          "Update maintenance list"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Year-end needs-assessment report",
+        status: "not-started",
+        actions: [
+          "Annual maintenance-needs report with costs",
+          "Deliver to board for budget planning"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Q1 walkthrough · Year 2",
+        status: "not-started",
+        actions: [
+          "Quarterly audit"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-9": {
+        title: "Q3 walkthrough · Year 2",
+        status: "not-started",
+        actions: [
+          "Quarterly audit"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Year 2 needs-assessment report",
+        status: "not-started",
+        actions: [
+          "Annual report"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-3": {
+        title: "Q1 walkthrough · Year 3",
+        status: "not-started",
+        actions: [
+          "Quarterly audit"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close · facilities report",
+        status: "not-started",
+        actions: [
+          "Three-year maintenance history and forward forecast"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "B",
+      name: "Phase I — Gymnasium + Tennis Courts + Chapel",
+      note: "New gym west of current (3 courts) · 8 tennis courts + 4 pickleball on old softball complex · Chapel east of current gym",
+      cells: {
+      "2026-2": {
+        title: "Design refinement with The Design Forum",
+        status: "not-started",
+        actions: [
+          "Continue refinement of gym site design (preliminary meetings done)",
+          "Tennis complex design on dilapidated softball area",
+          "Chapel siting finalized (east of gym, visible from Weiss Rd)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-4": {
+        title: "Diocesan alignment on chapel",
+        status: "not-started",
+        actions: [
+          "✞ Coordinate with diocese on chapel plans",
+          "Liturgical requirements reviewed with pastor"
+        ],
+        faith: { label: "Faith Integration", text: "The chapel is the heart of the Phase I vision. Diocesan alignment is not bureaucracy — it is ensuring the chapel serves the Church." },
+        appendices: []
+      },
+      "2026-6": {
+        title: "Cost estimates and phasing",
+        status: "not-started",
+        actions: [
+          "Construction cost estimates finalized",
+          "Phasing plan (what goes first, second, third)",
+          "Permit research begins"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-9": {
+        title: "Permits and approvals prep",
+        status: "not-started",
+        actions: [
+          "Municipal approvals research",
+          "Community meetings if required"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-12": {
+        title: "Year-end Phase I status report to board",
+        status: "not-started",
+        actions: [
+          "Design and cost summary",
+          "Alignment with capital campaign timeline"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-2": {
+        title: "Bids and contractor selection",
+        status: "not-started",
+        actions: [
+          "Contractor bidding",
+          "Selection and contracting"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Groundbreaking preparation",
+        status: "not-started",
+        actions: [
+          "✞ Plan groundbreaking ceremony with blessing",
+          "Final permit approvals"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-7": {
+        title: "Groundbreaking",
+        status: "not-started",
+        actions: [
+          "✞ Groundbreaking ceremony with blessing by pastor",
+          "Construction begins"
+        ],
+        faith: { label: "Faith Integration", text: "Groundbreaking is an act of faith. The blessing consecrates the work to God." },
+        appendices: []
+      },
+      "2027-10": {
+        title: "Construction in progress",
+        status: "not-started",
+        actions: [
+          "Fall construction milestones",
+          "Updates to school community"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-3": {
+        title: "Construction mid-phase",
+        status: "not-started",
+        actions: [
+          "Spring milestones",
+          "Schedule and budget monitoring"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-6": {
+        title: "Topping-out / major milestone",
+        status: "not-started",
+        actions: [
+          "Mid-project celebration",
+          "Communication push"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-11": {
+        title: "Late-phase construction",
+        status: "not-started",
+        actions: [
+          "Interior fit-out",
+          "Target completion horizon identified"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "C",
+      name: "Capital Campaign Coordination",
+      note: "Development Director hire · Quiet phase · Public launch · Major gifts · Alumni engagement",
+      cells: {
+      "2026-1": {
+        title: "Development Director hiring",
+        status: "not-started",
+        actions: [
+          "Active hiring for school-system Development Director",
+          "Capital campaign cannot formally launch until this is filled"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-3": {
+        title: "Development Director onboarding",
+        status: "not-started",
+        actions: [
+          "Development Director onboarded (target)",
+          "Capital campaign strategy refresh"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Feasibility and quiet phase begins",
+        status: "not-started",
+        actions: [
+          "Feasibility study with prospective major donors",
+          "Initial quiet phase conversations"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-8": {
+        title: "Case statement drafted",
+        status: "not-started",
+        actions: [
+          "Capital campaign case statement drafted",
+          "Coordinated with athletics narrative (Pillar 1E)"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Quiet-phase momentum",
+        status: "not-started",
+        actions: [
+          "Major gift conversations continue",
+          "Board giving campaign launch"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-3": {
+        title: "Public launch prep",
+        status: "not-started",
+        actions: [
+          "Campaign public-launch planning",
+          "Public-facing materials prepared"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-6": {
+        title: "Public launch event",
+        status: "not-started",
+        actions: [
+          "✞ Public launch event with blessing",
+          "Capital campaign goes public"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-9": {
+        title: "Campaign Gala · Year 2",
+        status: "not-started",
+        actions: [
+          "Annual campaign gala",
+          "Major donor recognition"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-12": {
+        title: "Year-end campaign push",
+        status: "not-started",
+        actions: [
+          "End-of-calendar-year giving push"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-3": {
+        title: "Campaign mid-point review",
+        status: "not-started",
+        actions: [
+          "Progress against goal",
+          "Strategy adjustments"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-9": {
+        title: "Campaign Gala · Year 3",
+        status: "not-started",
+        actions: [
+          "Gala near completion of Phase I"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Campaign close planning",
+        status: "not-started",
+        actions: [
+          "Plan campaign close for next year (post-construction)",
+          "Recognition and stewardship plan"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    },
+    {
+      letter: "D",
+      name: "Ongoing Maintenance & Minor Improvements",
+      note: "Annual facility audit · Seasonal maintenance · Minor improvements · Equipment replacement",
+      cells: {
+      "2026-1": {
+        title: "Annual facility audit",
+        status: "not-started",
+        actions: [
+          "Full audit of all athletic facilities",
+          "Maintenance needs list (beyond 7-10 year forecast)",
+          "Budget recommendations for coming FY"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-5": {
+        title: "Spring maintenance window",
+        status: "not-started",
+        actions: [
+          "Off-season maintenance on winter facilities",
+          "Field maintenance for spring/summer"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-7": {
+        title: "Pre-season facility prep",
+        status: "not-started",
+        actions: [
+          "Weight room, locker rooms, gym prep for fall",
+          "Equipment replacement"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2026-11": {
+        title: "Winter facility prep",
+        status: "not-started",
+        actions: [
+          "Off-season fall field maintenance",
+          "Gym prep for winter sports"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-1": {
+        title: "Annual audit · Year 2",
+        status: "not-started",
+        actions: [
+          "Full audit"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-5": {
+        title: "Spring maintenance · Year 2",
+        status: "not-started",
+        actions: [
+          "Spring maintenance"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2027-11": {
+        title: "Winter prep · Year 2",
+        status: "not-started",
+        actions: [
+          "Winter prep"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-1": {
+        title: "Annual audit · Year 3",
+        status: "not-started",
+        actions: [
+          "Full audit"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-5": {
+        title: "Spring maintenance · Year 3",
+        status: "not-started",
+        actions: [
+          "Spring maintenance"
+        ],
+        faith: null,
+        appendices: []
+      },
+      "2028-12": {
+        title: "Plan cycle close · maintenance retrospective",
+        status: "not-started",
+        actions: [
+          "Three-year maintenance cost history",
+          "Forward-looking budget recommendations"
+        ],
+        faith: null,
+        appendices: []
+      }
+      }
+    }
+  ]
+};
+
+const PILLARS = [PILLAR_1, PILLAR_2, PILLAR_3, PILLAR_4];
+
+/* ============================================================
+   APPENDICES — referenceable framework documents
+   ============================================================ */
+const APPENDICES = {
+  BASELINE_REVIEW: {
+    id: 'A.1',
+    title: 'January 2026 Baseline Review Checklist',
+    html: `
+      <p class="lead">The January 2026 baseline review is the first concrete act of the strategic plan. Its purpose is to establish a shared, measurable picture of where NCC Athletics stands before we begin to change it. The AD leads; Board Athletics Liaisons participate in review and reporting.</p>
+
+      <h4>People & Staffing</h4>
+      <ul>
+        <li>Coach retention and turnover by sport and level (elementary, middle, HS) — three-year trend</li>
+        <li>Volunteer vs. paid coach ratio by program</li>
+        <li>Credentialing compliance dashboard: background checks, Safe Environment training, sport certifications, CPR/AED</li>
+        <li>Onboarding experience score from every coach hired in the last 24 months</li>
+      </ul>
+
+      <h4>Program Health & Participation</h4>
+      <ul>
+        <li>Three-year participation trends by sport, grade, gender</li>
+        <li>Multi-sport athlete rate — the bellwether metric for the "Nouvel Athletics Universal" vision</li>
+        <li>Mid-season and year-over-year roster attrition, with reasons</li>
+        <li>Feeder strength: % of HS athletes who played the same sport at NCC in 7th/8th grade</li>
+      </ul>
+
+      <h4>Mission & Catholic Identity Integration</h4>
+      <ul>
+        <li>Program-by-program audit: team prayer routines, team Mass attendance, service hours logged, Catholic formation moments in practices</li>
+        <li>Code of Conduct incidents (ejections, suspensions, hazing, parent complaints)</li>
+        <li>Student-athlete GPA vs. school average, by team</li>
+      </ul>
+
+      <h4>Alignment & Cohesion</h4>
+      <ul>
+        <li>Vertical alignment audit: do elementary, middle, and HS coaches in the same sport share terminology, systems, drills, and values language?</li>
+        <li>Shared communication channels between feeder programs and HS</li>
+        <li>Summer bridge programming that connects levels</li>
+      </ul>
+
+      <h4>Coach Satisfaction Survey</h4>
+      <p>Administered by the Athletic Administrative Assistant. Anonymous, roughly 15 questions, mix of Likert scale and open response. Sample domains:</p>
+      <ul>
+        <li>Clarity of mission and expectations</li>
+        <li>Support from AD and administration</li>
+        <li>Onboarding and ongoing development</li>
+        <li>Communication with other coaches in your sport (across levels)</li>
+        <li>Sense of belonging to "NCC Athletics" as a whole, not just your sport</li>
+        <li>Faith integration support (comfort leading prayer, access to chaplain, etc.)</li>
+      </ul>
+
+      <blockquote>Culture is not measured once and fixed. Re-run this baseline in January 2027 and 2028. Trend lines are what matter.</blockquote>
+    `
+  },
+
+  ROUNDTABLE_FRAMEWORK: {
+    id: 'A.2',
+    title: 'Quarterly Coach Roundtable Framework (90 min)',
+    html: `
+      <p class="lead">Based on the existing ASP Addendum structure, adapted for a quarterly cadence. Held four times per year (Q1: March, Q2: June, Q3: September, Q4: December). A Board Athletics Liaison may attend but is not required.</p>
+
+      <h4>Purpose</h4>
+      <p>Build community among coaches across sports and levels, reinforce culture and mission, surface issues before they become crises, and collect coach input that shapes decisions.</p>
+
+      <h4>Standard 90-Minute Agenda</h4>
+      <ol>
+        <li><strong>Opening (5 min)</strong> — Prayer, welcome, acknowledgment of any new coaches in the room.</li>
+        <li><strong>Updates Round (15 min)</strong> — Each program gives a 60–90 second update: what's going well, what's not, anything the group should know.</li>
+        <li><strong>Prior-Quarter Review (15 min)</strong> — AD walks through action items from last quarter: what closed, what carried over, what new items have emerged.</li>
+        <li><strong>Focus Topic (30 min)</strong> — One deeper topic per quarter. See topic rotation below.</li>
+        <li><strong>Feedback to AD and Board (15 min)</strong> — Open floor; what does the department need from leadership?</li>
+        <li><strong>Next-Quarter Planning (8 min)</strong> — Preview the next quarter; owners for cross-program action items.</li>
+        <li><strong>Closing (2 min)</strong> — Prayer and dismissal.</li>
+      </ol>
+
+      <h4>Focus Topic Rotation</h4>
+      <ul>
+        <li><strong>Q1 (March):</strong> Culture and mission — what does it look like in your program right now?</li>
+        <li><strong>Q2 (June):</strong> Year-end review, retention, recognition. Close with the Coaches Commissioning Mass nearby in the calendar.</li>
+        <li><strong>Q3 (September):</strong> Coaching character — specific virtues and how we teach them.</li>
+        <li><strong>Q4 (December):</strong> Advent reflection — stewardship of our student-athletes and their families.</li>
+      </ul>
+
+      <h4>Attendance Expectations</h4>
+      <p>Every head coach attends, in person when possible. Attendance is documented. Three misses within a plan cycle prompts an AD conversation.</p>
+
+      <h4>A Note on Food</h4>
+      <p>A shared meal transforms a meeting into a gathering. Budget for a catered meal at least twice per year (Q2 and Q4 at minimum). The communion of coaches is itself a cultural intervention.</p>
+    `
+  },
+
+  COACHES_PRAYER: {
+    id: 'A.3',
+    title: 'Sample Coaches\' Prayer (for Roundtable Openings)',
+    html: `
+      <blockquote>
+        Heavenly Father, we gather as coaches called to serve the young men and women entrusted to us at Nouvel Catholic Central. Grant us wisdom to teach, patience to endure, humility to learn, and courage to lead with conviction. Let our words build up and not tear down. Let our example reveal Christ. Let our programs be places where faith is formed, character is shaped, and champions are made. We ask this through Christ our Lord. Amen.
+      </blockquote>
+      <p>Adapt freely. Coaches may rotate who leads prayer at the roundtable. Invite team chaplains to attend at least once per year.</p>
+    `
+  },
+
+  ORG_CHART: {
+    id: 'A.4',
+    title: 'NCC Athletics Organizational Chart — Current and Future State',
+    html: `
+      <h4>Current State (2026)</h4>
+      <ul>
+        <li><strong>Head of School</strong> — supervises Athletic Director</li>
+        <li><strong>Athletic Director</strong> — NCC Athletics department lead</li>
+        <li><strong>Athletic Admin Assistant</strong> — scheduling, communications, survey administration</li>
+        <li><strong>Head Trainer</strong> — physical and HWP leadership, workshops</li>
+        <li><strong>Program Directors (Varsity Head Coaches)</strong> — one per sport, owns K–12 vertical for their sport</li>
+        <li><strong>Head Coaches (non-varsity levels)</strong> — JV, freshman, middle school, elementary</li>
+        <li><strong>Assistant Coaches</strong> — all levels</li>
+        <li><strong>Board Athletics Liaisons</strong> — oversight, strategic support (not line authority)</li>
+      </ul>
+
+      <h4>Future State (target by end of 2027)</h4>
+      <ul>
+        <li>Add <strong>Assistant Athletic Director</strong> — reporting to AD. Focus: day-to-day operations, compliance, event management, to free AD for strategic work.</li>
+        <li>Add <strong>NCCE (Elementary) Athletics Coordinator</strong> — feeder program lead, coordinates with varsity program directors.</li>
+        <li>Formalize <strong>Team Chaplain</strong> roles for each program (volunteer).</li>
+      </ul>
+
+      <h4>Key Principles</h4>
+      <ul>
+        <li>Each varsity head coach is explicitly a <em>Program Director</em> — responsible for the K–12 pipeline in their sport, not just the HS varsity roster.</li>
+        <li>Feeder-league coaches (CYO, rec leagues) are partners, not employees. The relationship is cultivated through the Program Director.</li>
+        <li>Board Athletics Liaisons are advisors and boundary-spanners. They do not evaluate coaches.</li>
+      </ul>
+    `
+  },
+
+  CULTURE_STATEMENT: {
+    id: 'A.5',
+    title: 'NCC Athletics Culture Statement (Draft for Adoption)',
+    html: `
+      <p class="lead">To be published in May 2026 once adopted. Posted in every locker room, coaches\' office, and on the athletics website. Recited at the start of each season and the Coaches Commissioning Mass.</p>
+
+      <blockquote>
+        <strong>We are Nouvel Catholic Central Athletics.</strong><br><br>
+        We are called to form disciples and cultivate champions — disciples of Christ and champions of character, effort, and leadership.<br><br>
+        We are one program across all sports, all grades, and all seasons. What one team does, all teams answer for.<br><br>
+        We pray before we compete and we thank God after. We honor the official, the opponent, and our families. We lift one another. We finish what we start.<br><br>
+        We believe the body is a temple of the Holy Spirit. We train it, feed it, rest it, and offer it as a gift to God.<br><br>
+        Above all — in victory and defeat, in starting role and bench role, in the loud moments and the quiet ones — we coach and play for the glory of God and the good of the person next to us.
+      </blockquote>
+
+      <h4>Non-Negotiables</h4>
+      <ul>
+        <li>Team prayer before every practice and game</li>
+        <li>At least one team Mass per season</li>
+        <li>At least one service activity per season</li>
+        <li>Coaches and athletes thank officials after every competition</li>
+        <li>No coach or athlete speaks ill of another team, coach, or program in public</li>
+      </ul>
+    `
+  },
+
+  COMMISSIONING_MASS: {
+    id: 'A.6',
+    title: 'Annual Coaches Commissioning Mass Protocol',
+    html: `
+      <p class="lead">Held each June before the close of the academic year. Formally blesses coaches for the coming year, honors those who are stepping away, and welcomes those who are new. This replaces the older model of a year-end "staff meeting" with something appropriate to a Catholic school.</p>
+
+      <h4>Timing and Location</h4>
+      <ul>
+        <li>Held in the parish church or school chapel, the week following the last academic day of the year</li>
+        <li>Evening Mass (6:00 PM), followed by shared meal in the school cafeteria or gym</li>
+        <li>Families welcome; coaches expected to attend</li>
+      </ul>
+
+      <h4>Liturgy Notes</h4>
+      <ul>
+        <li>Coordinate with pastor or school chaplain; Mass may be integrated with regular daily or weekly liturgy if preferred</li>
+        <li>Athletic Director gives reflection or intercessions at appropriate point</li>
+        <li>Coaches are called forward by name at the end of Mass for a formal blessing</li>
+        <li>New coaches for the coming year are named and welcomed</li>
+        <li>Retiring or departing coaches are honored with a word and a small gift</li>
+      </ul>
+
+      <h4>After Mass</h4>
+      <ul>
+        <li>Shared meal</li>
+        <li>Athletic Director year-end remarks — kept brief, oriented toward gratitude and mission</li>
+        <li>Informal time — do not over-program this</li>
+      </ul>
+
+      <h4>Sample Blessing (Celebrant)</h4>
+      <blockquote>
+        Loving God, you have called these men and women to teach, coach, and form the young people of our community. Bless their work in the coming year. Give them patience and wisdom, strength and humility. May their example reveal your Son, who called us to love one another as he has loved us. We ask this through Christ our Lord. Amen.
+      </blockquote>
+    `
+  },
+
+  COACH_HANDBOOK: {
+    id: 'A.7',
+    title: 'Coach Handbook — Required Contents',
+    html: `
+      <p class="lead">Distributed to every head coach annually at the pre-season all-athletics meeting. Updated each summer.</p>
+
+      <h4>Required Sections</h4>
+      <ol>
+        <li><strong>NCC Mission and Athletics Culture Statement</strong></li>
+        <li><strong>Code of Conduct</strong> — for coaches, athletes, and parents</li>
+        <li><strong>Credentialing requirements</strong> — background check, Safe Environment, CPR/AED, sport certification</li>
+        <li><strong>Sunday Practice Policy</strong> — per bishop\'s directive (no practices before noon on Sundays; see separate policy document)</li>
+        <li><strong>Travel and facility use policies</strong></li>
+        <li><strong>Emergency action plan</strong> and incident reporting</li>
+        <li><strong>Title IX / equity overview</strong></li>
+        <li><strong>Communication expectations</strong> — with athletes, parents, AD, fellow coaches</li>
+        <li><strong>Program Director responsibilities</strong> (varsity heads)</li>
+        <li><strong>Faith integration expectations</strong> — team prayer, team Mass, service hours</li>
+        <li><strong>Roundtable attendance expectations</strong></li>
+      </ol>
+
+      <h4>Resource Appendix</h4>
+      <ul>
+        <li>Builder Manual template (Appendix A.8)</li>
+        <li>Sample Coaches\' Prayer (Appendix A.3)</li>
+        <li>Sample pre-game devotional / reflection cards</li>
+        <li>MHSAA and league handbook references</li>
+      </ul>
+    `
+  },
+
+  BUILDER_MANUAL_TEMPLATE: {
+    id: 'A.8',
+    title: 'Sport-Specific Builder Manual — Universal Template',
+    html: `
+      <p class="lead">Every head coach in every sport produces a Builder Manual for their program using this template. The Kessler Basketball Builder Manual is the exemplar. Updated annually; reviewed every spring.</p>
+
+      <h4>Section 1 · Program Identity</h4>
+      <ul>
+        <li>Mission statement for the program (aligned with NCC Athletics mission)</li>
+        <li><strong>Catholic Identity Section (REQUIRED)</strong> — team prayer, Mass, service, virtue focus</li>
+        <li>Values and non-negotiables</li>
+      </ul>
+
+      <h4>Section 2 · Developmental Pathway (K–12)</h4>
+      <ul>
+        <li>Elementary level (K–6): foundational skills, participation, fun</li>
+        <li>Middle school (7–8): introduction to competitive play, systems, character</li>
+        <li>Freshman / JV: refinement, role clarity, preparation for varsity</li>
+        <li>Varsity: competitive excellence within the NCC mission</li>
+      </ul>
+
+      <h4>Section 3 · Skills Progression</h4>
+      <ul>
+        <li>Skill by skill, what is taught at each level</li>
+        <li>Shared terminology across levels</li>
+        <li>Drill library references</li>
+      </ul>
+
+      <h4>Section 4 · Operations</h4>
+      <ul>
+        <li>Practice structure and scheduling principles</li>
+        <li>Game-day routines</li>
+        <li>Communication protocols (athletes, parents, admin)</li>
+        <li>Pre-season, in-season, post-season calendar</li>
+      </ul>
+
+      <h4>Section 5 · Character and Formation</h4>
+      <ul>
+        <li>Virtues emphasized in the program</li>
+        <li>Leadership development — captains, seniors, peer mentoring</li>
+        <li>Service component</li>
+        <li>How character is taught in drills, not only in speeches</li>
+      </ul>
+
+      <h4>Section 6 · Succession and Continuity</h4>
+      <ul>
+        <li>Assistant coach development pathway</li>
+        <li>Alumni-as-coach pipeline</li>
+        <li>Institutional memory — what must be preserved when leadership changes</li>
+      </ul>
+
+      <h4>Section 7 · Accountability</h4>
+      <ul>
+        <li>Program Director self-evaluation</li>
+        <li>Annual review checklist (see Basketball Program Director accountability checklist as exemplar)</li>
+      </ul>
+    `
+  },
+
+  COORDINATOR_JD: {
+    id: 'A.9',
+    title: 'NCCE Athletics Coordinator — Position Description',
+    html: `
+      <p class="lead">Elementary (K–6) athletics coordinator, reporting to the Athletic Director. Targeted hire: March 2026 (moved up from April).</p>
+
+      <h4>Purpose</h4>
+      <p>Serve as the single point of coordination for K–6 athletics at NCCE, ensuring alignment with NCC Athletics mission, strong partnerships with feeder leagues, and a smooth pipeline into middle school and high school programs.</p>
+
+      <h4>Key Responsibilities</h4>
+      <ul>
+        <li>Coordinate K–6 athletic offerings at NCCE</li>
+        <li>Liaise with CYO and community feeder leagues in which NCC students participate</li>
+        <li>Partner with each Program Director (varsity head coach) to ensure K–6 programming in their sport reflects shared terminology and philosophy</li>
+        <li>Support Builder Manual integration at the K–6 level</li>
+        <li>Maintain participation data for K–6 athletes</li>
+        <li>Embed Catholic identity into every K–6 athletic offering (team prayer, one team Mass or prayer service per season)</li>
+      </ul>
+
+      <h4>Qualifications</h4>
+      <ul>
+        <li>Experience coaching or administering youth athletics</li>
+        <li>Active, practicing Catholic preferred</li>
+        <li>Strong communicator across audiences (kids, parents, coaches, admin)</li>
+        <li>Ability to work evenings and weekends as seasons require</li>
+      </ul>
+
+      <h4>Reporting and Partnership</h4>
+      <ul>
+        <li>Reports to: Athletic Director</li>
+        <li>Partners with: NCCE Principal, each Program Director, Athletic Admin Assistant</li>
+      </ul>
+    `
+  },
+
+  ACCOUNTABILITY_CHECKLIST: {
+    id: 'A.10',
+    title: 'Program Director Accountability Checklist',
+    html: `
+      <p class="lead">Adapted from the <em>Sample Accountability Checklist for Boys Basketball Program Director</em>. Every Program Director (varsity head coach) completes a version of this, tailored to their sport, once per season.</p>
+
+      <h4>Pre-Season (four weeks before first practice)</h4>
+      <ul>
+        <li>Builder Manual reviewed and any revisions submitted to AD</li>
+        <li>Coaching staff credentials current (background, Safe Environment, CPR/AED, sport cert)</li>
+        <li>Roster confirmed with academic eligibility check</li>
+        <li>Parent meeting scheduled and agenda drafted</li>
+        <li>Team chaplain confirmed; team Mass and service project scheduled</li>
+        <li>Practice plan framework for first two weeks drafted</li>
+        <li>Uniform and equipment inventory verified</li>
+      </ul>
+
+      <h4>In-Season (ongoing)</h4>
+      <ul>
+        <li>Attend quarterly coach roundtable</li>
+        <li>Weekly practice plan submitted to program-wide shared location</li>
+        <li>Monthly academic check-in on any at-risk athletes</li>
+        <li>Pre-game prayer every game, led by player or chaplain</li>
+        <li>Post-game brief feedback to athletes within 24 hours of each game</li>
+        <li>Mid-season parent communication (email or meeting)</li>
+      </ul>
+
+      <h4>Post-Season (within four weeks of last competition)</h4>
+      <ul>
+        <li>Athlete surveys distributed and reviewed</li>
+        <li>Coach self-evaluation submitted</li>
+        <li>Program Director 1:1 with AD</li>
+        <li>End-of-season meeting with all assistant coaches</li>
+        <li>Individual Development Plan drafted for coach (if applicable)</li>
+        <li>Team awards and recognition completed</li>
+        <li>Exit interview with departing seniors</li>
+        <li>Pipeline handoff meeting with feeder-level coach(es)</li>
+      </ul>
+
+      <h4>Annual (spring, before end of school year)</h4>
+      <ul>
+        <li>Builder Manual revisions submitted</li>
+        <li>Sport-specific drill library updated</li>
+        <li>Succession conversation with AD (next-in-line assistant identified)</li>
+        <li>Board-level report (for varsity Program Directors presenting at quarterly board roundtables)</li>
+      </ul>
+
+      <blockquote>Accountability is love. A checklist is not a bureaucratic burden — it is the way we remember to do the things that matter when the season gets loud.</blockquote>
+    `
+  },
+
+  COACHES_SEMINAR: {
+    id: 'A.11',
+    title: 'Annual Coaches Seminar (August)',
+    html: `
+      <p class="lead">Held every August, typically the week before fall sports begin. All coaches — head and assistant, HS and feeder — are expected to attend. Full day (roughly 8 AM to 3 PM), including meals.</p>
+
+      <h4>Objectives</h4>
+      <ul>
+        <li>Ground every coach in the current year's culture statement and priorities</li>
+        <li>Provide technical and tactical development</li>
+        <li>Reinforce Catholic identity as non-negotiable</li>
+        <li>Build relationships across sports and across levels</li>
+      </ul>
+
+      <h4>Sample Agenda</h4>
+      <ol>
+        <li><strong>8:00 — Arrivals &amp; Breakfast</strong></li>
+        <li><strong>8:30 — Opening Prayer &amp; Welcome</strong> (AD, Chaplain, Head of School)</li>
+        <li><strong>9:00 — State of the Department</strong> (AD: priorities, culture statement, scorecard from prior year)</li>
+        <li><strong>9:45 — Catholic Coaching Identity Session</strong> (external speaker or chaplain: 'What does it mean to coach at a Catholic school?')</li>
+        <li><strong>10:45 — Break</strong></li>
+        <li><strong>11:00 — Technical Breakouts</strong> (by sport or by level; Program Directors lead)</li>
+        <li><strong>12:15 — Lunch &amp; Fellowship</strong></li>
+        <li><strong>1:00 — Communication Skills Session</strong> (parent conversations, athlete feedback, crisis communication)</li>
+        <li><strong>2:00 — HWP Alignment Briefing</strong> (Head Trainer: how coaches reinforce athlete HWP messaging)</li>
+        <li><strong>2:30 — Next Steps &amp; Commissioning Prayer</strong></li>
+      </ol>
+
+      <h4>Attendance Expectations</h4>
+      <p>Every coach is expected to attend the full day. Missing the seminar requires written AD approval in advance. This is the single biggest cultural lever available to the department.</p>
+
+      <h4>Budget Notes</h4>
+      <p>Budget for: speaker honoraria, meals, printed materials, venue if off-site. Plan annually in the previous January's budget cycle.</p>
+    `
+  },
+
+  HWP_WORKSHOP: {
+    id: 'A.12',
+    title: 'Health, Wellness &amp; Performance (HWP) Workshop Series',
+    html: `
+      <p class="lead">Monthly in-person workshops for student-athletes, led by the Head Athletic Trainer with guest experts. Format from the ASP Addendum: <strong>1-hour live demonstration with visual presentation, followed by 15-minute virtual breakout with personal trainer/coach.</strong></p>
+
+      <h4>Objective</h4>
+      <p>Create and maintain healthy human beings with an emphasis on performance. Treat the body as what it is: a temple of the Holy Spirit (1 Cor 6:19–20).</p>
+
+      <h4>Format</h4>
+      <ul>
+        <li>One evening per month, day TBD with Head Trainer</li>
+        <li>1 hour in-person presentation + 15-minute virtual follow-up per athlete</li>
+        <li>Presentations hosted by Head Athletic Trainer with medical and performance guest experts</li>
+        <li>Short video clips, Q&amp;A throughout, dialogue between guests and trainer</li>
+      </ul>
+
+      <h4>Topic Rotation (12-month cycle)</h4>
+      <ul>
+        <li><strong>Mindfulness &amp; Mental Performance</strong> — includes spiritual dimension (prayer, meditation)</li>
+        <li><strong>Nutrition Fundamentals</strong> — surface biochemistry, whole foods, protein quality, sugar metabolism</li>
+        <li><strong>Sleep Science</strong> — quality, duration, stages (1–4, REM), trackers (Oura ring, etc.), alcohol, food before bed</li>
+        <li><strong>Exercise &amp; Training</strong> — Zone 2 cardio, sport-specific performance, Huberman strength training (Galpin)</li>
+        <li><strong>Recovery</strong> — stretching, cold exposure, contrast therapy, massage, foam rolling</li>
+        <li><strong>Overall Health Assessment</strong> — DEXA scans, metabolic panels, strength tests</li>
+      </ul>
+
+      <h4>Potential Guest Experts</h4>
+      <p>Jeff Osbourne, Nathan Krebs, local nutritionist, Beth Charlton, SVSU head trainer, neurologist, others TBD. Rotation keeps the workshop fresh and builds a community of adults invested in the athletes.</p>
+
+      <h4>Attendance Expectations</h4>
+      <ul>
+        <li>Target attendance: 60%+ of eligible student-athletes per workshop</li>
+        <li>Make-up virtual sessions available for missed workshops</li>
+        <li>Track attendance by team; coaches reinforce the expectation</li>
+      </ul>
+
+      <h4>Faith Integration</h4>
+      <p>Every HWP workshop opens with brief prayer or reflection. At least one workshop per year is explicitly framed around the body-as-temple teaching.</p>
+    `
+  }
+};
+
+/* ============================================================
+   ============================================================
+                  R E N D E R I N G    L O G I C
+   ============================================================
+   ============================================================ */
+
+let activeYear = 2026;
+let activePillarFilter = 'all';
+let activeStatusFilter = 'all';
+
+const QUARTERS = [
+  { label: 'Q1', months: [1, 2, 3] },
+  { label: 'Q2', months: [4, 5, 6] },
+  { label: 'Q3', months: [7, 8, 9] },
+  { label: 'Q4', months: [10, 11, 12] }
+];
+
+function renderAll() {
+  const root = document.getElementById('planRoot');
+  root.innerHTML = '';
+
+  PILLARS.forEach(pillar => {
+    if (activePillarFilter !== 'all' && activePillarFilter != pillar.id) return;
+    root.appendChild(renderPillar(pillar));
+  });
+
+  /* Appendices */
+  root.appendChild(renderAppendixSection());
+}
+
+function renderPillar(pillar) {
+  const section = document.createElement('section');
+  section.className = 'pillar-section';
+  section.id = `pillar-${pillar.id}`;
+
+  const header = document.createElement('div');
+  header.className = 'pillar-header';
+  header.innerHTML = `
+    <div class="pillar-number">${pillar.id}</div>
+    <div class="pillar-title">
+      <div class="pillar-eyebrow">${pillar.eyebrow}</div>
+      <h2 class="serif">${pillar.name}</h2>
+      <div class="pillar-sub">${pillar.sub}</div>
+    </div>
+  `;
+  section.appendChild(header);
+
+  const gridWrap = document.createElement('div');
+  gridWrap.className = 'grid-wrap';
+
+  /* Year tabs */
+  const yearTabs = document.createElement('div');
+  yearTabs.className = 'year-tabs';
+  YEARS.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'year-tab' + (y === activeYear ? ' active' : '');
+    btn.textContent = y;
+    btn.dataset.year = y;
+    btn.onclick = () => { activeYear = y; renderAll(); };
+    yearTabs.appendChild(btn);
+  });
+  gridWrap.appendChild(yearTabs);
+
+  /* Timeline table */
+  const tableWrap = document.createElement('div');
+  tableWrap.className = 'timeline-grid';
+  const table = document.createElement('table');
+  table.className = 'timeline';
+
+  /* header: quarter row + month row */
+  const thead = document.createElement('thead');
+  const qRow = document.createElement('tr');
+  const emptyCorner = document.createElement('th');
+  emptyCorner.className = 'sp-col';
+  emptyCorner.rowSpan = 2;
+  emptyCorner.textContent = `${activeYear} · ${pillar.name}`;
+  qRow.appendChild(emptyCorner);
+  QUARTERS.forEach(q => {
+    const th = document.createElement('th');
+    th.className = 'quarter';
+    th.colSpan = 3;
+    th.textContent = q.label;
+    qRow.appendChild(th);
+  });
+  thead.appendChild(qRow);
+
+  const mRow = document.createElement('tr');
+  MONTHS.forEach(m => {
+    const th = document.createElement('th');
+    th.textContent = m;
+    mRow.appendChild(th);
+  });
+  thead.appendChild(mRow);
+  table.appendChild(thead);
+
+  /* body: one row per sub-pillar */
+  const tbody = document.createElement('tbody');
+  pillar.subPillars.forEach(sp => {
+    const row = document.createElement('tr');
+
+    const spCell = document.createElement('td');
+    spCell.className = 'sub-pillar-cell';
+    spCell.innerHTML = `<span class="letter">${pillar.id}${sp.letter}</span><span class="sp-name">${sp.name}</span>`;
+    if (sp.note) {
+      spCell.title = sp.note;
+    }
+    row.appendChild(spCell);
+
+    for (let m = 1; m <= 12; m++) {
+      const key = `${activeYear}-${m}`;
+      const cellData = sp.cells && sp.cells[key];
+      const td = document.createElement('td');
+      const div = document.createElement('div');
+      if (cellData) {
+        /* filter by status */
+        if (activeStatusFilter !== 'all' && cellData.status !== activeStatusFilter) {
+          div.className = 'month-cell empty';
+        } else {
+          div.className = 'month-cell';
+          div.onclick = () => openModal(pillar, sp, m, cellData);
+          const hasFaith = !!cellData.faith || (cellData.actions || []).some(a => a.includes('✞'));
+          div.innerHTML = `
+            <div><span class="status-dot ${cellData.status}"></span></div>
+            <div class="cell-title">${escapeHtml(cellData.title)}</div>
+            ${hasFaith ? '<span class="faith-mark">✞</span>' : ''}
+          `;
+        }
+      } else {
+        div.className = 'month-cell empty';
+      }
+      td.appendChild(div);
+      row.appendChild(td);
+    }
+    tbody.appendChild(row);
+  });
+  table.appendChild(tbody);
+  tableWrap.appendChild(table);
+  gridWrap.appendChild(tableWrap);
+
+  /* Legend */
+  const legend = document.createElement('div');
+  legend.className = 'legend';
+  legend.innerHTML = `
+    <div class="legend-item"><span class="status-dot not-started"></span> Not Started</div>
+    <div class="legend-item"><span class="status-dot in-progress"></span> In Progress</div>
+    <div class="legend-item"><span class="status-dot complete"></span> Complete</div>
+    <div class="legend-item"><span class="status-dot deferred"></span> Deferred</div>
+    <div class="legend-item"><span class="status-dot blocked"></span> Blocked</div>
+    <div class="legend-item" style="margin-left:auto;"><span style="color:var(--ncc-blue);">✞</span> = faith integration present</div>
+  `;
+  gridWrap.appendChild(legend);
+
+  section.appendChild(gridWrap);
+  return section;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+function openModal(pillar, subPillar, month, data) {
+  const modal = document.getElementById('modal');
+  const backdrop = document.getElementById('modalBackdrop');
+  const monthName = MONTHS[month - 1];
+
+  const statusLabel = {
+    'not-started': 'Not Started',
+    'in-progress': 'In Progress',
+    'complete': 'Complete',
+    'deferred': 'Deferred',
+    'blocked': 'Blocked'
+  }[data.status] || data.status;
+
+  const actionsHtml = (data.actions || []).map(a => {
+    const isFaith = a.includes('✞');
+    const txt = a.replace(/^✞\s*/, '');
+    return `<li class="${isFaith ? 'faith' : ''}">${isFaith ? '<span class="cross">✞</span>' : ''}${escapeHtml(txt)}</li>`;
+  }).join('');
+
+  const faithHtml = data.faith ? `
+    <div class="modal-section">
+      <div class="faith-box">
+        <span class="faith-label">${escapeHtml(data.faith.label)}</span>
+        ${escapeHtml(data.faith.text)}
+        ${data.faith.scripture ? `<div class="scripture">${escapeHtml(data.faith.scripture)}</div>` : ''}
+      </div>
+    </div>
+  ` : '';
+
+  const appendixHtml = (data.appendices && data.appendices.length) ? `
+    <div class="modal-section">
+      <h3>Resources &amp; Appendices</h3>
+      <div class="appendix-links">
+        ${data.appendices.map(aKey => {
+          const app = APPENDICES[aKey];
+          if (!app) return '';
+          return `<button class="appendix-link" onclick="closeModal(); scrollToAppendix('${aKey}');">${escapeHtml(app.id)} · ${escapeHtml(app.title)}</button>`;
+        }).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  modal.innerHTML = `
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="breadcrumb">Pillar ${pillar.id} · ${pillar.id}${subPillar.letter} — ${escapeHtml(subPillar.name)}</div>
+      <h2 class="serif">${escapeHtml(data.title)}</h2>
+      <div class="month-label">${monthName} ${activeYear}</div>
+    </div>
+    <div class="modal-body">
+      <div class="status-row">
+        <span class="status-pill ${data.status}"><span class="status-dot ${data.status}"></span>${statusLabel}</span>
+        <span class="meta-chip"><strong>Owner:</strong> Athletic Director</span>
+      </div>
+
+      <div class="modal-section">
+        <h3>Action Items</h3>
+        <ul class="action-list">${actionsHtml}</ul>
+      </div>
+
+      ${faithHtml}
+      ${appendixHtml}
+    </div>
+  `;
+
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ============================================================
+   APPENDIX SECTION
+   ============================================================ */
+function renderAppendixSection() {
+  const section = document.createElement('section');
+  section.className = 'appendix-section';
+  section.id = 'appendices';
+
+  const header = document.createElement('div');
+  header.innerHTML = `
+    <div class="app-eyebrow">Reference Library</div>
+    <h2 class="serif">Appendices</h2>
+    <div class="app-sub">Framework documents, templates, and protocols referenced throughout the plan. Click any item to expand.</div>
+  `;
+  section.appendChild(header);
+
+  Object.keys(APPENDICES).forEach(key => {
+    const app = APPENDICES[key];
+    const item = document.createElement('div');
+    item.className = 'appendix-item';
+    item.id = `app-${key}`;
+    item.innerHTML = `
+      <button class="appendix-toggle" onclick="toggleAppendix('${key}')">
+        <span><span class="app-id">${escapeHtml(app.id)}</span><span class="app-title serif">${escapeHtml(app.title)}</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="appendix-content">${app.html}</div>
+    `;
+    section.appendChild(item);
+  });
+
+  return section;
+}
+
+function toggleAppendix(key) {
+  const el = document.getElementById('app-' + key);
+  if (el) el.classList.toggle('open');
+}
+
+function scrollToAppendix(key) {
+  const el = document.getElementById('app-' + key);
+  if (!el) return;
+  if (!el.classList.contains('open')) el.classList.add('open');
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function expandAllAppendices() {
+  document.querySelectorAll('.appendix-item').forEach(el => el.classList.add('open'));
+  document.getElementById('appendices').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ============================================================
+   UTILITIES + INIT
+   ============================================================ */
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/* Filter chip handlers */
+document.querySelectorAll('#pillarChips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#pillarChips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activePillarFilter = chip.dataset.pillar;
+    renderAll();
+  });
+});
+
+document.getElementById('statusFilter').addEventListener('change', e => {
+  activeStatusFilter = e.target.value;
+  renderAll();
+});
+
+/* First render */
+renderAll();
+</script>
+</body>
+</html>
