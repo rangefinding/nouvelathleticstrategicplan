@@ -943,6 +943,172 @@ footer a {
 }
 
 /* =============================================================
+   STATUS EDITOR (in modal)
+   ============================================================= */
+.status-editor {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+.status-editor-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ncc-blue);
+}
+.status-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .65rem .3rem .55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: white;
+  transition: border-color .15s ease;
+}
+.status-select-wrap:hover {
+  border-color: var(--ncc-blue);
+}
+.status-select-wrap select {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+.override-note {
+  font-size: .72rem;
+  color: var(--status-deferred);
+  font-style: italic;
+  font-weight: 500;
+}
+.status-revert-btn {
+  font-size: .72rem;
+  padding: .25rem .6rem;
+  border: 1px solid var(--border-strong);
+  background: white;
+  border-radius: 999px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .15s ease;
+  font-family: inherit;
+}
+.status-revert-btn:hover {
+  border-color: var(--status-deferred);
+  color: var(--status-deferred);
+}
+
+/* =============================================================
+   PENDING CHANGES BADGE
+   ============================================================= */
+#pendingBadge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--status-deferred);
+  color: white;
+  font-size: .7rem;
+  font-weight: 700;
+  margin-left: .35rem;
+}
+.btn-export {
+  position: relative;
+}
+
+/* =============================================================
+   EXPORT MODAL
+   ============================================================= */
+.export-modal {
+  max-width: 820px;
+}
+.export-modal .modal-body {
+  padding-top: 1rem;
+}
+.export-intro {
+  background: #fdf9ee;
+  border: 1px solid #ecdeb6;
+  border-left: 4px solid #c9a54c;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: .88rem;
+  line-height: 1.55;
+  color: #6b5220;
+}
+.export-intro strong { color: #4a3811; }
+.export-summary {
+  font-size: .82rem;
+  color: var(--ink-muted);
+  margin-bottom: .75rem;
+}
+.export-summary strong { color: var(--ink); font-weight: 600; }
+.export-code {
+  font-family: 'SF Mono', Consolas, Monaco, monospace;
+  font-size: .82rem;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  line-height: 1.6;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre;
+  tab-size: 2;
+}
+.export-code .k { color: #93c5fd; }
+.export-code .s { color: #fbbf24; }
+.export-actions {
+  display: flex;
+  gap: .6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.export-list {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-height: 280px;
+  overflow-y: auto;
+}
+.export-list-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .75rem;
+  padding: .6rem .9rem;
+  font-size: .82rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.export-list-item:last-child { border-bottom: 0; }
+.export-list-item .key {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: .74rem;
+  color: var(--ncc-blue);
+  font-weight: 600;
+}
+.export-list-item .label {
+  color: var(--ink-muted);
+}
+.export-list-item .status-chip {
+  font-size: .7rem;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* =============================================================
    RESPONSIVE
    ============================================================= */
 @media (max-width: 900px) {
@@ -1019,6 +1185,9 @@ footer a {
       </select>
     </div>
     <div class="controls-spacer"></div>
+    <button class="btn btn-export" onclick="openExportModal()">
+      Export Status Updates<span id="pendingBadge">0</span>
+    </button>
     <button class="btn" onclick="expandAllAppendices()">Expand All Appendices</button>
     <button class="btn btn-primary" onclick="window.print()">🖨 Print Timeline</button>
   </div>
@@ -4648,6 +4817,84 @@ const QUARTERS = [
   { label: 'Q4', months: [10, 11, 12] }
 ];
 
+/* ============================================================
+   STATUS OVERRIDE SYSTEM
+   ------------------------------------------------------------
+   Clickable statuses save to localStorage (per browser). When
+   you're ready to make them permanent across devices, click
+   "Export Updates" in the toolbar and paste the snippet into
+   STATUS_UPDATES at the top of <script>. Commit to GitHub.
+   ============================================================ */
+
+/* Paste exported status updates here to commit them permanently.
+   Keys are "P{pillarId}{letter}-{year}-{month}" (e.g. "P1A-2026-3"). */
+const STATUS_UPDATES = {
+  // "P1A-2026-1": "complete",
+};
+
+const STATUS_LABELS = {
+  'not-started': 'Not Started',
+  'in-progress': 'In Progress',
+  'complete':    'Complete',
+  'deferred':    'Deferred',
+  'blocked':     'Blocked'
+};
+
+function cellKey(pillarId, letter, year, month) {
+  return `P${pillarId}${letter}-${year}-${month}`;
+}
+
+function loadLocalOverrides() {
+  try { return JSON.parse(localStorage.getItem('ncc-asp-statuses') || '{}'); }
+  catch(e) { return {}; }
+}
+
+function saveLocalOverrides(obj) {
+  try { localStorage.setItem('ncc-asp-statuses', JSON.stringify(obj)); }
+  catch(e) { console.error('Could not save status overrides:', e); }
+}
+
+function getEffectiveStatus(key, defaultStatus) {
+  const local = loadLocalOverrides();
+  if (local[key]) return local[key];
+  if (STATUS_UPDATES[key]) return STATUS_UPDATES[key];
+  return defaultStatus;
+}
+
+function setLocalStatus(key, newStatus) {
+  const local = loadLocalOverrides();
+  if (newStatus === null || newStatus === 'revert') {
+    delete local[key];
+  } else {
+    local[key] = newStatus;
+  }
+  saveLocalOverrides(local);
+  updatePendingChangesBadge();
+}
+
+function countPendingChanges() {
+  const local = loadLocalOverrides();
+  // Only count ones that differ from STATUS_UPDATES (i.e. truly uncommitted)
+  let n = 0;
+  for (const k of Object.keys(local)) {
+    if (local[k] !== STATUS_UPDATES[k]) n++;
+  }
+  return n;
+}
+
+function updatePendingChangesBadge() {
+  const badge = document.getElementById('pendingBadge');
+  const n = countPendingChanges();
+  if (!badge) return;
+  if (n > 0) {
+    badge.textContent = n;
+    badge.style.display = 'inline-flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+
 function renderAll() {
   const root = document.getElementById('planRoot');
   root.innerHTML = '';
@@ -4745,15 +4992,17 @@ function renderPillar(pillar) {
       const td = document.createElement('td');
       const div = document.createElement('div');
       if (cellData) {
-        /* filter by status */
-        if (activeStatusFilter !== 'all' && cellData.status !== activeStatusFilter) {
+        const k = cellKey(pillar.id, sp.letter, activeYear, m);
+        const effStatus = getEffectiveStatus(k, cellData.status);
+        /* filter by status (uses effective status) */
+        if (activeStatusFilter !== 'all' && effStatus !== activeStatusFilter) {
           div.className = 'month-cell empty';
         } else {
           div.className = 'month-cell';
           div.onclick = () => openModal(pillar, sp, m, cellData);
           const hasFaith = !!cellData.faith || (cellData.actions || []).some(a => a.includes('✞'));
           div.innerHTML = `
-            <div><span class="status-dot ${cellData.status}"></span></div>
+            <div><span class="status-dot ${effStatus}"></span></div>
             <div class="cell-title">${escapeHtml(cellData.title)}</div>
             ${hasFaith ? '<span class="faith-mark">✞</span>' : ''}
           `;
@@ -4794,14 +5043,9 @@ function openModal(pillar, subPillar, month, data) {
   const modal = document.getElementById('modal');
   const backdrop = document.getElementById('modalBackdrop');
   const monthName = MONTHS[month - 1];
-
-  const statusLabel = {
-    'not-started': 'Not Started',
-    'in-progress': 'In Progress',
-    'complete': 'Complete',
-    'deferred': 'Deferred',
-    'blocked': 'Blocked'
-  }[data.status] || data.status;
+  const key = cellKey(pillar.id, subPillar.letter, activeYear, month);
+  const effStatus = getEffectiveStatus(key, data.status);
+  const hasOverride = effStatus !== data.status;
 
   const actionsHtml = (data.actions || []).map(a => {
     const isFaith = a.includes('✞');
@@ -4832,6 +5076,14 @@ function openModal(pillar, subPillar, month, data) {
     </div>
   ` : '';
 
+  const statusOptions = Object.keys(STATUS_LABELS).map(s =>
+    `<option value="${s}"${s === effStatus ? ' selected' : ''}>${STATUS_LABELS[s]}</option>`
+  ).join('');
+
+  const overrideNote = hasOverride
+    ? `<span class="override-note">Changed (was: ${STATUS_LABELS[data.status]})</span>`
+    : '';
+
   modal.innerHTML = `
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
@@ -4841,7 +5093,15 @@ function openModal(pillar, subPillar, month, data) {
     </div>
     <div class="modal-body">
       <div class="status-row">
-        <span class="status-pill ${data.status}"><span class="status-dot ${data.status}"></span>${statusLabel}</span>
+        <label class="status-editor">
+          <span class="status-editor-label">Status</span>
+          <span class="status-select-wrap">
+            <span class="status-dot ${effStatus}" id="modalDot"></span>
+            <select id="modalStatusSelect" data-key="${key}" data-default="${data.status}">${statusOptions}</select>
+          </span>
+          ${overrideNote}
+          ${hasOverride ? `<button class="status-revert-btn" onclick="revertStatus('${key}', '${data.status}')">Revert</button>` : ''}
+        </label>
         <span class="meta-chip"><strong>Owner:</strong> Athletic Director</span>
       </div>
 
@@ -4855,8 +5115,40 @@ function openModal(pillar, subPillar, month, data) {
     </div>
   `;
 
+  // wire the status select
+  const sel = document.getElementById('modalStatusSelect');
+  if (sel) {
+    sel.addEventListener('change', (e) => {
+      const newStatus = e.target.value;
+      const k = e.target.dataset.key;
+      const def = e.target.dataset.default;
+      if (newStatus === def) {
+        setLocalStatus(k, 'revert');
+      } else {
+        setLocalStatus(k, newStatus);
+      }
+      // Update dot color immediately
+      const dot = document.getElementById('modalDot');
+      if (dot) dot.className = `status-dot ${newStatus}`;
+      // Re-render grid in background so closing modal shows fresh state
+      renderAll();
+      // Re-open modal to refresh override note
+      openModal(pillar, subPillar, month, data);
+    });
+  }
+
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function revertStatus(key, defaultStatus) {
+  setLocalStatus(key, 'revert');
+  // Find the modal and re-open
+  const sel = document.getElementById('modalStatusSelect');
+  if (sel) sel.value = defaultStatus;
+  renderAll();
+  // Close and require click to reopen — simpler than tracking
+  closeModal();
 }
 
 function closeModal() {
@@ -4932,6 +5224,123 @@ function escapeHtml(s) {
     .replace(/'/g, '&#039;');
 }
 
+/* ============================================================
+   EXPORT STATUS UPDATES
+   ============================================================ */
+function openExportModal() {
+  const modal = document.getElementById('modal');
+  const backdrop = document.getElementById('modalBackdrop');
+  const local = loadLocalOverrides();
+  const keys = Object.keys(local).sort();
+  const n = keys.length;
+
+  // Build list view + code snippet
+  let listHtml = '';
+  keys.forEach(k => {
+    // Look up the cell's default title to show what the change refers to
+    let title = '';
+    let defaultStatus = '';
+    const match = k.match(/^P(\d+)([A-F])-(\d+)-(\d+)$/);
+    if (match) {
+      const pid = parseInt(match[1]);
+      const letter = match[2];
+      const yr = match[3];
+      const mo = match[4];
+      const pillar = PILLARS.find(p => p.id === pid);
+      if (pillar) {
+        const sp = pillar.subPillars.find(s => s.letter === letter);
+        if (sp && sp.cells[`${yr}-${mo}`]) {
+          title = sp.cells[`${yr}-${mo}`].title;
+          defaultStatus = sp.cells[`${yr}-${mo}`].status;
+        }
+      }
+    }
+    const statusColor = {
+      'not-started': '#f1f5f9',
+      'in-progress': '#dbeafe',
+      'complete': '#d1fae5',
+      'deferred': '#fed7aa',
+      'blocked': '#fee2e2'
+    }[local[k]] || '#f1f5f9';
+    const textColor = {
+      'not-started': 'var(--status-not-started)',
+      'in-progress': 'var(--status-in-progress)',
+      'complete': 'var(--status-complete)',
+      'deferred': 'var(--status-deferred)',
+      'blocked': 'var(--status-blocked)'
+    }[local[k]] || 'var(--status-not-started)';
+    listHtml += `
+      <div class="export-list-item">
+        <span class="key">${escapeHtml(k)}</span>
+        <span class="label">${escapeHtml(title || '(unknown cell)')}</span>
+        <span class="status-chip" style="background:${statusColor};color:${textColor};">${STATUS_LABELS[local[k]] || local[k]}</span>
+      </div>
+    `;
+  });
+
+  // Build the snippet
+  let snippet = 'const STATUS_UPDATES = {\n';
+  keys.forEach(k => {
+    snippet += `  "${k}": "${local[k]}",\n`;
+  });
+  snippet += '};';
+
+  // Color-code for display
+  const colored = snippet
+    .replace(/(const|STATUS_UPDATES)/g, '<span class="k">$1</span>')
+    .replace(/"([^"]+)"/g, '<span class="s">"$1"</span>');
+
+  const body = n === 0 ? `
+    <div class="export-intro">
+      <strong>No local status changes yet.</strong> Click any cell, change the status dropdown, and the change will save to this browser. Come back here to export.
+    </div>
+  ` : `
+    <div class="export-intro">
+      <strong>How this works:</strong> Your status changes are saved in this browser only. To make them visible to everyone on the site, copy the snippet below and replace the <code>STATUS_UPDATES</code> object near the top of <code>&lt;script&gt;</code> in <code>index.html</code>, then commit to GitHub.
+    </div>
+    <div class="export-summary"><strong>${n}</strong> cell${n === 1 ? '' : 's'} changed:</div>
+    <div class="export-list">${listHtml}</div>
+    <div class="export-summary" style="margin-top:1.25rem;">Snippet to paste:</div>
+    <pre class="export-code" id="exportCode">${colored}</pre>
+    <div class="export-actions">
+      <button class="btn btn-primary" onclick="copyExportSnippet()">📋 Copy Snippet</button>
+      <button class="btn" onclick="if(confirm('Clear all ' + ${n} + ' local status changes? This cannot be undone.')) { localStorage.removeItem('ncc-asp-statuses'); updatePendingChangesBadge(); closeModal(); renderAll(); }">Clear All Changes</button>
+    </div>
+    <textarea id="exportHidden" style="position:absolute;left:-9999px;">${snippet}</textarea>
+  `;
+
+  modal.className = 'modal export-modal';
+  modal.innerHTML = `
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="breadcrumb">Status Overrides</div>
+      <h2 class="serif">Export Status Updates</h2>
+      <div class="month-label">Saved in browser · ${n} pending change${n === 1 ? '' : 's'}</div>
+    </div>
+    <div class="modal-body">${body}</div>
+  `;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function copyExportSnippet() {
+  const ta = document.getElementById('exportHidden');
+  if (!ta) return;
+  ta.select();
+  try {
+    document.execCommand('copy');
+    // Visual feedback
+    const btns = document.querySelectorAll('.export-actions .btn-primary');
+    btns.forEach(b => {
+      const orig = b.textContent;
+      b.textContent = '✓ Copied!';
+      setTimeout(() => b.textContent = orig, 1800);
+    });
+  } catch(e) {
+    alert('Copy failed. Please select the code block manually and copy.');
+  }
+}
+
 /* Filter chip handlers */
 document.querySelectorAll('#pillarChips .chip').forEach(chip => {
   chip.addEventListener('click', () => {
@@ -4947,8 +5356,17 @@ document.getElementById('statusFilter').addEventListener('change', e => {
   renderAll();
 });
 
+/* Reset modal class after closing (export modal uses a different class) */
+const origCloseModal = closeModal;
+window.closeModal = function() {
+  const modal = document.getElementById('modal');
+  if (modal) modal.className = 'modal';
+  origCloseModal();
+};
+
 /* First render */
 renderAll();
+updatePendingChangesBadge();
 </script>
 </body>
 </html>
