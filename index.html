@@ -177,26 +177,116 @@ button{font-family:inherit;cursor:pointer}
   text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:3px;font-weight:600;
 }
 
-/* ============ NON-NEGOTIABLES ============ */
-.nonneg{background:var(--royal-dpr);border-top:1px solid var(--hair-blue)}
-.nn-inner{max-width:var(--max);margin:0 auto;padding:30px 24px 34px}
-.nn-head{
-  font-family:var(--disp);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--silver);margin-bottom:20px;font-weight:600;
+/* ============ VALUES & PHILOSOPHY ============ */
+/* Same card language as the five pillars, distinguished by a silver
+   accent and a fleuron in place of a Roman numeral. */
+.found{background:var(--paper)}
+.found-inner{max-width:var(--max);margin:0 auto;padding:44px 24px 0}
+.vcard-wrap{
+  background:#fff;border-left:4px solid var(--silver);border-radius:var(--r);
+  box-shadow:var(--lift);overflow:hidden;
 }
-.nn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.nn-card{background:rgba(255,255,255,.05);border-radius:var(--r);padding:24px;color:#fff}
-.nn-card .n{
-  font-family:var(--disp);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.5);
+.vcard{
+  width:100%;display:grid;grid-template-columns:66px 1fr 176px;align-items:center;gap:22px;
+  padding:26px;text-align:left;background:#fff;border:0;transition:background .15s;
+}
+.vcard:hover{background:var(--silver-pl)}
+.vcard[aria-expanded="true"]{background:var(--silver-pl)}
+.vmark{
+  display:block;font-family:var(--serif);font-size:30px;color:var(--silver);
+  line-height:1;text-align:center;transition:color .18s,transform .25s;
+}
+.vcard:hover .vmark{color:var(--royal-lt);transform:rotate(90deg)}
+.vbody{display:block;min-width:0}
+.veyebrow{
+  display:block;font-family:var(--disp);font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:7px;
+}
+.vtitle{
+  display:block;font-family:var(--disp);font-weight:600;font-size:23px;
+  letter-spacing:-.005em;color:var(--royal);margin-bottom:8px;
+}
+.vgoal{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.55;max-width:64ch}
+.vthread{display:block;font-size:12.5px;color:var(--ink-mute);margin-top:12px}
+.vmeta{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.vaction{
+  font-family:var(--disp);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:600;
+}
+.vcaret{
+  font-size:10px;color:var(--royal);width:30px;height:30px;line-height:30px;text-align:center;
+  border-radius:50%;background:var(--silver-pl);transition:transform .22s,background .18s,color .18s;
+}
+.vcard[aria-expanded="true"] .vcaret{transform:rotate(90deg);background:var(--royal);color:#fff}
+.vcard[aria-expanded="true"] .vmark{color:var(--royal);transform:rotate(90deg)}
+@media(max-width:820px){
+  .vcard{grid-template-columns:48px 1fr;gap:14px;padding:18px}
+  .vmeta{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
+}
+
+/* ---- expanded panel ---- */
+.found-body{padding:0 26px 34px;border-top:1px solid var(--hairline)}
+.fd-block{padding-top:30px;margin-top:30px;border-top:1px solid var(--hairline)}
+.fd-block:first-child{padding-top:30px;margin-top:0;border-top:0}
+.fd-block h3{
+  font-family:var(--disp);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:600;margin-bottom:16px;
+}
+.fd-lead{
+  font-family:var(--serif);font-weight:400;font-size:clamp(19px,2.2vw,26px);
+  line-height:1.38;color:var(--ink);max-width:56ch;
+}
+.fd-note{font-size:13.5px;color:var(--ink-mute);margin-top:14px;max-width:60ch}
+.fd-note em{color:var(--royal);font-style:italic}
+.fd-sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:20px;max-width:70ch;line-height:1.6}
+
+.fd-four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.fd-four > div{
+  background:var(--silver-pl);border-radius:var(--r);padding:18px;
+  font-size:13.5px;line-height:1.6;color:var(--ink-soft);
+}
+.fd-four b{
+  display:block;font-family:var(--disp);font-size:14.5px;font-weight:600;
+  color:var(--royal);margin-bottom:8px;letter-spacing:0;
+}
+@media(max-width:900px){.fd-four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fd-four{grid-template-columns:1fr}}
+
+.fd-commit{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fc{background:var(--silver-pl);border-radius:var(--r);padding:24px;color:var(--ink)}
+.fc .n{
+  font-family:var(--disp);font-size:10px;letter-spacing:.2em;color:var(--ink-mute);
   display:block;margin-bottom:10px;text-transform:uppercase;font-weight:600;
 }
-.nn-card h3{
+.fc h4{
   font-family:var(--disp);font-weight:600;font-size:17.5px;letter-spacing:0;
-  margin-bottom:10px;line-height:1.28;
+  margin-bottom:10px;line-height:1.28;color:var(--royal);
 }
-.nn-card p{font-size:13.5px;line-height:1.62;color:var(--silver)}
-.nn-card .ref{margin-top:12px}
-@media(max-width:820px){.nn-grid{grid-template-columns:1fr}}
+.fc p{font-size:13.5px;line-height:1.62;color:var(--ink-soft)}
+.fc .ref{margin-top:12px}
+.fc .app-tag{background:#fff}
+@media(max-width:900px){.fd-commit{grid-template-columns:1fr}}
+
+.fd-ol,.fd-ul{margin:0;padding-left:22px;max-width:82ch}
+.fd-ol li,.fd-ul li{
+  color:var(--ink-soft);font-size:14.5px;line-height:1.68;margin-bottom:13px;padding-left:4px;
+}
+.fd-ol li::marker{color:var(--royal);font-family:var(--disp);font-weight:700}
+.fd-ul li::marker{color:var(--silver)}
+.fd-ol b{color:var(--ink);font-weight:600}
+
+/* ---- ornament divider ---- */
+.ornament{
+  max-width:var(--max);margin:0 auto;padding:40px 24px 6px;
+  display:flex;align-items:center;gap:14px;
+}
+.ornament::before,.ornament::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--silver),transparent);
+}
+.ornament i{display:block;transform:rotate(45deg);flex:none}
+.ornament .d1{width:4px;height:4px;background:var(--silver)}
+.ornament .d2{width:8px;height:8px;background:var(--royal)}
 
 /* ============ PILLAR CARDS ============ */
 .controls{
@@ -216,7 +306,7 @@ button{font-family:inherit;cursor:pointer}
 .legend-note{font-size:11.5px;color:var(--ink-mute);margin-left:auto}
 
 .sectionlabel{
-  max-width:var(--max);margin:0 auto;padding:36px 24px 0;
+  max-width:var(--max);margin:0 auto;padding:22px 24px 0;
   font-family:var(--disp);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
   color:var(--ink-mute);font-weight:600;
 }
@@ -388,10 +478,6 @@ button{font-family:inherit;cursor:pointer}
 .app-tag .ax{color:var(--ink-mute);font-weight:400;margin-right:6px}
 .app-tag:hover{background:var(--royal);color:#fff}
 .app-tag:hover .ax{color:rgba(255,255,255,.65)}
-.nn-card .app-tag{background:rgba(255,255,255,.14);color:#fff}
-.nn-card .app-tag .ax{color:rgba(255,255,255,.6)}
-.nn-card .app-tag:hover{background:#fff;color:var(--royal)}
-.nn-card .app-tag:hover .ax{color:var(--ink-mute)}
 .app-tag:hover{background:var(--royal);color:#fff;border-color:var(--royal)}
 
 /* ============ STATUS ============ */
@@ -634,21 +720,26 @@ footer .fmission{
   #printSummaryRoot{display:none!important}
   body.print-summary #printRoot{display:none!important}
   body.print-summary #printSummaryRoot{display:block!important}
-  body.print-summary .nonneg{display:none!important}
+  body.print-summary .found{display:none!important}
   .topbar,.missionband,.controls,.viewtoggle,.lib-scrim,.lib,.modal-scrim,
   .backbar,.status-menu,.app-tag,.trackbar,.tb-right{display:none!important}
   body{background:#fff;font-size:10.5pt}
-  .pcard,.objective,.tl-q,.y1-group,.pillar-band,.nn-card{box-shadow:none!important;border-radius:0!important}
-  .hero,.nonneg,.pillar-band,.tl-qhead,footer{background:#fff!important;color:#000!important}
+  .pcard,.objective,.tl-q,.y1-group,.pillar-band,.fc{box-shadow:none!important;border-radius:0!important}
+  .hero,.pillar-band,.tl-qhead,footer{background:#fff!important;color:#000!important}
   .hero{border-bottom:2px solid #000}
-  .plantitle .l1,.plantitle .l2,.plantitle .l3,.hero-mission,.pb-name,.nn-card h3,
-  .subtitle,footer .fmission{color:#000!important}
+  .plantitle .l1,.plantitle .l2,.plantitle .l3,.hero-mission,.pb-name,
+  footer .fmission{color:#000!important}
   .plantitle .l2{font-size:30pt}
   .plantitle .l1{font-size:15pt}
   .plantitle .l3{font-size:13pt}
   .hero-mission{font-size:16pt}
-  .hero .lead,.pb-goal,.pb-thread,.nn-card p,.credit,.subtitle small{color:#333!important}
-  .nn-card{background:#fff!important;border:1px solid #999}
+  .hero .lead,.pb-goal,.pb-thread,.credit{color:#333!important}
+  .fc,.fd-four > div{background:#fff!important;border:1px solid #999}
+  .vcard,.ornament{display:none!important}
+  .found-body{display:block!important;border-top:0}
+  .vcard-wrap{box-shadow:none!important;border-radius:0!important;border-left:0}
+  .fd-block h3,.fd-lead,.fc h4{color:#000!important}
+  .fd-sub,.fd-note,.fc p,.fd-ol li,.fd-ul li,.fd-four > div{color:#333!important}
   .obj-body{display:block!important}
   .obj-caret,.obj-tally{display:none}
   .objective{page-break-inside:avoid;border:1px solid #999}
@@ -693,40 +784,112 @@ footer .fmission{
       <div class="credit"><b>Format</b>Goal &rarr; Objectives &rarr; Measurable outcomes</div>
       <div class="credit"><b>Ownership</b>AD + Board Athletics Liaisons</div>
       <div class="credit"><b>Review</b>Quarterly board &middot; Monthly snapshots</div>
-      <div class="credit"><b>Version</b>v3.3 &middot; August 2026</div>
+      <div class="credit"><b>Version</b>v3.5 &middot; August 2026</div>
     </div>
   </div>
 </section>
 
-<section class="nonneg" id="nonNegSection">
-  <div class="nn-inner">
-    <div class="nn-head">Three non-negotiables &mdash; they govern every pillar</div>
-    <div class="nn-grid">
-      <div class="nn-card">
-        <span class="n">One</span>
-        <h3>We begin and end in prayer</h3>
-        <p>Every practice. Every contest. Every meeting, roundtable, seminar, banquet, and council session. Opened in prayer and closed in prayer, without exception and without apology. This is the first thing a visitor should notice about NCC Athletics and the last thing an athlete should forget.</p>
-        <p class="ref"><button class="app-tag" data-app="PRAYER_STANDARD"><span class="ax">A.20</span>Prayer standard</button></p>
+<section class="found" id="foundationsSection">
+  <div class="found-inner">
+   <div class="vcard-wrap">
+    <button class="vcard" id="foundToggle" aria-expanded="false" aria-controls="foundBody">
+      <span class="vmark" aria-hidden="true">&#10022;</span>
+      <span class="vbody">
+        <span class="veyebrow">Foundations</span>
+        <span class="vtitle">Values &amp; Philosophy</span>
+        <span class="vgoal">Mission, vision, the three commitments we hold above the plan, our guiding objectives, and program goals.</span>
+        <span class="vthread">5 sections &middot; the ground the five pillars stand on</span>
+      </span>
+      <span class="vmeta">
+        <span class="vaction">Read</span>
+        <span class="vcaret">&#9654;</span>
+      </span>
+    </button>
+    <div class="found-body" id="foundBody" hidden>
+
+      <div class="fd-block">
+        <h3>Mission</h3>
+        <p class="fd-lead">We will create disciples and cultivate champions. Disciples of Christ and champions of character, effort, and leadership.</p>
+        <p class="fd-note">Carried under the mission of the school: <em>called by Christ to learn, love, and lead&hellip; courageously.</em></p>
       </div>
-      <div class="nn-card">
-        <span class="n">Two</span>
-        <h3>We serve the program next door</h3>
-        <p>No sport at Nouvel succeeds alone. Coaches make other coaches better, athletes fill other teams' bleachers, and every program leaves the ones around it stronger than it found them. We ask athletes to serve their teammates; we hold ourselves to the same standard across sports.</p>
-        <p class="ref"><button class="app-tag" data-app="CROSS_SPORT"><span class="ax">A.23</span>Cross-sport playbook</button><button class="app-tag" data-app="CHAMPIONSHIP_PROGRAMS"><span class="ax">A.24</span>Championship notes</button></p>
+
+      <div class="fd-block">
+        <h3>Vision</h3>
+        <p class="fd-lead">To be recognized as a leading Catholic school athletic program that nurtures the physical, mental, and spiritual growth of all participants, producing outstanding athletes and responsible citizens.</p>
+        <div class="fd-four">
+          <div><b>To learn</b>Our athletic programs strive to provide valuable life lessons.</div>
+          <div><b>To love</b>Build confidence in our student-athletes to love oneself and service to others, by loving others and placing others before oneself.</div>
+          <div><b>To lead</b>Our coaches and student-athletes demonstrate exemplary leadership and excellence in competition, the classroom, and the community.</div>
+          <div><b>Courageously</b>We live our mission and exemplify our faith with conviction and courage.</div>
+        </div>
       </div>
-      <div class="nn-card">
-        <span class="n">Three</span>
-        <h3>We measure what we say matters</h3>
-        <p>Every outcome in this plan carries a number, an owner, and a date. Where we do not yet have a baseline, we say so plainly and go get it. A plan without measurement is a wish, and our student-athletes deserve better than a wish.</p>
-        <p class="ref"><button class="app-tag" data-app="METRICS_REGISTER"><span class="ax">A.25</span>Metrics register</button></p>
+
+      <div class="fd-block">
+        <h3>Three commitments</h3>
+        <p class="fd-sub">These govern every pillar. Where the plan and a commitment disagree, the commitment wins.</p>
+        <div class="fd-commit">
+          <div class="fc">
+            <span class="n">One</span>
+            <h4>We begin and end in prayer</h4>
+            <p>Every practice. Every contest. Every meeting, roundtable, seminar, banquet, and council session. Opened in prayer and closed in prayer, without exception and without apology. This is the first thing a visitor should notice about NCC Athletics and the last thing an athlete should forget.</p>
+            <p class="ref"><button class="app-tag" data-app="PRAYER_STANDARD"><span class="ax">A.20</span>Prayer standard</button></p>
+          </div>
+          <div class="fc">
+            <span class="n">Two</span>
+            <h4>We show up for the program next door</h4>
+            <p>No sport at Nouvel succeeds alone. Coaches make other coaches better, athletes fill other teams' bleachers, and every program leaves the ones around it stronger than it found them. We ask athletes to put teammates before themselves; we hold ourselves to that same standard across sports.</p>
+            <p class="ref"><button class="app-tag" data-app="CROSS_SPORT"><span class="ax">A.23</span>Cross-sport playbook</button><button class="app-tag" data-app="CHAMPIONSHIP_PROGRAMS"><span class="ax">A.24</span>Championship notes</button></p>
+          </div>
+          <div class="fc">
+            <span class="n">Three</span>
+            <h4>We measure what we say matters</h4>
+            <p>Every outcome in this plan carries a number, an owner, and a date. Where we do not yet have a baseline, we say so plainly and go get it. A plan without measurement is a wish, and our student-athletes deserve better than a wish.</p>
+            <p class="ref"><button class="app-tag" data-app="METRICS_REGISTER"><span class="ax">A.25</span>Metrics register</button></p>
+          </div>
+        </div>
       </div>
+
+      <div class="fd-block">
+        <h3>Guiding objectives</h3>
+        <p class="fd-sub">Create an athletic culture of excellence by unlocking the full spiritual, emotional, and athletic potential in our student-athletes.</p>
+        <ol class="fd-ol">
+          <li><b>Assess the current state of Nouvel.</b> Where do we stand? Analyze participation rates, performance records, and feedback from coaches and athletes &mdash; through student focus groups facilitated by the Athletic Director or another liaison, program director and coach one-on-ones, and surveys of parents, coaches, and athletes.</li>
+          <li><b>Identify areas for improvement.</b> Based on that assessment: increase participation, provide support for the Athletic Director, enhance coaching skills, improve facilities, and strengthen Nouvel's athletic culture.</li>
+          <li><b>Develop a plan.</b> Outline specific strategies &mdash; increase outreach to potential athletes, provide professional development for coaches, and invest in new facilities.</li>
+          <li><b>Implement the plan.</b> Assign responsibilities and timelines for each aspect, and communicate the plan to coaches, athletes, and other stakeholders.</li>
+          <li><b>Monitor progress.</b> Regularly measure against our goals and adjust as necessary, collecting data, seeking feedback, and surveying to test whether our strategies are working.</li>
+          <li><b>Celebrate successes.</b> When we achieve a goal or make significant progress, say so publicly. This builds momentum and motivates coaches and athletes to keep going.</li>
+        </ol>
+      </div>
+
+      <div class="fd-block">
+        <h3>Program goals</h3>
+        <ul class="fd-ul">
+          <li>Measure the success of our program by the degree to which individuals and teams embody the core values of the mission statement.</li>
+          <li>Staff teams with coaches of excellent character, competent in teaching technical skills, who can motivate and relate positively to student-athletes and adults.</li>
+          <li>Celebrate the joy of competition and the benefits of physical fitness.</li>
+          <li>Develop athletes and teams that are constantly improving, hard-working, disciplined, and schooled in the fundamentals of their sport.</li>
+          <li>Allocate equipment and resources equitably and appropriately for participants of each gender at all skill levels.</li>
+          <li>Provide a safe environment for all athletic activities.</li>
+          <li>Produce teams that are competitive and strive to win.</li>
+          <li>Offer a variety of team sports and encourage a breadth of athletic experiences.</li>
+          <li>Embrace and expect failure in the face of competition during training, practice, and gameplay.</li>
+          <li>Foster a culture of commitment and school pride. Students on school teams are expected to prioritize that commitment over non-school activities, reflecting the dedication and responsibility central to our Catholic identity. The coach and Athletic Director collaborate on sport-specific protocols that set expectations, address conflicts, and apply the policy fairly and consistently.</li>
+          <li>Hold unwavering respect for opponents, officials, and the rules of competition as an absolute and non-negotiable expectation of every member of this community.</li>
+          <li>Develop in athletes an appreciation for the traditions, rules, and cultures of their sport.</li>
+          <li>Build healthy, enjoyable, supportive team environments based on trust, with no tolerance for hazing.</li>
+        </ul>
+      </div>
+
     </div>
+   </div>
   </div>
+  <div class="ornament" aria-hidden="true"><i class="d1"></i><i class="d2"></i><i class="d1"></i></div>
 </section>
 
 <!-- ============ PLAN VIEW ============ -->
 <main id="planRoot">
-  <div class="sectionlabel" id="gridLabel">The five pillars &mdash; select one to open it</div>
+  <div class="sectionlabel" id="gridLabel">The Five Pillars &mdash; select one to open it</div>
   <div class="pillargrid" id="pillarGrid"></div>
   <div class="pillar-detail view-hidden" id="pillarDetail"></div>
 </main>
@@ -790,7 +953,7 @@ footer .fmission{
 
 <footer>
   <div class="fmission">Called by Christ to learn, love, and lead&hellip; courageously.</div>
-  NCC Athletic Strategic Plan &middot; 2026&ndash;2028 &middot; v3.3 &middot;
+  NCC Athletic Strategic Plan &middot; 2026&ndash;2028 &middot; v3.5 &middot;
   <button class="footlink" id="libOpen">Reference Library</button> &middot;
   <a href="#top" style="color:var(--silver)">Back to top</a>
 </footer>
@@ -818,30 +981,30 @@ const PLAN = [
       summary:"Culture precedes structure. Measure where we stand, name who we are, and staff the organization to sustain it. The prayer standard is a governance commitment here, not only a devotional one — it binds the board and the office as much as the sideline.",
       outcomes:[
         { id:"1A-1", text:"Complete the baseline review — participation, retention, credentialing, and Catholic identity audit — and report findings to the board.", metric:"1 written report delivered to the board", baseline:"Delivered Q1 2026", owner:"AD", target:"Q1 2026", status:"complete" },
-        { id:"1A-2", y1:true, kind:"build", text:"Adopt the NCC Athletics Culture Statement and post it in every athletic space.", metric:"Posted in 100% of athletic spaces (gyms, locker rooms, training room, complex, weight room, athletic office)", baseline:"", owner:"AD + Board Liaisons", target:"Q3 2026", status:"in-progress" },
-        { id:"1A-3", text:"Hire and onboard Athletics Coordinators at the elementary and high school buildings.", metric:"2 positions filled and onboarded", baseline:"0 of 2 filled", owner:"AD", target:"Q4 2026", status:"not-started" },
-        { id:"1A-4", text:"Field the coach satisfaction survey annually, using the existing Athletic Season Survey instruments.", metric:"100% head-coach response rate; +5 points year over year on culture and support scores", baseline:"", benchmark:"Set the year-one score as the baseline; target continuous improvement thereafter", owner:"Athletic Admin Assistant", target:"Each Q1", status:"in-progress" },
+        { id:"1A-2", y1:true, kind:"build", text:"Adopt the NCC Athletics Culture Statement and post it in every athletic space.", metric:"Posted in 100% of athletic spaces (gyms, locker rooms, training room, complex, weight room, athletic office)", baseline:"", owner:"AD + Board Liaisons", target:"By December 2026", status:"in-progress" },
+        { id:"1A-3", text:"Hire and onboard Athletics Coordinators at the elementary and high school buildings.", metric:"2 positions filled and onboarded", baseline:"0 of 2 filled", owner:"AD", target:"By June 2027", status:"not-started" },
+        { id:"1A-4", text:"Field the coach satisfaction survey annually, using the existing Athletic Season Survey instruments.", metric:"100% head-coach response rate; +5 points year over year on culture and support scores", baseline:"", benchmark:"Set the year-one score as the baseline; target continuous improvement thereafter", owner:"Athletic Admin Assistant", target:"Each spring", status:"in-progress" },
         { id:"1A-5", y1:true, kind:"new", text:"Open and close every athletics governance gathering in prayer — board athletics committee, Unity Council, booster meetings, and coach hiring interviews.", metric:"100% of governance gatherings opened and closed in prayer; spot-audited each quarter", baseline:"", owner:"Board Liaisons + AD", target:"Immediate, continuous", status:"not-started" }
       ]},
     { code:"1B", name:"Sport-Specific Builder Manuals",
       summary:"Every varsity Program Director authors a written program — philosophy, values, systems, and youth pathway — housed on one institutional platform, so the program outlives the person leading it.",
       outcomes:[
         { id:"1B-1", text:"Distribute the universal Builder Manual template to all Program Directors.", metric:"Template delivered to 100% of varsity Program Directors", baseline:"Distributed Q2 2026", owner:"AD", target:"Q2 2026", status:"complete" },
-        { id:"1B-2", text:"Complete Builder Manuals for every varsity program in the shared institutional Drive.", metric:"100% of varsity programs with a completed manual on file", baseline:"", owner:"Program Directors", target:"Q3 2027", status:"in-progress" },
+        { id:"1B-2", text:"Complete Builder Manuals for every varsity program in the shared institutional Drive.", metric:"100% of varsity programs with a completed manual on file", baseline:"", owner:"Program Directors", target:"By September 2027", status:"in-progress" },
         { id:"1B-3", kind:"new", text:"Review every manual annually against the Program Director Accountability Checklist.", metric:"100% reviewed each August; written feedback returned within 30 days", baseline:"", owner:"AD", target:"Each August", status:"not-started" },
-        { id:"1B-4", kind:"build", text:"Require every Builder Manual to name how the program teaches the mission — learn, love, lead, courageously — not only how it teaches the sport.", metric:"100% of manuals contain a mission-integration section reviewed by the AD", baseline:"", owner:"Program Directors", target:"Q3 2027", status:"not-started" }
+        { id:"1B-4", kind:"build", text:"Require every Builder Manual to name how the program teaches the mission — learn, love, lead, courageously — not only how it teaches the sport.", metric:"100% of manuals contain a mission-integration section reviewed by the AD", baseline:"", owner:"Program Directors", target:"By September 2027", status:"not-started" }
       ]},
     { code:"1C", name:"Youth Program Development",
       summary:"A progressive PreK–8 pathway aligned to each high school program, so athletes arrive already formed in NCC systems and values — and so the older ones learn to serve by teaching the younger ones.",
       outcomes:[
-        { id:"1C-1", kind:"build", text:"Publish a youth development plan aligned to the Builder Manual for every sport.", metric:"100% of varsity sports with a published PreK–8 pathway", baseline:"", owner:"Program Directors", target:"2027", status:"not-started" },
-        { id:"1C-2", text:"High school athletes serve as mentors or assistant coaches in youth programs every season.", metric:"At least 40% of high school athletes log youth mentorship hours annually; minimum 4 hours each", baseline:"", owner:"AD + Unity Council", target:"From Fall 2026", status:"not-started" },
-        { id:"1C-3", kind:"new", text:"Launch early-elementary exposure programming — clinics, camps, and game-day experiences.", metric:"At least 6 exposure events per year across NCCE grades", baseline:"", owner:"AD", target:"2027", status:"not-started" }
+        { id:"1C-1", kind:"build", text:"Publish a youth development plan aligned to the Builder Manual for every sport.", metric:"100% of varsity sports with a published PreK–8 pathway", baseline:"", owner:"Program Directors", target:"By June 2027", status:"not-started" },
+        { id:"1C-2", text:"High school athletes serve as mentors or assistant coaches in youth programs every season.", metric:"At least 40% of high school athletes log youth mentorship hours annually; minimum 4 hours each", baseline:"", owner:"AD + Unity Council", target:"From Winter 2026–27", status:"not-started" },
+        { id:"1C-3", kind:"new", text:"Launch early-elementary exposure programming — clinics, camps, and game-day experiences.", metric:"At least 6 exposure events per year across NCCE grades", baseline:"", owner:"AD", target:"By June 2027", status:"not-started" }
       ]},
     { code:"1D", name:"Student-Athlete Acquisition",
       summary:"Enrollment is the master lever. One point of contact — the AD — and a measurable pipeline of new student-athletes. Athletics is one of the strongest front doors this school has.",
       outcomes:[
-        { id:"1D-1", kind:"build", text:"Document and adopt the acquisition protocol with the AD as the single point of contact for athletic prospects.", metric:"1 written protocol adopted; 100% of athletic leads logged and followed up within 5 business days", baseline:"", owner:"AD", target:"Q3 2026", status:"in-progress" },
+        { id:"1D-1", kind:"build", text:"Document and adopt the acquisition protocol with the AD as the single point of contact for athletic prospects.", metric:"1 written protocol adopted; 100% of athletic leads logged and followed up within 5 business days", baseline:"", owner:"AD", target:"By December 2026", status:"in-progress" },
         { id:"1D-2", y1:true, text:"Track and grow overall athletic participation as a share of enrollment, every season.", metric:"Participation rate ≥ 75% of eligible students by 2028", baseline:"", benchmark:"National high school participation runs near 55–60% of students (NFHS surveys); small Catholic schools commonly exceed 70%. Confirm NCC's actual figure before locking the target.", owner:"AD", target:"Each season", status:"in-progress" },
         { id:"1D-3", text:"Raise feeder strength — the share of high school athletes who played the same sport at NCC in grades 7–8.", metric:"Feeder rate ≥ 60% by 2028", baseline:"", owner:"AD", target:"Annual", status:"not-started" },
         { id:"1D-4", kind:"new", text:"Convert athletic prospects to enrolled students through shadow days, Experience Days, and game-day invitations.", metric:"At least 20 athletic prospects hosted per year; conversion rate tracked and reported", baseline:"", owner:"AD + Admissions", target:"Annual", status:"not-started" }
@@ -849,30 +1012,30 @@ const PLAN = [
     { code:"1E", name:"Parent & Fan Code of Conduct",
       summary:"A culture document, not an enforcement mechanism — how we treat officials, opponents, and one another on every sideline. Our student-athletes learn how to compete by watching how we watch.",
       outcomes:[
-        { id:"1E-1", y1:true, kind:"build", text:"Draft and adopt the Parent & Fan Code of Conduct.", metric:"1 document adopted by the board", baseline:"", owner:"Board Liaisons + AD", target:"Q3 2026", status:"in-progress" },
-        { id:"1E-2", y1:true, text:"Present the Code at every preseason parent meeting.", metric:"100% of preseason parent meetings, every season, every level", baseline:"", owner:"AD + Program Directors", target:"Every season, Fall 2026+", status:"not-started" },
+        { id:"1E-1", y1:true, kind:"build", text:"Draft and adopt the Parent & Fan Code of Conduct.", metric:"1 document adopted by the board", baseline:"", owner:"Board Liaisons + AD", target:"By December 2026", status:"in-progress" },
+        { id:"1E-2", y1:true, text:"Present the Code at every preseason parent meeting.", metric:"100% of preseason parent meetings, every season, every level", baseline:"", owner:"AD + Program Directors", target:"Every season, from Winter 2026–27", status:"not-started" },
         { id:"1E-3", kind:"build", text:"Install Code signage at complex entrances with Phase I completion.", metric:"Permanent signage at 100% of complex entrances", baseline:"", owner:"Facilities Committee", target:"Phase I-B", status:"not-started" },
         { id:"1E-4", text:"Reduce ejections, official complaints, and reported sideline incidents across all levels.", metric:"Zero fan or parent ejections per season; incidents logged and reported quarterly", baseline:"", owner:"AD", target:"Each season", status:"not-started" }
       ]},
     { code:"1F", name:"Athletic Unity Council",
       summary:"One student body representing every sport — part leadership formation, part mentorship program, part the engine that makes cross-sport support actually happen. The Council absorbs and replaces the separately-conceived Athletic Leadership Council: one body, two functions, so we are not asking the same twelve students to attend two sets of meetings.",
       outcomes:[
-        { id:"1F-1", y1:true, kind:"build", text:"Charter the Athletic Unity Council with written bylaws, a selection process, and a named staff advisory team.", metric:"1 charter adopted; every varsity sport holds at least 1 seat", baseline:"", owner:"AD + Head Athletic Trainer", target:"Q4 2026", status:"in-progress" },
+        { id:"1F-1", y1:true, kind:"build", text:"Charter the Athletic Unity Council with written bylaws, a selection process, and a named staff advisory team.", metric:"1 charter adopted; every varsity sport holds at least 1 seat", baseline:"", owner:"AD + Head Athletic Trainer", target:"By December 2026", status:"in-progress" },
         { id:"1F-2", kind:"new", text:"Meet monthly during the school year, opening and closing each session in prayer.", metric:"At least 9 meetings per school year; 80% average attendance", baseline:"", owner:"Unity Council Advisors", target:"Monthly from launch", status:"not-started" },
-        { id:"1F-3", kind:"new", text:"Run cross-sport mentorship pairings — an upperclassman in one sport paired with an underclassman in a different sport.", metric:"At least 30 active pairings per year; each pair meets a minimum of 6 times", baseline:"", owner:"Unity Council", target:"From Q1 2027", status:"not-started" },
-        { id:"1F-4", kind:"new", text:"Deliver the leadership curriculum to every team captain through the Council (Habitudes under evaluation).", metric:"100% of team captains complete leadership training before their season", baseline:"", owner:"AD + Unity Council Advisors", target:"Each season, 2027+", status:"not-started" },
+        { id:"1F-3", kind:"new", text:"Run cross-sport mentorship pairings — an upperclassman in one sport paired with an underclassman in a different sport.", metric:"At least 30 active pairings per year; each pair meets a minimum of 6 times", baseline:"", owner:"Unity Council", target:"From Winter 2027", status:"not-started" },
+        { id:"1F-4", kind:"new", text:"Deliver the leadership curriculum to every team captain through the Council (Habitudes under evaluation).", metric:"100% of team captains complete leadership training before their season", baseline:"", owner:"AD + Unity Council Advisors", target:"Each season, from Fall 2027", status:"not-started" },
         { id:"1F-5", kind:"new", text:"Own the cross-sport attendance program and report results to the AD each season.", metric:"1 written season report per season, delivered within 14 days of season close", baseline:"", owner:"Unity Council", target:"Each season", status:"not-started" },
         { id:"1F-6", kind:"new", text:"Give the Council a standing voice with adults — a Council representative presents at one coaching roundtable and one board athletics committee meeting per year.", metric:"2 student presentations per year minimum", baseline:"", owner:"Unity Council + AD", target:"Annual", status:"not-started" }
       ]},
     { code:"1G", name:"One Program, One Sideline",
       summary:"Requested directly by our coaches: teams want to feel the support of the rest of the school. This objective turns that wish into a schedule. Attendance is not spirit — it is a discipline, and we treat it like one. The habits here are drawn from programs that have sustained excellence over decades; see the reference note in the Library.",
       outcomes:[
-        { id:"1G-1", y1:true, kind:"new", text:"Run Adopt-a-Team pairings each season — every team paired with another team, drawn at the season-opening coaching roundtable.", metric:"100% of teams paired each season; each pair attends at least 2 of the other's contests", baseline:"", owner:"Unity Council + AD", target:"Each season, from Fall 2026", status:"not-started" },
-        { id:"1G-2", y1:true, kind:"new", text:"Designate one Packed House contest per sport per season, promoted school-wide with other teams attending as a group.", metric:"1 Packed House per varsity sport per season; attendance counted and published", baseline:"", owner:"AD + Advancement", target:"Each season, from Fall 2026", status:"not-started" },
+        { id:"1G-1", y1:true, kind:"new", text:"Run Adopt-a-Team pairings each season — every team paired with another team, drawn at the season-opening coaching roundtable.", metric:"100% of teams paired each season; each pair attends at least 2 of the other's contests", baseline:"", owner:"Unity Council + AD", target:"Each season, from Winter 2026–27", status:"not-started" },
+        { id:"1G-2", y1:true, kind:"new", text:"Designate one Packed House contest per sport per season, promoted school-wide with other teams attending as a group.", metric:"1 Packed House per varsity sport per season; attendance counted and published", baseline:"", owner:"AD + Advancement", target:"Each season, from Winter 2026–27", status:"not-started" },
         { id:"1G-3", y1:true, kind:"new", text:"Expect head coaches to attend contests outside their own sport.", metric:"Every head coach attends at least 5 contests in other sports per school year; logged and reviewed at evaluation", baseline:"", owner:"Head Coaches", target:"Each school year", status:"not-started" },
         { id:"1G-4", kind:"new", text:"Staff game-day operations with out-of-season teams — scoreboard, announcing, ball crew, banners, hospitality.", metric:"At least 60% of home varsity contests staffed by athletes from other programs", baseline:"", owner:"Unity Council + AD", target:"From Fall 2027", status:"not-started" },
         { id:"1G-5", kind:"new", text:"Send a delegation from at least three other teams to every team's Senior Night.", metric:"100% of Senior Nights with representation from 3+ other programs", baseline:"", owner:"Unity Council", target:"Each season", status:"not-started" },
-        { id:"1G-6", kind:"new", text:"Recognize cross-sport support publicly rather than leaving it invisible — a monthly Unity award naming the team or athlete who showed up for others.", metric:"9 awards per school year, announced through the recognition cadence", baseline:"", owner:"AD + Advancement", target:"Monthly from Q4 2026", status:"not-started" },
+        { id:"1G-6", kind:"new", text:"Recognize cross-sport support publicly rather than leaving it invisible — a monthly Unity award naming the team or athlete who showed up for others.", metric:"9 awards per school year, announced through the recognition cadence", baseline:"", owner:"AD + Advancement", target:"Monthly from December 2026", status:"not-started" },
         { id:"1G-7", text:"Track student attendance at other sports' contests as a reported metric, not an impression.", metric:"Average student attendance per home contest, by sport, reported each season; +25% by 2028", baseline:"", owner:"Unity Council", target:"Each season", status:"not-started" }
       ]}
   ]
@@ -887,14 +1050,14 @@ const PLAN = [
       outcomes:[
         { id:"2A-1", y1:true, text:"Hold quarterly coaching roundtables — peer-led, opened and closed in prayer. One of the four each year is dedicated to spiritual formation rather than operations.", metric:"4 roundtables per year; at least 80% head-coach attendance; 100% opened and closed in prayer", baseline:"", owner:"AD", target:"Quarterly", status:"in-progress" },
         { id:"2A-2", y1:true, text:"Celebrate the annual Coaches Commissioning Mass before the fall season.", metric:"1 Mass annually; at least 90% head-coach attendance", baseline:"", owner:"Campus Ministry + AD", target:"Each August", status:"in-progress" },
-        { id:"2A-3", kind:"new", text:"Assign a veteran mentor to every first- and second-year head coach.", metric:"100% of first- and second-year head coaches mentored; mentor and mentee meet at least 6 times per season", baseline:"", owner:"AD", target:"Each season", status:"not-started" },
-        { id:"2A-4", y1:true, kind:"build", text:"Establish the coach formation baseline: survey all coaches on current faith-formation practice, desire, and barriers, and report results to the Faith Formation & Catholic Life Committee.", metric:"100% coach response rate; 1 written report to the committee", baseline:"", owner:"AD + Faith Formation Cmte", target:"Q3 2026", status:"not-started" },
-        { id:"2A-5", y1:true, kind:"new", text:"Launch coach faith-sharing small groups.", metric:"Groups of 4–6 meeting at least 6 times per year; 50% head-coach participation in year one, 75% by year three", baseline:"", owner:"Campus Ministry + Faith Formation Cmte", target:"Q4 2026", status:"not-started" },
-        { id:"2A-6", kind:"new", text:"Name a dedicated athletics chaplain — a priest or deacon present in the life of our programs.", metric:"Present at a minimum of 8 athletic events or practices per year; Reconciliation offered to coaches and athletes at least twice per season", baseline:"", owner:"AD + Campus Ministry", target:"Q4 2026", status:"not-started" },
-        { id:"2A-7", kind:"new", text:"Hold an annual coaches spiritual retreat, distinct from the Commissioning Mass and the seminar.", metric:"1 retreat per year, half-day minimum; at least 70% head-coach attendance", baseline:"", owner:"Campus Ministry + Faith Formation Cmte", target:"Q1 2027", status:"not-started" },
+        { id:"2A-3", kind:"new", text:"Assign a veteran mentor to every first- and second-year head coach.", metric:"100% of first- and second-year head coaches mentored; mentor and mentee meet at least 6 times per season", baseline:"", owner:"AD", target:"Each season, from Fall 2026", status:"not-started" },
+        { id:"2A-4", y1:true, kind:"build", text:"Establish the coach formation baseline: survey all coaches on current faith-formation practice, desire, and barriers, and report results to the Faith Formation & Catholic Life Committee.", metric:"100% coach response rate; 1 written report to the committee", baseline:"", owner:"AD + Faith Formation Cmte", target:"By December 2026", status:"not-started" },
+        { id:"2A-5", y1:true, kind:"new", text:"Launch coach faith-sharing small groups.", metric:"Groups of 4–6 meeting at least 6 times per year; 50% head-coach participation in year one, 75% by year three", baseline:"", owner:"Campus Ministry + Faith Formation Cmte", target:"By December 2026", status:"not-started" },
+        { id:"2A-6", kind:"new", text:"Name a dedicated athletics chaplain — a priest or deacon present in the life of our programs.", metric:"Present at a minimum of 8 athletic events or practices per year; Reconciliation offered to coaches and athletes at least twice per season", baseline:"", owner:"AD + Campus Ministry", target:"By December 2026", status:"not-started" },
+        { id:"2A-7", kind:"new", text:"Hold an annual coaches spiritual retreat, distinct from the Commissioning Mass and the seminar.", metric:"1 retreat per year, half-day minimum; at least 70% head-coach attendance", baseline:"", owner:"Campus Ministry + Faith Formation Cmte", target:"By March 2027", status:"not-started" },
         { id:"2A-8", kind:"new", text:"Establish a coach witness rhythm — coaches sharing personal faith testimony with peers and athletes.", metric:"At least 6 coach testimonies per year at a roundtable, seminar, or team gathering", baseline:"", owner:"AD", target:"Annual", status:"not-started" },
         { id:"2A-9", kind:"new", text:"Re-administer the coach formation survey annually.", metric:"Year-over-year growth in coaches reporting that NCC actively supports their personal faith life; target 85% agreement by 2028", baseline:"", owner:"AD + Faith Formation Cmte", target:"Each spring", status:"not-started" },
-        { id:"2A-10", kind:"new", text:"Connect coaches to external coaching faith-formation communities — study groups, coaching ministries, and diocesan opportunities beyond NCC.", metric:"At least 1 external opportunity surfaced at each roundtable; at least 25% of head coaches participating in an external coaching faith community by 2028", baseline:"", owner:"AD + Faith Formation Cmte", target:"Ongoing from Q4 2026", status:"not-started" },
+        { id:"2A-10", kind:"new", text:"Connect coaches to external coaching faith-formation communities — study groups, coaching ministries, and diocesan opportunities beyond NCC.", metric:"At least 1 external opportunity surfaced at each roundtable; at least 25% of head coaches participating in an external coaching faith community by 2028", baseline:"", owner:"AD + Faith Formation Cmte", target:"Ongoing from December 2026", status:"not-started" },
         { id:"2A-11", kind:"new", text:"Have coaches teach coaches across sports — a coach from one program leads a session for another program's staff on a transferable skill.", metric:"At least 4 cross-sport coaching exchanges per year", baseline:"", owner:"AD", target:"Annual", status:"not-started" }
       ]},
     { code:"2B", name:"Training of Coaches",
@@ -913,9 +1076,9 @@ const PLAN = [
     { code:"2D", name:"Coaching Evaluation",
       summary:"Accountability with support — every coach evaluated annually against performance, mission, and virtue. Virtue criteria connect to the <span class=\"xref\">3A Virtue Education Program</span>; cross-sport support is measured here too, under 1G-3.",
       outcomes:[
-        { id:"2D-1", kind:"build", text:"Adopt an evaluation rubric that measures mission and virtue integration alongside coaching performance.", metric:"1 rubric adopted; mission and virtue weighted at no less than 30% of the total", baseline:"", owner:"AD + Board Liaisons", target:"Q4 2026", status:"not-started" },
+        { id:"2D-1", kind:"build", text:"Adopt an evaluation rubric that measures mission and virtue integration alongside coaching performance.", metric:"1 rubric adopted; mission and virtue weighted at no less than 30% of the total", baseline:"", owner:"AD + Board Liaisons", target:"By December 2026", status:"not-started" },
         { id:"2D-2", text:"Evaluate every head coach annually with written feedback and growth goals.", metric:"100% of head coaches evaluated in writing; 100% receive a face-to-face conversation", baseline:"", owner:"AD", target:"Each spring", status:"not-started" },
-        { id:"2D-3", kind:"new", text:"Embed monthly-virtue criteria from the Virtue Education Program into the evaluation rubric.", metric:"Virtue criteria present on 100% of evaluations from the 2027 cycle forward", baseline:"", owner:"AD", target:"2027 cycle", status:"not-started" },
+        { id:"2D-3", kind:"new", text:"Embed monthly-virtue criteria from the Virtue Education Program into the evaluation rubric.", metric:"Virtue criteria present on 100% of evaluations from the 2027 cycle forward", baseline:"", owner:"AD", target:"From the spring 2027 cycle", status:"not-started" },
         { id:"2D-4", text:"Track and improve coach retention as a measure of whether support is real.", metric:"Head coach retention ≥ 85% year over year", baseline:"", owner:"AD", target:"Annual", status:"not-started" }
       ]},
     { code:"2E", name:"Coach Recognition",
@@ -935,17 +1098,17 @@ const PLAN = [
       summary:"Faith is structural, not decorative. Anchored by the Virtue Education Program — adapted from a virtue-based athletics model developed at Bishop Lynch High School — each month centers on one virtue lived out by four stakeholders: coaches, teams, student-athletes, and parents. The prayer standard lives here in its most visible form: every practice and every contest, opened and closed.",
       outcomes:[
         { id:"3A-1", y1:true, text:"Open and close every practice and every contest in prayer, at every level from NCCE through varsity.", metric:"100% of practices and contests, all levels; verified by spot-check and coach attestation each season", baseline:"", owner:"Head Coaches + AD", target:"Immediate, continuous", status:"not-started" },
-        { id:"3A-2", y1:true, kind:"build", text:"Launch the Virtue Education Program: a monthly virtue calendar with a coaching focus, team focus, student-athlete focus, and parental focus each month.", metric:"10 virtues across the school year, each with all 4 stakeholder focuses published", baseline:"", owner:"AD + Campus Ministry", target:"Fall 2026", status:"not-started" },
+        { id:"3A-2", y1:true, kind:"build", text:"Launch the Virtue Education Program: a monthly virtue calendar with a coaching focus, team focus, student-athlete focus, and parental focus each month.", metric:"10 virtues across the school year, each with all 4 stakeholder focuses published", baseline:"", owner:"AD + Campus Ministry", target:"By November 2026", status:"not-started" },
         { id:"3A-3", kind:"new", text:"Publish curated support materials for each month's virtue — an article, a short video, and a spiritual reflection — so every participant understands the why.", metric:"1 packet per month, 10 per school year, distributed to coaches and families", baseline:"", owner:"Campus Ministry", target:"Monthly from launch", status:"not-started" },
         { id:"3A-4", text:"Establish a rhythm of team prayer, team Mass, and logged service for every team.", metric:"100% of teams: 1 team Mass per season and a minimum of 8 logged service hours per athlete per year", baseline:"", owner:"AD + Head Coaches", target:"Each season", status:"in-progress" },
         { id:"3A-5", text:"Send student-athletes to the ACTS 989 diocesan retreat hosted at NCC.", metric:"At least 40% of student-athletes attend annually", baseline:"", owner:"Campus Ministry", target:"Annual", status:"in-progress" },
-        { id:"3A-6", kind:"new", text:"Teach athletes the prayers, not only require them — captains and seniors trained to lead prayer aloud so the practice outlives the coach who started it.", metric:"At least 2 athletes per team able and expected to lead prayer; trained through the Unity Council", baseline:"", owner:"Unity Council + Campus Ministry", target:"Each season, from 2027", status:"not-started" }
+        { id:"3A-6", kind:"new", text:"Teach athletes the prayers, not only require them — captains and seniors trained to lead prayer aloud so the practice outlives the coach who started it.", metric:"At least 2 athletes per team able and expected to lead prayer; trained through the Unity Council", baseline:"", owner:"Unity Council + Campus Ministry", target:"Each season, from Fall 2027", status:"not-started" }
       ]},
     { code:"3B", name:"Leadership & Character Training",
       summary:"Servant leadership taught deliberately — captains formed, not just appointed. Delivered through the <span class=\"xref\">1F Athletic Unity Council</span>, which now carries the leadership curriculum that was previously a separate council.",
       outcomes:[
-        { id:"3B-1", kind:"new", text:"Deliver captain leadership training through the Athletic Unity Council for every team.", metric:"100% of captains trained before their season begins", baseline:"", owner:"AD + Unity Council Advisors", target:"Each season, 2027+", status:"in-progress" },
-        { id:"3B-2", kind:"new", text:"Teach servant leadership as a named, taught skill — captains measured on how they serve teammates, not on how they perform.", metric:"Teammate-rated servant-leadership feedback collected for 100% of captains each season", baseline:"", owner:"Unity Council Advisors", target:"Each season, 2027+", status:"not-started" }
+        { id:"3B-1", kind:"new", text:"Deliver captain leadership training through the Athletic Unity Council for every team.", metric:"100% of captains trained before their season begins", baseline:"", owner:"AD + Unity Council Advisors", target:"Each season, from Fall 2027", status:"in-progress" },
+        { id:"3B-2", kind:"new", text:"Teach servant leadership as a named, taught skill — captains measured on how they serve teammates, not on how they perform.", metric:"Teammate-rated servant-leadership feedback collected for 100% of captains each season", baseline:"", owner:"Unity Council Advisors", target:"Each season, from Fall 2027", status:"not-started" }
       ]},
     { code:"3C", name:"Academic Excellence & PASS",
       summary:"The classroom is part of the arena. NCC already runs Panther Academic Support Services (PASS) — faculty-staffed tutoring and academic support offered most Tuesdays, Wednesdays, and Thursdays after school, with a lunchtime math lab alongside it. Athletics does not need to build a new academic program; it needs to make full, disciplined use of the one the school already has.",
@@ -959,7 +1122,7 @@ const PLAN = [
     { code:"3D", name:"Physical & Lifestyle Training",
       summary:"Train the body wisely — access, education, and the multi-sport pathway of Nouvel Athletics Universal. At a school our size, the multi-sport athlete is not a nice-to-have; it is how we field teams and how we keep children from breaking down.",
       outcomes:[
-        { id:"3D-1", kind:"build", text:"Resolve and publish the weight-room access schedule for all programs, in-season and off-season.", metric:"1 published schedule; 100% of programs allocated weekly access", baseline:"", owner:"AD + Head Athletic Trainer", target:"Q3 2026", status:"in-progress" },
+        { id:"3D-1", kind:"build", text:"Resolve and publish the weight-room access schedule for all programs, in-season and off-season.", metric:"1 published schedule; 100% of programs allocated weekly access", baseline:"", owner:"AD + Head Athletic Trainer", target:"By November 2026", status:"in-progress" },
         { id:"3D-2", text:"Deliver HWP student sessions — nutrition, sleep, recovery, training — each semester.", metric:"At least 2 sessions per semester; 80% athlete attendance", baseline:"", owner:"Head Athletic Trainer", target:"Each semester", status:"in-progress" },
         { id:"3D-3", text:"Grow the multi-sport athlete rate — the bellwether metric of the Nouvel Athletics Universal pathway.", metric:"At least 60% of student-athletes play 2+ sports by 2028", baseline:"", benchmark:"Small-school athletics depends on multi-sport participation; national trends run the other way toward early specialization. Set the target against NCC's own current rate.", owner:"AD", target:"Annual", status:"in-progress" },
         { id:"3D-4", kind:"new", text:"Have coaches actively encourage their athletes into other sports rather than competing for them, and measure it.", metric:"Zero reported cases of a coach discouraging multi-sport participation; reviewed at annual evaluation", baseline:"", owner:"AD", target:"Continuous", status:"not-started" }
@@ -967,9 +1130,9 @@ const PLAN = [
     { code:"3E", name:"Mental Health",
       summary:"Care for the mind with the same seriousness as the body. NCC already runs PAWS (Peer Alliance for Wellness Support) alongside school counseling; athletics should be a visible on-ramp to both, not a place where struggle is hidden.",
       outcomes:[
-        { id:"3E-1", kind:"build", text:"Publish mental-health resources and referral pathways for athletes and families, connected to school counseling and PAWS.", metric:"1 published resource sheet distributed to 100% of athletic families annually", baseline:"", owner:"Head Athletic Trainer + Counseling", target:"Q4 2026", status:"not-started" },
-        { id:"3E-2", kind:"new", text:"Include mental-health education in the HWP series and the Unity Council curriculum.", metric:"At least 2 sessions per year for athletes; at least 1 per year for coaches", baseline:"", owner:"Head Athletic Trainer", target:"2027", status:"not-started" },
-        { id:"3E-3", kind:"new", text:"Train coaches to recognize warning signs and to hand off to professionals rather than manage it themselves.", metric:"100% of head coaches complete recognition-and-referral training by 2028", baseline:"", owner:"AD + Counseling", target:"2027–28", status:"not-started" }
+        { id:"3E-1", kind:"build", text:"Publish mental-health resources and referral pathways for athletes and families, connected to school counseling and PAWS.", metric:"1 published resource sheet distributed to 100% of athletic families annually", baseline:"", owner:"Head Athletic Trainer + Counseling", target:"By December 2026", status:"not-started" },
+        { id:"3E-2", kind:"new", text:"Include mental-health education in the HWP series and the Unity Council curriculum.", metric:"At least 2 sessions per year for athletes; at least 1 per year for coaches", baseline:"", owner:"Head Athletic Trainer", target:"By June 2027", status:"not-started" },
+        { id:"3E-3", kind:"new", text:"Train coaches to recognize warning signs and to hand off to professionals rather than manage it themselves.", metric:"100% of head coaches complete recognition-and-referral training by 2028", baseline:"", owner:"AD + Counseling", target:"By June 2028", status:"not-started" }
       ]},
     { code:"3F", name:"Elite Collegiate Support",
       summary:"For the few called to play beyond NCC — individualized plans and honest guidance, including honesty about when the answer is no.",
@@ -996,23 +1159,23 @@ const PLAN = [
     { code:"4B", name:"Phase 2 — Gymnasium",
       summary:"The priority build. Gym space is the plan's most-cited constraint, and it limits practice scheduling, youth programming, tournament hosting, and revenue simultaneously.",
       outcomes:[
-        { id:"4B-1", kind:"build", text:"Advance gymnasium design development with The Design Forum.", metric:"Design development package complete and board-reviewed", baseline:"", owner:"Facilities Committee", target:"2027", status:"in-progress" },
-        { id:"4B-2", kind:"build", text:"Align the gymnasium construction timeline with capital campaign readiness.", metric:"Campaign feasibility complete; funding threshold defined before ground is broken", baseline:"", owner:"Facilities Committee + Advancement", target:"2027", status:"not-started" },
-        { id:"4B-3", kind:"build", text:"Quantify what the new gym unlocks so the case for support is concrete — practice hours gained, youth programs added, events hostable.", metric:"1 written impact analysis with hour and event counts", baseline:"", owner:"AD + Facilities Committee", target:"Q2 2027", status:"not-started" }
+        { id:"4B-1", kind:"build", text:"Advance gymnasium design development with The Design Forum.", metric:"Design development package complete and board-reviewed", baseline:"", owner:"Facilities Committee", target:"By June 2027", status:"in-progress" },
+        { id:"4B-2", kind:"build", text:"Align the gymnasium construction timeline with capital campaign readiness.", metric:"Campaign feasibility complete; funding threshold defined before ground is broken", baseline:"", owner:"Facilities Committee + Advancement", target:"By September 2027", status:"not-started" },
+        { id:"4B-3", kind:"build", text:"Quantify what the new gym unlocks so the case for support is concrete — practice hours gained, youth programs added, events hostable.", metric:"1 written impact analysis with hour and event counts", baseline:"", owner:"AD + Facilities Committee", target:"By June 2027", status:"not-started" }
       ]},
     { code:"4C", name:"Complex Experience Design",
       summary:"Not just fields — a designed experience: arrival, gathering, viewing, and devotion woven into the ground itself. Everything here is also an argument for why families should choose Nouvel.",
       outcomes:[
-        { id:"4C-1", kind:"build", text:"Resolve the 8-lane track question with the engineers and committee, weighing event hosting and mission reach.", metric:"1 decision documented with cost and hosting-capacity analysis", baseline:"", owner:"Facilities Committee + Kibbe", target:"Q4 2026", status:"in-progress" },
-        { id:"4C-2", kind:"build", text:"Finalize the experience design package: grand entrance sequence, Hall of Fame courtyard, concourse promenade, berm and lawn viewing, and the pavilion as social hub.", metric:"1 approved design package covering all 5 elements", baseline:"", owner:"The Design Forum", target:"2027", status:"in-progress" },
+        { id:"4C-1", kind:"build", text:"Resolve the 8-lane track question with the engineers and committee, weighing event hosting and mission reach.", metric:"1 decision documented with cost and hosting-capacity analysis", baseline:"", owner:"Facilities Committee + Kibbe", target:"By December 2026", status:"in-progress" },
+        { id:"4C-2", kind:"build", text:"Finalize the experience design package: grand entrance sequence, Hall of Fame courtyard, concourse promenade, berm and lawn viewing, and the pavilion as social hub.", metric:"1 approved design package covering all 5 elements", baseline:"", owner:"The Design Forum", target:"By March 2027", status:"in-progress" },
         { id:"4C-3", kind:"build", text:"Integrate Christ-centered devotional elements throughout the complex, not only in the chapel.", metric:"At least 4 devotional elements sited outside the chapel and approved with the Diocese", baseline:"", owner:"The Design Forum + Diocese", target:"Ongoing", status:"in-progress" },
         { id:"4C-4", kind:"new", text:"Design the complex to host events that bring non-NCC families onto our campus.", metric:"At least 6 hosted events per year once Phase I is complete", baseline:"", owner:"AD + Facilities Committee", target:"From Phase I completion", status:"not-started" }
       ]},
     { code:"4D", name:"Stewardship & Maintenance",
       summary:"Care for what we already have as faithfully as we build what is next. Deferred maintenance is a decision, even when nobody makes it out loud.",
       outcomes:[
-        { id:"4D-1", kind:"build", text:"Adopt a 7–10 year maintenance plan with identified costs for all existing athletic facilities.", metric:"1 written plan covering 100% of existing athletic facilities, with annual cost projections", baseline:"", owner:"Facilities Committee", target:"Q2 2027", status:"not-started" },
-        { id:"4D-2", kind:"build", text:"Fund maintenance as a standing line rather than an emergency.", metric:"Annual maintenance reserve established and funded each budget year", baseline:"", owner:"Board + Facilities Committee", target:"From FY2027", status:"not-started" }
+        { id:"4D-1", kind:"build", text:"Adopt a 7–10 year maintenance plan with identified costs for all existing athletic facilities.", metric:"1 written plan covering 100% of existing athletic facilities, with annual cost projections", baseline:"", owner:"Facilities Committee", target:"By June 2027", status:"not-started" },
+        { id:"4D-2", kind:"build", text:"Fund maintenance as a standing line rather than an emergency.", metric:"Annual maintenance reserve established and funded each budget year", baseline:"", owner:"Board + Facilities Committee", target:"FY2027 budget", status:"not-started" }
       ]}
   ]
 },
@@ -1024,30 +1187,30 @@ const PLAN = [
     { code:"5A", name:"Marketing & Communications",
       summary:"Show the community who we are — consistently, professionally, and everywhere they look. Athletics generates more visible content than any other part of the school; right now most of it evaporates.",
       outcomes:[
-        { id:"5A-1", kind:"build", text:"Complete and distribute the sports complex marketing video.", metric:"1 video completed and distributed across all school channels", baseline:"", owner:"Advancement (interim: AD)", target:"Q3 2026", status:"in-progress" },
-        { id:"5A-2", kind:"build", text:"Publish an annual communications calendar across social media, newsletters, and the school website.", metric:"1 calendar published; minimum 3 athletics posts per week in season", baseline:"", owner:"Advancement", target:"Q4 2026", status:"not-started" },
-        { id:"5A-3", kind:"new", text:"Host community sports clinics that showcase NCC programs and the student-athlete experience.", metric:"At least 4 community clinics per year; attendance tracked with admissions follow-up", baseline:"", owner:"AD", target:"2027", status:"not-started" }
+        { id:"5A-1", kind:"build", text:"Complete and distribute the sports complex marketing video.", metric:"1 video completed and distributed across all school channels", baseline:"", owner:"Advancement (interim: AD)", target:"By December 2026", status:"in-progress" },
+        { id:"5A-2", kind:"build", text:"Publish an annual communications calendar across social media, newsletters, and the school website.", metric:"1 calendar published; minimum 3 athletics posts per week in season", baseline:"", owner:"Advancement", target:"By December 2026", status:"not-started" },
+        { id:"5A-3", kind:"new", text:"Host community sports clinics that showcase NCC programs and the student-athlete experience.", metric:"At least 4 community clinics per year; attendance tracked with admissions follow-up", baseline:"", owner:"AD", target:"By June 2027", status:"not-started" }
       ]},
     { code:"5B", name:"Recognition Platform",
       summary:"A tiered cadence of honor — daily to annual — launched at the high school first, then extended to NCCE. Recognition is tied to the monthly virtue, not only to the scoreboard.",
       outcomes:[
-        { id:"5B-1", kind:"new", text:"Launch the tiered Recognition cadence at the high school: daily PA shout-outs, weekly athlete and coach features, and monthly cross-sport spotlights.", metric:"Daily PA recognition each school day in season; 1 athlete and 1 coach feature per week; 1 cross-sport spotlight per month", baseline:"", owner:"AD + Advancement", target:"Q4 2026", status:"not-started" },
+        { id:"5B-1", kind:"new", text:"Launch the tiered Recognition cadence at the high school: daily PA shout-outs, weekly athlete and coach features, and monthly cross-sport spotlights.", metric:"Daily PA recognition each school day in season; 1 athlete and 1 coach feature per week; 1 cross-sport spotlight per month", baseline:"", owner:"AD + Advancement", target:"By December 2026", status:"not-started" },
         { id:"5B-2", kind:"new", text:"Hold the annual banquet, awards, and Hall of Fame induction.", metric:"1 banquet and 1 induction class per year", baseline:"", owner:"AD + Advancement", target:"Each spring", status:"not-started" },
-        { id:"5B-3", kind:"build", text:"Extend the Recognition platform to NCCE.", metric:"Full cadence operating at NCCE by end of 2027", baseline:"", owner:"Advancement", target:"2027", status:"not-started" },
+        { id:"5B-3", kind:"build", text:"Extend the Recognition platform to NCCE.", metric:"Full cadence operating at NCCE by end of 2027", baseline:"", owner:"Advancement", target:"By September 2027", status:"not-started" },
         { id:"5B-4", kind:"new", text:"Recognize athletes for the month's virtue and for service to other programs, not only for performance.", metric:"At least 40% of recognitions tied to virtue or cross-sport service rather than results", baseline:"", owner:"AD + Advancement", target:"From launch", status:"not-started" }
       ]},
     { code:"5C", name:"Director of Advancement",
       summary:"This pillar needs an owner — a dedicated hire working shoulder to shoulder with the AD. Until that hire is made, several outcomes in this pillar sit on the AD's desk on top of a full job.",
       outcomes:[
-        { id:"5C-1", kind:"build", text:"Approve the Director of Advancement position description.", metric:"1 position description approved by the board", baseline:"", owner:"Board", target:"Q4 2026", status:"in-progress" },
-        { id:"5C-2", kind:"build", text:"Hire and onboard the Director of Advancement to own this pillar alongside the AD.", metric:"1 hire made and onboarded", baseline:"", owner:"Board + Head of School", target:"2027", status:"not-started" }
+        { id:"5C-1", kind:"build", text:"Approve the Director of Advancement position description.", metric:"1 position description approved by the board", baseline:"", owner:"Board", target:"By December 2026", status:"in-progress" },
+        { id:"5C-2", kind:"build", text:"Hire and onboard the Director of Advancement to own this pillar alongside the AD.", metric:"1 hire made and onboarded", baseline:"", owner:"Board + Head of School", target:"By June 2027", status:"not-started" }
       ]},
     { code:"5D", name:"Revenue & Boosters",
       summary:"Reduce reliance on the school budget and transform Boosters into a passion-driven volunteer force rather than a fundraising obligation.",
       outcomes:[
         { id:"5D-1", text:"Grow athletic revenue through advertising sales, the online spirit store, tournaments, and youth camps.", metric:"Reduce net athletics draw on the school budget by 25% by 2028", baseline:"", benchmark:"Current annual athletics cost to the school is understood to exceed $400,000; confirm the exact figure and the current offset before locking the reduction target.", owner:"Advancement + Boosters", target:"Annual", status:"not-started" },
-        { id:"5D-2", kind:"build", text:"Launch the Queen of Hearts raffle.", metric:"Launched and running; net proceeds tracked and reported annually", baseline:"", owner:"Boosters", target:"2026–27", status:"not-started" },
-        { id:"5D-3", kind:"build", text:"Reorganize Boosters into taskforce groups with targeted roles, and merge elementary and high school boosters into one body.", metric:"1 merged organization; at least 4 taskforces with named leads", baseline:"", owner:"AD + Boosters", target:"2027", status:"not-started" },
+        { id:"5D-2", kind:"build", text:"Launch the Queen of Hearts raffle.", metric:"Launched and running; net proceeds tracked and reported annually", baseline:"", owner:"Boosters", target:"By December 2026", status:"not-started" },
+        { id:"5D-3", kind:"build", text:"Reorganize Boosters into taskforce groups with targeted roles, and merge elementary and high school boosters into one body.", metric:"1 merged organization; at least 4 taskforces with named leads", baseline:"", owner:"AD + Boosters", target:"By March 2027", status:"not-started" },
         { id:"5D-4", kind:"new", text:"Grow the volunteer base so the same families are not carrying everything.", metric:"At least 100 unique volunteers per year across athletics; tracked and thanked", baseline:"", owner:"Boosters + AD", target:"Annual", status:"not-started" }
       ]}
   ]
@@ -2201,30 +2364,30 @@ const OUTCOME_APPENDIX = {
 
 /* outcome -> timeline quarter ("R" = recurring rhythm) */
 const OUTCOME_TQ = {
-  "1A-1":"2026-Q1","1A-2":"2026-Q3","1A-3":"2026-Q4","1A-4":"R","1A-5":"R",
+  "1A-1":"2026-Q1","1A-2":"2026-Q4","1A-3":"2027-Q2","1A-4":"R","1A-5":"R",
   "1B-1":"2026-Q2","1B-2":"2027-Q3","1B-3":"R","1B-4":"2027-Q3",
-  "1C-1":"2027-Q2","1C-2":"2026-Q3","1C-3":"2027-Q2",
-  "1D-1":"2026-Q3","1D-2":"R","1D-3":"R","1D-4":"R",
-  "1E-1":"2026-Q3","1E-2":"2026-Q3","1E-3":"2027-Q2","1E-4":"R",
+  "1C-1":"2027-Q2","1C-2":"2026-Q4","1C-3":"2027-Q2",
+  "1D-1":"2026-Q4","1D-2":"R","1D-3":"R","1D-4":"R",
+  "1E-1":"2026-Q4","1E-2":"2026-Q4","1E-3":"2027-Q2","1E-4":"R",
   "1F-1":"2026-Q4","1F-2":"R","1F-3":"2027-Q1","1F-4":"2027-Q3","1F-5":"R","1F-6":"R",
   "1G-1":"2026-Q4","1G-2":"2026-Q4","1G-3":"R","1G-4":"2027-Q4","1G-5":"R","1G-6":"2026-Q4","1G-7":"R",
-  "2A-1":"R","2A-2":"R","2A-3":"2026-Q3","2A-4":"2026-Q3","2A-5":"2026-Q4","2A-6":"2026-Q4",
+  "2A-1":"R","2A-2":"R","2A-3":"R","2A-4":"2026-Q4","2A-5":"2026-Q4","2A-6":"2026-Q4",
   "2A-7":"2027-Q1","2A-8":"R","2A-9":"R","2A-10":"2026-Q4","2A-11":"R",
   "2B-1":"R","2B-2":"R","2B-3":"R",
   "2C-1":"R","2C-2":"2026-Q4",
   "2D-1":"2026-Q4","2D-2":"2027-Q2","2D-3":"2027-Q3","2D-4":"R",
   "2E-1":"2026-Q4","2E-2":"2027-Q2",
-  "3A-1":"R","3A-2":"2026-Q3","3A-3":"R","3A-4":"R","3A-5":"R","3A-6":"2027-Q3",
+  "3A-1":"R","3A-2":"2026-Q4","3A-3":"R","3A-4":"R","3A-5":"R","3A-6":"2027-Q3",
   "3B-1":"2027-Q3","3B-2":"2027-Q3",
   "3C-1":"R","3C-2":"R","3C-3":"R","3C-4":"R","3C-5":"R",
-  "3D-1":"2026-Q3","3D-2":"R","3D-3":"R","3D-4":"R",
-  "3E-1":"2026-Q4","3E-2":"2027-Q1","3E-3":"2028-Q1",
+  "3D-1":"2026-Q4","3D-2":"R","3D-3":"R","3D-4":"R",
+  "3E-1":"2026-Q4","3E-2":"2027-Q2","3E-3":"2028-Q2",
   "3F-1":"R","3F-2":"R","3F-3":"R",
   "4A-1":"2026-Q3","4A-2":"2027-Q2","4A-3":"2027-Q2","4A-4":"2027-Q2",
   "4B-1":"2027-Q2","4B-2":"2027-Q3","4B-3":"2027-Q2",
   "4C-1":"2026-Q4","4C-2":"2027-Q1","4C-3":"R","4C-4":"2027-Q4",
   "4D-1":"2027-Q2","4D-2":"2027-Q1",
-  "5A-1":"2026-Q3","5A-2":"2026-Q4","5A-3":"2027-Q2",
+  "5A-1":"2026-Q4","5A-2":"2026-Q4","5A-3":"2027-Q2",
   "5B-1":"2026-Q4","5B-2":"R","5B-3":"2027-Q3","5B-4":"R",
   "5C-1":"2026-Q4","5C-2":"2027-Q2",
   "5D-1":"R","5D-2":"2026-Q4","5D-3":"2027-Q1","5D-4":"R"
@@ -2372,7 +2535,7 @@ function objectiveBlock(obj, openFirst){
 const pillarGrid   = document.getElementById("pillarGrid");
 const pillarDetail = document.getElementById("pillarDetail");
 const heroSection  = document.getElementById("heroSection");
-const nonNegSection= document.getElementById("nonNegSection");
+const foundSection = document.getElementById("foundationsSection");
 const gridLabel    = document.getElementById("gridLabel");
 
 function filterBarHtml(){
@@ -2419,7 +2582,7 @@ function openPillar(id){
   const done = outs.filter(o=>effectiveStatus(o)==="complete").length;
   const pct  = outs.length ? Math.round(done/outs.length*100) : 0;
   heroSection.classList.add("view-hidden");
-  nonNegSection.classList.add("view-hidden");
+  foundSection.classList.add("view-hidden");
   pillarGrid.classList.add("view-hidden");
   gridLabel.classList.add("view-hidden");
   pillarDetail.classList.remove("view-hidden");
@@ -2454,7 +2617,7 @@ function closePillar(){
   pillarDetail.innerHTML = "";
   gridLabel.classList.remove("view-hidden");
   heroSection.classList.remove("view-hidden");
-  nonNegSection.classList.remove("view-hidden");
+  foundSection.classList.remove("view-hidden");
   pillarGrid.classList.remove("view-hidden");
   syncTopMission();
   window.scrollTo({top:0, behavior:"auto"});
@@ -2726,6 +2889,17 @@ document.addEventListener("click", e=>{
   applyFilter();
 });
 
+/* ---------- values & philosophy toggle ---------- */
+const foundToggle = document.getElementById("foundToggle");
+const foundBody   = document.getElementById("foundBody");
+const foundAction = foundToggle.querySelector(".vaction");
+foundToggle.addEventListener("click", ()=>{
+  const open = foundToggle.getAttribute("aria-expanded")==="true";
+  foundToggle.setAttribute("aria-expanded", open?"false":"true");
+  foundBody.hidden = open;
+  foundAction.textContent = open ? "Read" : "Close";
+});
+
 /* ---------- view toggle ---------- */
 const topMission  = document.getElementById("topMission");
 const topbarInner = document.getElementById("topbarInner");
@@ -2750,7 +2924,7 @@ function setView(v){
   document.getElementById("timelineRoot").classList.toggle("view-hidden", v!=="timeline");
   document.getElementById("metricsRoot").classList.toggle("view-hidden", v!=="metrics");
   heroSection.classList.toggle("view-hidden", v!=="plan" || inPillar);
-  nonNegSection.classList.toggle("view-hidden", v!=="plan" || inPillar);
+  foundSection.classList.toggle("view-hidden", v!=="plan" || inPillar);
   gridLabel.classList.toggle("view-hidden", v!=="plan" || inPillar);
   syncTopMission();
   window.scrollTo({top:0,behavior:"auto"});
