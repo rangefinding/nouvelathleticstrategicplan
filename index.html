@@ -760,6 +760,29 @@ footer .fmission{
   .sum-obj .t{text-align:right;color:#333}
   .sum-note{margin:10px 0 16px;color:#333;font-style:italic}
 }
+
+/* ===== Modern pass (screen only) — matches the Lean Layout ===== */
+@media screen{
+  :root{--r:14px;--lift:0 1px 2px rgba(0,48,95,.04),0 10px 30px rgba(0,48,95,.07)}
+  .topbar{background:rgba(0,48,95,.92);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px)}
+  .viewtoggle{border-radius:99px;padding:4px}
+  .vt-btn{border-radius:99px}
+  .btn{border-radius:99px}
+  .hero{background:radial-gradient(120% 140% at 100% 0%,#0a5bb5 0%,var(--royal) 45%,var(--royal-dp) 100%)}
+  .hero-inner{padding:64px 24px 52px}
+  .plantitle .l1{font-size:clamp(12px,1.4vw,14px);font-weight:600;letter-spacing:.2em}
+  .plantitle .l2{text-transform:none;letter-spacing:-.01em;font-size:clamp(36px,6.2vw,66px);line-height:1.02;margin-top:.25em}
+  .plantitle .l3{font-size:clamp(13px,1.6vw,16px);font-weight:500;letter-spacing:.18em;margin-top:.9em}
+  .hero-mission{font-size:clamp(19px,2.4vw,26px);border-top:0;padding-top:0;margin-top:22px}
+  .creditline{border-top:1px solid rgba(255,255,255,.16);gap:16px 28px}
+  .pcard,.vcard-wrap,.objective{border-left:0;border:1px solid var(--hairline);border-radius:var(--r);box-shadow:var(--lift)}
+  .pcard .num{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--royal);background:var(--silver-pl);width:52px;height:52px;border-radius:14px;display:grid;place-items:center;justify-self:center}
+  .vmark{font-size:22px;color:var(--royal);background:var(--silver-pl);width:52px;height:52px;line-height:52px;border-radius:14px;justify-self:center}
+  .status-pill,.chip{border-radius:99px}
+  .app-tag{border-radius:99px}
+  .sectionlabel{padding-top:30px}
+  footer{background:linear-gradient(135deg,var(--royal) 0%,var(--royal-dp) 100%)}
+}
 </style>
 </head>
 <body id="top">
