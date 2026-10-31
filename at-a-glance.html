@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<title>Nouvel Athletics at a Glance</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow column; mission words act as a filter over five pillar cards, then a dated momentum line and a "your part" checklist. */
+:root{
+  --blue:#004590; --blue-ink:#00336b; --silver:#bfbfbf;
+  --bg:#f6f8fb; --surface:#ffffff; --fg:#14213a; --muted:#56637a; --line:#dde3ec;
+  --accent:var(--blue); --accent-soft:#e6eef8; --on-accent:#ffffff;
+  --done:#1f7a4d; --done-soft:#e3f2ea; --going:#9a6400; --going-soft:#fbf1dd; --next:#004590; --next-soft:#e6eef8;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1424; --surface:#131e33; --fg:#e8edf5; --muted:#a3afc3; --line:#24324c;
+  --accent:#7fb0ff; --accent-soft:#18294a; --on-accent:#0c1424;
+  --done:#6fd3a0; --done-soft:#14301f; --going:#f0bf62; --going-soft:#33280f; --next:#8fbaff; --next-soft:#18294a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1424; --surface:#131e33; --fg:#e8edf5; --muted:#a3afc3; --line:#24324c;
+  --accent:#7fb0ff; --accent-soft:#18294a; --on-accent:#0c1424;
+  --done:#6fd3a0; --done-soft:#14301f; --going:#f0bf62; --going-soft:#33280f; --next:#8fbaff; --next-soft:#18294a;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+.eyebrow{font:600 .75rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+p{margin:0}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;gap:16px}
+.hero h1{font-size:clamp(2rem,6vw,2.9rem);font-weight:800;letter-spacing:-.02em;color:var(--fg)}
+.hero .lede{font-family:var(--serif);font-size:1.2rem;color:var(--muted);max-width:60ch}
+.launch{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.92rem;color:var(--muted)}
+.launch b{color:var(--fg);font-weight:600}
+
+/* Mission filter */
+.mission{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
+.mission .line{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.6rem);line-height:1.5}
+.word{font:inherit;font-style:italic;color:var(--accent);background:none;border:0;padding:0 2px;cursor:pointer;
+  border-bottom:2px solid transparent;transition:border-color .15s,background .15s}
+.word:hover{border-bottom-color:var(--accent)}
+.word[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-radius:4px;border-bottom-color:transparent}
+.word:focus-visible,.pillar-head:focus-visible,.check input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+.hint{font-size:.88rem;color:var(--muted)}
+
+/* Pillars */
+.pillars{display:flex;flex-direction:column;gap:12px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:10px;transition:opacity .2s,border-color .2s}
+.pillar.dim{opacity:.38}
+.pillar.lit{border-color:var(--accent)}
+.pillar-head{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:18px 20px}
+.numeral{font:800 1.5rem/1 var(--display);color:var(--accent);width:2.4ch;text-align:center}
+.ph-text{min-width:0;display:flex;flex-direction:column;gap:2px}
+.ph-text h3{font-size:1.15rem;font-weight:700}
+.ph-text .goal{font-size:.92rem;color:var(--muted)}
+.chev{width:20px;height:20px;color:var(--muted);transition:transform .2s}
+.pillar.open .chev{transform:rotate(180deg)}
+.pillar-body{padding:0 20px 20px;display:flex;flex-direction:column;gap:14px}
+.thread{font-family:var(--serif);font-style:italic;color:var(--muted);padding-left:calc(2.4ch + 16px)}
+.items{list-style:none;margin:0;padding:0 0 0 calc(2.4ch + 16px);display:flex;flex-direction:column;gap:14px}
+.item{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--line)}
+.item-top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.item h4{margin:0;font:600 1rem/1.35 var(--body)}
+.item p{font-size:.95rem;color:var(--fg)}
+.item .when{font-size:.84rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.chip{font:600 .72rem/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.chip.done{color:var(--done);background:var(--done-soft)}
+.chip.going{color:var(--going);background:var(--going-soft)}
+.chip.next{color:var(--next);background:var(--next-soft)}
+
+/* Namesake */
+.namesake{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:4px 10px 10px 4px;padding:22px 24px}
+.namesake h2{font-size:1.35rem;font-weight:700}
+.namesake p{font-family:var(--serif);font-size:1.08rem;max-width:62ch}
+
+/* Momentum */
+section>.head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+section>.head h2{font-size:1.5rem;font-weight:700}
+section>.head p{color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;position:relative}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl{display:grid;grid-template-columns:16px 1fr;gap:16px;padding-bottom:20px;position:relative}
+.dot{width:16px;height:16px;border-radius:50%;margin-top:4px;background:var(--surface);border:3px solid var(--accent);z-index:1}
+.tl.done .dot{background:var(--done);border-color:var(--done)}
+.tl-text{min-width:0}
+.tl-date{font:600 .78rem/1.4 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tl-text b{display:block;font-weight:600}
+.tl-text span{font-size:.94rem;color:var(--muted)}
+
+/* Your part */
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.checks{grid-template-columns:1fr}}
+.check{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;cursor:pointer}
+.check input{position:absolute;opacity:0;pointer-events:none}
+.box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--accent);display:grid;place-items:center;margin-top:1px}
+.box svg{width:14px;height:14px;opacity:0;color:var(--on-accent)}
+.check input:checked+.box{background:var(--accent)}
+.check input:checked+.box svg{opacity:1}
+.check .ct{min-width:0;display:flex;flex-direction:column;gap:2px}
+.check .ct b{font-weight:600}
+.check .ct span{font-size:.92rem;color:var(--muted)}
+.progress{margin-top:14px;font-size:.9rem;color:var(--muted)}
+
+footer{padding-top:24px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--muted)}
+footer .fm{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--fg)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Nouvel Catholic Central · Athletics</span>
+    <h1>Called together.</h1>
+    <p class="lede">One program, PreK–12, that prays, competes, and gathers as one. Here is our Athletic Strategic Plan in brief: five pillars and the few things in each that matter most.</p>
+    <div class="launch"><span><b>Plan goes live</b> January 1, 2027</span><span><b>All-sports Mass</b> January 20, 2027, Feast of St. Sebastian</span></div>
+  </header>
+
+  <section class="mission" aria-label="Mission">
+    <span class="eyebrow">Our mission</span>
+    <p class="line">Called by Christ to
+      <button class="word" data-word="learn" aria-pressed="false">learn</button>,
+      <button class="word" data-word="love" aria-pressed="false">love</button>, and
+      <button class="word" data-word="lead" aria-pressed="false">lead</button>…
+      <button class="word" data-word="courageously" aria-pressed="false">courageously</button>.</p>
+    <p class="hint">Tap a word in the mission to see which pillars carry it.</p>
+  </section>
+
+  <section class="namesake" aria-labelledby="name-h">
+    <span class="eyebrow">Our namesake</span>
+    <h2 id="name-h">Father Henri Nouvel, S.J.</h2>
+    <p>On December 3, 1675, Father Henri Nouvel, a Jesuit missionary, celebrated the first Catholic Mass in Michigan's interior, on Ojibway Island in Saginaw. He traveled in winter, far from home, to bring the faith to people who had not yet heard it.</p>
+    <p>That is what "courageously" looks like. Every Nouvel athlete carries his name onto the field.</p>
+  </section>
+
+  <section aria-labelledby="pillars-h">
+    <div class="head">
+      <span class="eyebrow">The five pillars</span>
+      <h2 id="pillars-h">What matters most</h2>
+    </div>
+    <div class="pillars" id="pillars"></div>
+  </section>
+
+  <section aria-labelledby="mom-h">
+    <div class="head">
+      <span class="eyebrow">Momentum</span>
+      <h2 id="mom-h">Already built, with gratitude</h2>
+    </div>
+    <ol class="timeline">
+      <li class="tl done"><span class="dot"></span><div class="tl-text"><span class="tl-date">Fall 2026 · Done</span><b>Lawler Family Tennis Courts and pickleball courts</b><span>Eight tennis courts and two pickleball courts, made possible by the Lawler family.</span></div></li>
+      <li class="tl done"><span class="dot"></span><div class="tl-text"><span class="tl-date">2026 · Done</span><b>The track, completely rebuilt</b><span>A new six-lane track, rebuilt at the Bishop's request with the Diocese of Saginaw.</span></div></li>
+      <li class="tl done"><span class="dot"></span><div class="tl-text"><span class="tl-date">Fall 2026 · Done</span><b>New lights at Boyd Field</b><span>Friday nights now look the part.</span></div></li>
+      <li class="tl"><span class="dot"></span><div class="tl-text"><span class="tl-date">Late 2026 · Nearly complete</span><b>Hall of Fame courtyard and Panther Cub Park</b><span>A home for our honorees, and a play area near the stadium for younger siblings.</span></div></li>
+      <li class="tl"><span class="dot"></span><div class="tl-text"><span class="tl-date">January 1, 2027</span><b>The plan goes live</b><span>Every team, coach, and family begins working from the same plan.</span></div></li>
+      <li class="tl"><span class="dot"></span><div class="tl-text"><span class="tl-date">January 20, 2027</span><b>All-sports Mass on the Feast of St. Sebastian</b><span>Every team represented; every team's game ball blessed.</span></div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="part-h">
+    <div class="head">
+      <span class="eyebrow">Your part</span>
+      <h2 id="part-h">Four ways every family takes part</h2>
+      <p>Check them off as you go. Your checks stay on this device.</p>
+    </div>
+    <div class="checks" id="checks"></div>
+    <p class="progress" id="progress" aria-live="polite"></p>
+  </section>
+
+  <footer>
+    <span class="fm">Called by Christ to learn, love, and lead… courageously.</span>
+    <span>Nouvel Catholic Central Athletic Strategic Plan, 2026–2028. This is the family summary; the full plan holds every measurable outcome.</span>
+  </footer>
+</div>
+
+<script>
+const PILLARS = [
+  { n:"I", key:"synergy", name:"Athletic Synergy", words:["love"],
+    goal:"One program, PreK–12. No team stands alone.",
+    thread:"Love: putting others before ourselves.",
+    items:[
+      { t:"Meet the Teams, every season", s:"next", when:"Each season, from Winter 2026–27 · High school gym",
+        d:"One night each season, every team from elementary through varsity is introduced together in the high school gym. The youngest Panthers see where they are headed, and the oldest see who is coming up behind them." },
+      { t:"A Parent & Fan Code of Conduct", s:"going", when:"Adopted by December 2026; presented every preseason",
+        d:"How we speak to officials, coaches, and each other's children. Every family hears it at every preseason parent meeting, at every level." },
+      { t:"Every Panther Serves", s:"next", when:"Starts January 2027",
+        d:"Each athletic family covers the same small number of volunteer shifts per season. Shifts are assigned before the season; trade if you need to, but the shift stays covered. One parent lead per sport runs the schedule." }
+    ]},
+  { n:"II", key:"coaches", name:"Coach Development", words:["lead"],
+    goal:"Coaches are the front line of the mission, and they grow best together.",
+    thread:"Lead: forming the people who form our children.",
+    items:[
+      { t:"Quarterly coaching roundtables", s:"going", when:"Four times a year, every head coach",
+        d:"Coaches from every sport and level meet each quarter, opened and closed in prayer. They give each other feedback on practices, share what they see in athletes in the classroom, and over time run the room themselves. One roundtable each year is set aside for spiritual formation." },
+      { t:"Formed in faith, together", s:"going", when:"Commissioning Mass each August; small groups and a retreat from 2027",
+        d:"Every season starts at a Coaches Commissioning Mass. Coaches meet in small faith-sharing groups through the year and gather for a coaches' retreat, along with informal time together off the field." },
+      { t:"Fully credentialed, every season", s:"going", when:"Continuous",
+        d:"Background checks, diocesan Safe Environment training, CPR/AED, and sport certifications for every coach. No coach on a sideline with a lapsed credential." }
+    ]},
+  { n:"III", key:"athletes", name:"Student-Athlete Development", words:["learn"],
+    goal:"Disciple first, then champion of character, mind, and body.",
+    thread:"Learn: the whole person, not the athlete only.",
+    items:[
+      { t:"Every practice and contest opens and closes in prayer", s:"next", when:"From January 2027, every level",
+        d:"From the youngest teams through varsity, prayer starts and ends the day's work, guided by a monthly virtue calendar shared by coaches, teams, students, and parents." },
+      { t:"The Athletic Unity Council", s:"going", when:"Chartered by December 2026",
+        d:"Student-athletes from every varsity sport lead together. The Council pairs teams to cheer for one another each season, mentors younger athletes, and gives students a real voice in how Nouvel athletics runs." },
+      { t:"Academics first, through PASS", s:"going", when:"Weekly eligibility checks in season",
+        d:"Any athlete failing a class joins Panther Academic Support Services within five school days, until the grade recovers. Weekly checks catch trouble early." }
+    ]},
+  { n:"IV", key:"facilities", name:"Our Spaces", words:["courageously"],
+    goal:"Gifts to be grateful for, and to put to work for every student.",
+    thread:"Courageously: building beyond what is comfortable.",
+    items:[
+      { t:"What we have now, with gratitude", s:"done", when:"Completed fall 2026",
+        d:"Eight Lawler Family Tennis Courts, two pickleball courts, a completely rebuilt six-lane track at the Bishop's request, new lights at Boyd Field, a Hall of Fame courtyard nearly complete, and Panther Cub Park, a new play area for younger siblings near the stadium." },
+      { t:"Putting it to work every day", s:"next", when:"From January 2027",
+        d:"These spaces are for more than game day: PE classes on the courts and track, more teams practicing on campus, youth clinics, and room for families and the community to play." }
+    ]},
+  { n:"V", key:"advancement", name:"Advancement", words:["love","lead"],
+    goal:"Tell the story, honor the people, and bring our alumni home.",
+    thread:"Love and lead: telling the truth about who we are.",
+    items:[
+      { t:"Recognition every day, week, and month", s:"going", when:"High school first, then the elementary",
+        d:"Daily PA shout-outs, weekly athlete and coach features, and monthly cross-sport spotlights, including recognition for virtue and service, not only results." },
+      { t:"A Hall of Fame with a home", s:"next", when:"Annual banquet and induction each spring",
+        d:"The new Hall of Fame courtyard gives our honorees a permanent place on campus, and the annual banquet and induction bring every generation of Panthers back together." },
+      { t:"Bringing alumni home", s:"next", when:"Starting 2027",
+        d:"Alumni from every sport help reconnect their old teammates with Nouvel. Every alum should hear good news from home a few times a year, and be invited back to see the kids who wear the uniform now." }
+    ]}
+];
+const STATUS = { done:"Done", going:"Underway", next:"Coming 2027" };
+const CHEV = '<svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const wrap = document.getElementById("pillars");
+wrap.innerHTML = PILLARS.map((p,i) => `
+  <article class="pillar${i===0?" open":""}" data-words="${p.words.join(" ")}" id="${p.key}">
+    <button class="pillar-head" aria-expanded="${i===0}" aria-controls="b-${p.key}">
+      <span class="numeral">${p.n}</span>
+      <span class="ph-text"><h3>${esc(p.name)}</h3><span class="goal">${esc(p.goal)}</span></span>
+      ${CHEV}
+    </button>
+    <div class="pillar-body" id="b-${p.key}" ${i===0?"":"hidden"}>
+      <p class="thread">${esc(p.thread)}</p>
+      <ul class="items">${p.items.map(it => `
+        <li class="item">
+          <div class="item-top"><h4>${esc(it.t)}</h4><span class="chip ${it.s}">${STATUS[it.s]}</span></div>
+          <p>${esc(it.d)}</p>
+          <span class="when">${esc(it.when)}</span>
+        </li>`).join("")}
+      </ul>
+    </div>
+  </article>`).join("");
+
+function setOpen(card, open){
+  card.classList.toggle("open", open);
+  card.querySelector(".pillar-head").setAttribute("aria-expanded", open);
+  card.querySelector(".pillar-body").hidden = !open;
+}
+wrap.addEventListener("click", e => {
+  const head = e.target.closest(".pillar-head"); if(!head) return;
+  const card = head.parentElement; setOpen(card, !card.classList.contains("open"));
+});
+
+let active = null;
+document.querySelectorAll(".word").forEach(btn => btn.addEventListener("click", () => {
+  const w = btn.dataset.word; active = active === w ? null : w;
+  document.querySelectorAll(".word").forEach(b => b.setAttribute("aria-pressed", b.dataset.word === active));
+  document.querySelectorAll(".pillar").forEach(card => {
+    const hit = active && card.dataset.words.split(" ").includes(active);
+    card.classList.toggle("lit", !!hit);
+    card.classList.toggle("dim", !!active && !hit);
+    if(hit) setOpen(card, true);
+  });
+}));
+
+const PARTS = [
+  { id:"pray", t:"Pray", d:"For our athletes, coaches, and every opponent we face." },
+  { id:"meet", t:"Come to Meet the Teams night", d:"Every team, elementary through varsity, together in the high school gym." },
+  { id:"serve", t:"Serve your shifts", d:"Concessions, gates, clock, chains. Trade if needed; don't drop." },
+  { id:"cheer", t:"Cheer another team", d:"Come to a game for a sport your family doesn't play." }
+];
+const KEY = "nouvel-glance-checks";
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { saved = {}; }
+const checks = document.getElementById("checks");
+const TICK = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+checks.innerHTML = PARTS.map(p => `
+  <label class="check" for="part-${p.id}">
+    <input type="checkbox" id="part-${p.id}" data-id="${p.id}" ${saved[p.id]?"checked":""}>
+    <span class="box">${TICK}</span>
+    <span class="ct"><b>${p.t}</b><span>${p.d}</span></span>
+  </label>`).join("");
+function progress(){
+  const n = PARTS.filter(p => saved[p.id]).length;
+  document.getElementById("progress").textContent = n === PARTS.length ? "All four. Thank you for being part of Nouvel athletics." : `${n} of ${PARTS.length} checked.`;
+}
+checks.addEventListener("change", e => {
+  const id = e.target.dataset.id; if(!id) return;
+  saved[id] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(err) {}
+  progress();
+});
+progress();
+</script>
+
+</body>
+</html>
