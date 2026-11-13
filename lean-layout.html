@@ -6,7 +6,7 @@
 <style>[hidden]{display:none!important}img{max-width:100%}</style>
 </head>
 <body>
-<title>Nouvel ASP Lean Layout</title>
+<title>Nouvel Athletics — A Glimpse of the Strategic Plan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,6 +55,7 @@ button{font-family:inherit;cursor:pointer}
 main{padding-block:36px 56px}
 main .inner{display:flex;flex-direction:column;gap:44px}
 .sec-eyebrow{display:block;font-family:var(--disp);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:6px}
+.sec-note{margin:10px 0 0;font-size:15px;line-height:1.55;color:var(--ink-soft,#56626D);max-width:62ch}
 .sec-title{margin:0;font-family:var(--disp);font-weight:600;font-size:clamp(22px,3.4vw,28px);letter-spacing:-.005em;color:var(--royal);text-wrap:balance}
 .sec-lead{margin:8px 0 0;color:var(--ink-soft);max-width:64ch}
 .head{margin-bottom:16px}
@@ -198,8 +199,8 @@ main{padding-block:40px 64px}
   <div class="inner">
     <p class="kicker">Nouvel Catholic Central Athletics</p>
     <h1 class="title">Athletic Strategic Plan</h1>
-    <p class="sub"><span class="tag">The Lean Layout</span><span class="yr">2027</span></p>
-    <p class="intro">Our primary objectives for 2027, the first year of the plan, drawn from a much fuller Athletic Strategic Plan. We start here, do these well, and add as we go.</p>
+    <p class="sub"><span class="tag">A Glimpse</span><span class="yr">2027</span></p>
+    <p class="intro">A glimpse into our Athletic Strategic Plan. What follows are examples of the kinds of things that live inside each of the five pillars &mdash; some of the larger tenets of a much fuller plan &mdash; so our families can see where Nouvel athletics is headed. We start here, do these well, and add as we go.</p>
     <p class="mission">Called by Christ to
       <button class="word" data-word="learn" aria-pressed="false" title="Show the pillars that carry this word">learn</button>,
       <button class="word" data-word="love" aria-pressed="false" title="Show the pillars that carry this word">love</button>, and
@@ -260,7 +261,8 @@ main{padding-block:40px 64px}
     <section aria-labelledby="pillars-h">
       <div class="head">
         <span class="sec-eyebrow">The five pillars</span>
-        <h2 class="sec-title" id="pillars-h">2027 priorities</h2>
+        <h2 class="sec-title" id="pillars-h">Examples from each pillar</h2>
+        <p class="sec-note">Each pillar of the plan holds far more than what is shown here. These are examples &mdash; a few of the larger components of each &mdash; chosen to give a clear picture of the whole.</p>
       </div>
       <div class="pillars" id="pillars"></div>
     </section>
@@ -279,7 +281,7 @@ main{padding-block:40px 64px}
     </section>
 
     <section class="fullplan" aria-label="The full plan">
-      <div><b>This is the Lean Layout.</b><p>The full Athletic Strategic Plan holds every objective, owner, and measure, and the long-term roadmap beyond 2027.</p></div>
+      <div><b>This is a glimpse, not the whole plan.</b><p>The full Athletic Strategic Plan holds every objective, owner, measure, and date behind these examples, along with the roadmap beyond 2027.</p></div>
       <a href="https://rangefinding.github.io/nouvelathleticstrategicplan/">Read the full plan</a>
     </section>
 
@@ -289,7 +291,7 @@ main{padding-block:40px 64px}
 <footer>
   <div class="inner">
     <div class="fmission">Called by Christ to learn, love, and lead&hellip; courageously.</div>
-    Nouvel Catholic Central Athletic Strategic Plan &middot; The Lean Layout
+    Nouvel Catholic Central Athletic Strategic Plan &middot; A Glimpse
   </div>
 </footer>
 
@@ -299,7 +301,7 @@ const PILLARS = [
     goal:"One program, PreK–12. No team stands alone.",
     thread:"Love: putting others before ourselves.",
     items:[
-      { t:"Meet the Teams, every season", when:"Each season, from Winter 2026–27 · High school gym",
+      { t:"Meet the Teams, every season", when:"Each season, beginning Spring 2027 · High school gym",
         d:"One night each season, every team from elementary through varsity is introduced together in the high school gym. The youngest Panthers see where they are headed, and the oldest see who is coming up behind them." },
       { t:"A Parent & Fan Code of Conduct", when:"Presented at every preseason parent meeting",
         d:"How we speak to officials, coaches, and each other's children. Every family hears it at every preseason parent meeting, at every level. It is consistent with what Bishop Robert Gruss has communicated and emphasized about the importance of a parent code of conduct." },
@@ -313,9 +315,7 @@ const PILLARS = [
       { t:"Quarterly coaching roundtables", when:"Four times a year, every head coach",
         d:"Coaches from every sport and level meet each quarter, opened and closed in prayer. They give each other feedback on practices, share what they see in athletes in the classroom, and over time run the room themselves. One roundtable each year is set aside for spiritual formation." },
       { t:"Formed in faith, together", when:"Commissioning Mass each August; small groups and a retreat",
-        d:"Every season starts at a Coaches Commissioning Mass. Coaches meet in small faith-sharing groups through the year and gather for a coaches' retreat, along with informal time together off the field." },
-      { t:"Fully credentialed, every season", when:"Continuous",
-        d:"Background checks, diocesan Safe Environment training, CPR/AED, and sport certifications for every coach. No coach on a sideline with a lapsed credential." }
+        d:"Every season starts at a Coaches Commissioning Mass. Coaches meet in small faith-sharing groups through the year and gather for a coaches' retreat, along with informal time together off the field." }
     ]},
   { n:"III", key:"athletes", name:"Student-Athlete Development", words:["learn"],
     goal:"Disciple first, then champion of character, mind, and body.",
@@ -342,13 +342,9 @@ const PILLARS = [
         d:"These spaces are for more than game day: PE classes on the courts and track, more teams practicing on campus, youth clinics, and room for families and the community to play." }
     ]},
   { n:"V", key:"advancement", name:"Advancement", words:["love","lead"],
-    goal:"Tell the story, honor the people, and bring our alumni home.",
+    goal:"Open our doors and let more families see what it means to be a Panther.",
     thread:"Love and lead: telling the truth about who we are.",
     items:[
-      { t:"Recognition every day, week, and month", when:"High school first, then the elementary",
-        d:"Daily PA shout-outs, weekly athlete and coach features, and monthly cross-sport spotlights, including recognition for virtue and service, not only results." },
-      { t:"Bringing alumni home, three times a year", when:"Owned by every program, from January 2027",
-        d:"Every program reaches each of its alumni at least three times a year. In season, a personal invitation to an alumni night at a home game. At Christmas, a handwritten card from the current team telling the season's story. In spring, an update on the seniors and an invitation to the banquet." },
       { t:"Open doors: community clinics and camps", when:"At least four clinics a year",
         d:"Our coaches and athletes host clinics for younger kids and families from across the area, on our new courts, track, and fields, so more families see what it means to be a Panther." }
     ]}
@@ -370,7 +366,7 @@ wrap.innerHTML = PILLARS.map((p,i) => `
       </ol></div><h5 class="next-h">Next</h5>` : ""}
       <ul class="items">${p.items.map(it => `
         <li class="item">
-          <div class="item-top"><h4>${esc(it.t)}</h4>${it.noPill?"":'<span class="pill"><span class="sdot"></span>Not started yet</span>'}</div>
+          <div class="item-top"><h4>${esc(it.t)}</h4></div>
           <p>${esc(it.d)}</p>
           <span class="when">${esc(it.when)}</span>
         </li>`).join("")}
